@@ -16,8 +16,8 @@
     <main>
                 <h3>User Information</h3>
             <form method="POST" action="https://request-inspector.glitch.me/">
-                    <label for="username">Username:</label>
-                    <input id="username" name="username" type="text" placeholder="Username" required>
+                    <label for="email1">Email:</label>
+                    <input id="email1" name="Email" type="text" placeholder="Email" required>
                         <br>
                     <label for="password">Password:</label>
                     <input  id="password" name="password" type="password" placeholder="Password" required>
@@ -28,13 +28,21 @@
                         <br>
         <hr>
                 <h3>How did you hear about us?</h3>
-                    <input type="radio" name="Choice1" value="a">Billboard<br>
-                    <input type="radio" name="Choice2" value="b">Radio Advertisement<br>
-                    <input type="radio" name="Choice3" value="c">Internet Advertisement<br>
-                    <input type="radio" name="Choice4" value="d">Other
-        <hr>
-                <h3>What browser are you using?</h3>
-                    <select name="browsers">
+                <input type="radio" name="Choice" id="billboard" value="billboard">
+                <label for="billboard">Billboard</label>
+                <br>
+                <input type="radio" name="Choice" id="radioad" value="radioad">
+                <label for="radioad">Radio Advertisement</label>
+                <br>
+                <input type="radio" name="Choice" id="internet" value="internet">
+                <label for="internet">Internet Advertisements</label>
+                <br>
+                <input type="radio" name="Choice" id="other" value="other">Other
+                <label for="other">Other</label>
+
+                <hr>
+                <label for="browsers"><h3>What browser are you using?</h3></label>
+                    <select name="browsers" id="browsers">
                         <option value="chrome">Chrome</option>
                         <option value="microsoft edge">Microsoft Edge</option>
                         <option value="firefox">Firefox</option>

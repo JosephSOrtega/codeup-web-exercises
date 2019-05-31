@@ -14,9 +14,15 @@ this file is named "site.css" and is in a directory named "css"
 .bigger-font {
     font-size: 20px;
 }
+body {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUusVj5Qd4ibwWUlrYxT3T4n09voIHmd0Ox0uy8d_lgObsTp9V");
+    background-size: cover;
+    background-position: center;
+}
 h1 {
     color: orange;
     text-decoration: underline lightblue;
+    text-align: center;
 }
 h3 {
     color: lightblue;
@@ -45,8 +51,8 @@ a:visited {
     color: pink;
 }
 a:hover {
-     color: sandybrown;
+    color: sandybrown;
 }
 a:active {
-      color: blue;
-  }
+    color: blue;
+}
