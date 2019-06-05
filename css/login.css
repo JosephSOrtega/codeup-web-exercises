@@ -7,7 +7,6 @@ body, html {
     height: 100%;
     width: 100%;
     background-color: #cbffcd;
-    font-family: Arial, Ubuntu, sans-serif;
 }
 
 form {
@@ -64,7 +63,7 @@ fieldset {
     padding: 8px;
     color: white;
     font-weight: bold;
-    border: lightgray 1px;
+    border: lightgray solid 1px;
     /* There must be a separation of 8px between the text and the border of this element */
     /* The text color of this element should be white and bold */
     /* The border of this element should be 1px, and its color should be light grey */
