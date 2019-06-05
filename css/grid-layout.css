@@ -31,6 +31,30 @@
 .column.one-eighth {
     width: calc(12.5% - 22px);
 }
+.column.two-third {
+    width: calc(66% - 22px);
+}
+.column.three-eighth {
+    width: calc(37.5% - 22px);
+}
+.column.two-fourth {
+    width: calc(50% - 22px);
+}
+.column.three-sixth {
+    width: calc(50% - 22px);
+}
+.column.offset-one-half {
+    margin: 50%;
+}
+.column.offset-one-third {
+     margin: 33.33%;
+}
+.column.offset-two-third {
+      margin: 66.66%;
+}
+.column.offset-one-fourth {
+       margin: 25%;
+}
 @media screen and (max-width: 768px) {
     .column.one-third,
     .column.one-half,
