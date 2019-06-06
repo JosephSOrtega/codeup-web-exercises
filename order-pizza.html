@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Pizza</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Pizza World</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Order Pizza <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search stores near you!</button>
+        </form>
+        <a class="nav-link" href="#" style="float: right;color: grey;"> <i class="material-icons">person</i> Sign Up</a>
+
+    </div>
+</nav>
+<section class="d-none d-md-block"> <!--I need to relook at this.-->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Welcome to Pizza World!</h1>
+        </div>
+    </div>
+</section>
+    <h2>Build your own pizza!</h2>
+<hr>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#"><span class="badge badge-pill badge-secondary">1</span> Size and Crust</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">2</span> Cheese and Sauce</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">3</span> Toppings</a>
+        </li>
+    </ul>
+<div class="card" style="width: 95%;margin: 2em;border: 1px #D9EDF7 solid">
+    <div class="card-header bg-primary">
+        Choose size and crust
+    </div>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza">Hand Tossed</li>
+        <li class="list-group-item">Garlic seasoned crust with a rich,
+            buttery taste.</li>
+        <li class="list-group-item blue-pretty"><input type="radio" aria-label="Radio
+        button for following text input"> Small (10")</li>
+        <li class="list-group-item blue-pretty"><input type="radio" aria-label="Radio
+        button for following text input"> Medium (12")</li>
+    </ul>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza">Crispy Thin</li>
+        <li class="list-group-item">Thin enough for optimum crispy to crunchy ratio.</li>
+        <li class="list-group-item blue-pretty"><input type="radio" aria-label="Radio
+        button for following text input"> Medium (12")</li>
+        <li class="list-group-item blue-pretty"><input type="radio" aria-label="Radio
+        button for following text input"> Large (14")</li>
+    </ul>
+    <div class="card-header menu-color-pizza">
+        <button type="button" class="btn btn-primary float-right-button">Next Step ></button>
+    </div>
+</div>
+<div class="card" style="width: 95%;margin: 2em;border: 1px lightgray solid">
+    <div class="card-header bg-primary">
+        Choose Cheese and Sauce
+    </div>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza">Cheese</li>
+        <li class="list-group-item blue-pretty"><label for="exampleFormControlSelect1"> How Much?</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+            <option>Light</option>
+            <option>Normal</option>
+            <option>Extra</option>
+            <option>Double</option>
+        </select> </li>
+
+
+    </ul>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza">Sauce</li>
+        <li class="list-group-item blue-pretty"><label for="exampleFormControlSelect1"> What Type?</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Tomato Sauce</option>
+                <option>Marinara Sauce</option>
+                <option>BBQ Sauce</option>
+                <option>Alfredo Sauce</option>
+            </select> </li>
+        <li class="list-group-item blue-pretty"><label for="exampleFormControlSelect1"> How Much?</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Light</option>
+                <option>Normal</option>
+                <option>Extra</option>
+            </select> </li>
+
+    </ul>
+    <div class="btn card-header menu-color-pizza" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary float-right-button">Next Step ></button>
+        <button type="button" class="btn btn-primary float-right-button">< Previous Step</button>
+
+    </div>
+</div>
+<div class="card" style="width: 95%;margin: 2em;border: 1px lightgray solid">
+    <div class="card-header bg-primary">
+            Choose Toppings
+    </div>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza"> Choose Meats</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Beef</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Ham</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Philly Steak</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Bacon</li>
+    </ul>
+    <ul class="list-group list-group-flush margin-for-items">
+        <li class="list-group-item menu-color-pizza">Choose Non-Meats</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Green Peppers</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Mushrooms</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Onions</li>
+        <li class="list-group-item blue-pretty"><input type="checkbox" aria-label="Checkbox
+         for following text input"> Jalepeno Peppers</li>
+    </ul>
+    <div class="card-header menu-color-pizza">
+        <button type="button" class="btn btn-primary float-right-button">Checkout
+            <div class="icon-cart" style="clear: right; float: right">
+            <div class="cart-line-1" style="background-color: whitesmoke"></div>
+            <div class="cart-line-2" style="background-color: whitesmoke"></div>
+            <div class="cart-line-3" style="background-color: whitesmoke"></div>
+            <div class="cart-wheel" style="background-color: whitesmoke"></div>
+        </div>
+        </button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
