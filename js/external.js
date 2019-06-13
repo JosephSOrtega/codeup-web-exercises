@@ -3,7 +3,7 @@
 alert("Welcome to my Website!");
 // the following line will show the OK/CANCEL confirm dialog
 
-var confirmed = confirm('Are you sure you want to do XYZ?');
+var confirmed = confirm('Are you sure you want to do proceed?');
 console.log(confirmed); // will be either true or false
 
 var userInput = prompt('Whats your favorite color?');
@@ -15,12 +15,10 @@ console.log('Hello from external JavaScript');
 //3.1
 alert("I have a few questions about the movies you rented...");
 
-var userInputLM = prompt('How many days are you renting The Little Mermaid?');
-var totalLM = parseInt(userInputLM);
-var userInputBB = prompt('How many days are you renting Brother Bear?');
-var totalBB = parseInt(userInputBB);
-var userInputH = prompt('How many days are you renting Hercules?');
-var totalH = parseInt(userInputH);
+var totalLM = Number(prompt('How many days are you renting The Little Mermaid?'));
+var totalBB = Number(prompt('How many days are you renting Brother Bear?'));
+var totalH = Number(prompt('How many days are you renting Hercules?'));
+var dayRent = Number(prompt('Whats the daily rate for a movie rental?'));
 var rentOwedUI = (totalLM + totalBB + totalH) * dayRent;
 
 alert('At a rate of $3 per night, Your total expense for movies this week is: $' + rentOwedUI);
@@ -28,14 +26,14 @@ alert('At a rate of $3 per night, Your total expense for movies this week is: $'
 
 //3.2
 
-alert("You've had a busy week! Lets see how much you made.")
+alert("You've had a busy week! Lets see how much you made.");
 
-var userInputG = prompt('How many hours did you work for Google this week?');
-var totalG = parseInt(userInputG) * 400;
-var userInputA = prompt('How many hours did you work for Amazon this week?');
-var totalA = parseInt(userInputA) * 380;
-var userInputF = prompt('How many hours did you work for Facebook this week?');
-var totalF = parseInt(userInputF) * 350;
+var userInputG = Number(prompt('How many hours did you work for Google this week?'));
+var totalG = userInputG * 400;
+var userInputA = Number(prompt('How many hours did you work for Amazon this week?'));
+var totalA = userInputA * 380;
+var userInputF = Number(prompt('How many hours did you work for Facebook this week?'));
+var totalF = userInputF * 350;
 var weeklyPay = totalG + totalA + totalF;
 
 alert('You had a killer week! You made $' + weeklyPay);
@@ -44,33 +42,35 @@ alert('You had a killer week! You made $' + weeklyPay);
 
 //3.3
 
-alert("Gosh, your schedule looks packed. Lets see if you can fit that new class in...")
+alert("Gosh, your schedule looks packed. Lets see if you can fit that new class in...");
 
-var userInputOpenPeriod = prompt('When is the class you want to take?');
-var userInputMaxCS = prompt('What is the max class size?');
-var classesNow = parseInt(userInputMaxCS) + 1;
-var class1 = "8:00"
-var class2 = "9:00"
-var class3 = "10:00"
-//open call for 11
-var class4 = "13:00"
-var class5 = "14:00"
-var class6 = "15:00"
-var class7 = "16:00"
-//userInputOpenPeriod !== class1 || class2 || class3 || class4 || class5 || class6 || class7
-alert("Congrats! You got the last slot for the class! the max class size is " + userInputMaxCSMaxCS + ", but you got the last spot making the new class size " + classesNow + ".");
-
+var userInputOpenPeriod = Number(prompt('When is the class you want to take? Please input the time in military time: 2100 = 9:00pm'));
+var userInputCS = Number(prompt('What is the the current size of the class?'));
+var userInputMaxCS = Number(prompt("What is the the max class size?"));
+var userSchCon = !confirm("Does the student have a class at that time already?");
+var classesNow = userInputCS +1 <= userInputMaxCS ;
+var class1 = 0800;
+var class2 = 0900;
+var class3 = 1000;
+//open call for 11 or 12
+var class4 = 1300;
+var class5 = 1400;
+var class6 = 1500;
+var class7 = 1600;
+var classOpen = (userInputOpenPeriod !== class1)
+    && (userInputOpenPeriod !== class2) && (userInputOpenPeriod !== class3)
+    && (userInputOpenPeriod !== class4) && (userInputOpenPeriod !== class5)
+    && (userInputOpenPeriod !== class6) && (userInputOpenPeriod !== class7);
+var available = classOpen && userSchCon && classesNow;
+// var didGetIn = classOpen && classesNow;
+alert('Lets see if you got into the class: ' + available );
 
 //3.4
 
-alert("You may be subject to a Premium Discount! Lets see if you qualify...")
+alert("You are trying to use a Premium Discount code! Lets see if you qualify...");
 
-var userMemberStatus = prompt('Are you a Premium Member?');
-var userItemNum = prompt('How many items did you buy?');
-var userOfferDate = prompt('What year is it?');
+var userMemberStatus = confirm('Are you a Premium Member?');
+var userItemNum = Number(prompt('How many items did you buy?'));
+var userOfferDate = Number(prompt('What year is listed on your discount code?'));
 
-/* I need Conditionals to make it work.
-* = userOfferDate >= 2019;
-* = userMemberStatus.indexOf(yes) > 0;
-* = userItemNum >=2;
-*/
+alert("Your discount has been applied: " + (userMemberStatus || ((userItemNum >= 2) && (userOfferDate >= 2019))));
