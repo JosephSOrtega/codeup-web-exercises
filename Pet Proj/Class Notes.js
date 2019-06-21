@@ -1,24 +1,66 @@
 
 
-var daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+//fizzbuzz
+var num = parseInt(prompt("Pick a number"));
+for (var i = 1; i < num; i++) {
+    if ((i % 3 === 0) && (i % 5 === 0)) {
+        console.log("Fizz Buzz");
+        continue;
+    }
+    else if (i % 3 === 0) {
+        console.log("Fizz ");
+        continue;
+    } else if (i % 5 === 0) {
+        console.log("Buzz");
+        continue;
+    }
+    console.log(i);
+}
 
-console.log(daysOfTheWeek);
-// ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
-
-// let's add 'Sunday' to the beginning of the week
-daysOfTheWeek.unshift('Sunday');
-
-console.log(daysOfTheWeek);
-// ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
-
-// let's add 'Friday' and 'Saturday' to the end of the week
-daysOfTheWeek.push('Friday', 'Saturday');
-
-console.log(daysOfTheWeek);
-// ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 
 
+
+// function splitStringOnLetter(string, letter) {
+//     if (letter.length > 1 || letter.length < 1 || !isNaN(letter)) {
+//         return false;
+//     } else if (letter === letter.toUpperCase()) {
+//         let arr = String(string).split(letter);
+//         let finalArr = [];
+//         arr.forEach(function(string) {
+//             finalArr = finalArr.concat(string.split(letter.toLowerCase()));
+//         });
+//         return finalArr;
+//     } else {
+//         let arr = String(string).split(letter);
+//         let finalArr = [];
+//         arr.forEach(function(string) {
+//             finalArr = finalArr.concat(string.split(letter.toUpperCase()));
+//         });
+//         return finalArr;
+//     }
+// }
+//
+//
+// var daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+//
+// console.log(daysOfTheWeek);
+// // ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
+//
+// // let's add 'Sunday' to the beginning of the week
+// daysOfTheWeek.unshift('Sunday');
+//
+// console.log(daysOfTheWeek);
+// // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
+//
+// // let's add 'Friday' and 'Saturday' to the end of the week
+// daysOfTheWeek.push('Friday', 'Saturday');
+//
+// console.log(daysOfTheWeek);
+// // ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+//
+//
+//
 
 
 
