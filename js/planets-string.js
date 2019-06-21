@@ -11,7 +11,7 @@
      * planetsArray.
      * console.log planetsArray to check your work
      */
-
+    var planetsString = planetsArray.join(",");
     console.log(planetsArray);
 
     /**
