@@ -1,26 +1,89 @@
 
 
-//fizzbuzz
-var num = parseInt(prompt("Pick a number"));
-for (var i = 1; i < num; i++) {
-    if ((i % 3 === 0) && (i % 5 === 0)) {
-        console.log("Fizz Buzz");
-        continue;
+
+
+
+
+
+"use script";
+
+var lineCount = 1;
+
+if (lineCount >= 5){
+    removeLine()
+}
+var paragraph = document.getElementById("p");
+var div = document.getElementById("div");
+
+
+function newLine() {
+    lineCount+=1;
+    var newParagraph = document.getElementsByTagName('p')[0];
+    var newText = document.createTextNode("Another Text Line Here!");
+    newParagraph.appendChild(newText);
+    var newBreak = document.createElement("br");
+    newParagraph.appendChild(newBreak);
+    if (lineCount >= 5){
+        removeLine()
     }
-    else if (i % 3 === 0) {
-        console.log("Fizz ");
-        continue;
-    } else if (i % 5 === 0) {
-        console.log("Buzz");
-        continue;
+}
+
+function removeLine() {
+    div.removeChild(paragraph);
+}
+
+
+function lotsOfLines() {
+for (var i = 1; i < 10; i++) {
+        if(i > 11) {
+            return
+        } else {
+            newLine()
+        }
     }
-    console.log(i);
 }
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // fizzbuz
+// var num = parseInt(prompt("Pick a number"));
+// for (var i = 1; i < num; i++) {
+//     if ((i % 3 === 0) && (i % 5 === 0)) {
+//         console.log("Fizz Buzz");
+//         continue;
+//     }
+//     else if (i % 3 === 0) {
+//         console.log("Fizz ");
+//         continue;
+//     } else if (i % 5 === 0) {
+//         console.log("Buzz");
+//         continue;
+//     }
+//     console.log(i);
+// }
+//
+//
+//
+//
+//
 // function splitStringOnLetter(string, letter) {
 //     if (letter.length > 1 || letter.length < 1 || !isNaN(letter)) {
 //         return false;

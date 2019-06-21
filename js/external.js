@@ -49,8 +49,8 @@ var userInputCS = Number(prompt('What is the the current size of the class?'));
 var userInputMaxCS = Number(prompt("What is the the max class size?"));
 var userSchCon = !confirm("Does the student have a class at that time already?");
 var classesNow = userInputCS +1 <= userInputMaxCS ;
-var class1 = 0800;
-var class2 = 0900;
+var class1 = 800;
+var class2 = 900;
 var class3 = 1000;
 //open call for 11 or 12
 var class4 = 1300;
