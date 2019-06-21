@@ -16,9 +16,10 @@
             // TODO: complete this method.
                 if (doRounding === true) {
                     var num = this.getArea();
+                    console.log("Area of a circle with radius: " + circle.radius + ", is: " + (Math.round(num)));
                     return(Math.round(num));
                 } else {
-                    // console.log("Area of a circle with radius: " + circle.radius + ", is: " + circle.getArea());
+                    console.log("Area of a circle with radius: " + circle.radius + ", is: " + circle.getArea());
                     return circle.getArea();
                 }
             // If doRounding is true, round the result to the nearest integer.
@@ -29,16 +30,16 @@
 
     // log info about the circle
     console.log("Raw circle information");
-    console.log(circle.logInfo(false));
+    circle.logInfo(false);
     console.log("Circle information rounded to the nearest whole number");
-    console.log(circle.logInfo(true));
+    circle.logInfo(true);
 
     console.log("=======================================================");
     // TODO: Change the radius of the circle to 5.
     circle.radius = 5;
     // log info about the circle
     console.log("Raw circle information");
-    console.log(circle.logInfo(false));
+    circle.logInfo(false);
     console.log("Circle information rounded to the nearest whole number");
-    console.log(circle.logInfo(true));
+    circle.logInfo(true);
 })();
