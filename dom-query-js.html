@@ -7,49 +7,98 @@
 <body>
 
 
-<!--<h1 id="main-header">Hello World!</h1>-->
-<!--<ul>-->
-<!--    <li data-dbid="1">Item 1</li>-->
-<!--    <li data-dbid="2">Item 2</li>-->
-<!--    <li data-dbid="3">Item 3</li>-->
-<!--    <li data-dbid="4">Item 4</li>-->
-<!--    <li data-dbid="5">Item 5</li>-->
-<!--</ul>-->
-<!--<h2 id="sub-header">Hello Again.</h2>-->
-<!--<p class="sub-paragraph">-->
-<!--    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do-->
-<!--    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim-->
-<!--    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
-<!--    aliquip ex ea commodo consequat. Duis aute irure dolor in-->
-<!--    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla-->
-<!--    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in-->
-<!--    culpa qui officia deserunt mollit anim id est laborum.-->
-<!--</p>-->
+<h1 id="main-header">Hello World!</h1>
+<button id="btnHeader">Change the Header!</button>
+<ul>
+    <li data-dbid="1">Item 1</li>
+    <li data-dbid="2">Item 2</li>
+    <li data-dbid="3">Item 3</li>
+    <li data-dbid="4">Item 4</li>
+    <li data-dbid="5">Item 5</li>
+</ul>
+<button id="btnListItems"> List Items Color Change</button>
+<h2 id="sub-header">Hello Again.</h2>
+<button id="btnSubHeader">Sub-Header color change</button>
+<p class="sub-paragraph">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+</p>
+<button id="btnSubParagraph">Change Sub-paragraph</button>
 
-<!--<script>-->
-<!--    (function() {-->
-<!--        "use strict";-->
-<!--        // TODO: Uncomment next line and get the main header element by id-->
-<!--        // var mainHeader = ;-->
+<script>
+    (function() {
+        "use strict";
+        // TODO: Uncomment next line and get the main header element by id
 
-<!--        // TODO: Set inner html of mainHeader to "JavaScript is Cool"-->
+        var headerButton = function (event) {
 
-<!--        // TODO: Uncomment the next line and get the sub header element by id-->
-<!--        // var subHeader = ;-->
 
-<!--        // TODO: Set the text color of subHeader to blue-->
+            var mainHeader = document.getElementById('main-header');
+            mainHeader.innerHTML = "JavaScript is Cool";
+            console.log(mainHeader.innerHTML = "JavaScript is Cool");
+        };
+        var btnHeader = document.getElementById('btnHeader');
+        btnHeader.addEventListener('click', headerButton, false);
 
-<!--        // TODO: Uncomment the next line and get all list items-->
-<!--        // var listItems = ;-->
 
-<!--        // TODO: Set text color on every other list item to grey-->
-<!--        // TODO: Set text color of li with dbid = 1 to blue-->
+// <!--        // TODO: Set inner html of mainHeader to "JavaScript is Cool"-->
+//
+// <!--        // TODO: Uncomment the next line and get the sub header element by id-->
 
-<!--        // TODO: Uncomment the next line and get all elements with class name sub-paragraph-->
-<!--        // var subParagraphs = ;-->
+        var subHeadeBtn = function (a) {
 
-<!--        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"-->
-<!--    })();-->
-<!--</script>-->
+
+
+            var subHeader = document.getElementById('sub-header');
+        subHeader.setAttribute("style", "color: blue");
+        };
+        var btnSubHeader = document.getElementById('btnSubHeader');
+        btnSubHeader.addEventListener('click', subHeadeBtn, false);
+
+//
+// <!--        // TODO: Set the text color of subHeader to blue-->
+//
+// <!--        // TODO: Uncomment the next line and get all list items-->
+        var listItemsBtn = function (b) {
+
+
+            var listItems = document.getElementsByTagName('li');
+
+            for (var i = 0; i < listItems.length; i++) {
+                var dbId = listItems[i].getAttribute("data-dbId");
+                if (dbId % 2 === 0) {
+                    listItems[i].style.color = 'grey';
+                } else if (dbId == 1) {
+                    listItems[i].style.color = "blue";
+
+                }
+            }
+        };
+        var btnListItems = document.getElementById('btnListItems');
+        btnListItems.addEventListener('click', listItemsBtn, false);
+
+
+// <!--        // TODO: Set text color on every other list item to grey-->
+// <!--        // TODO: Set text color of li with dbid = 1 to blue-->
+//
+// <!--        // TODO: Uncomment the next line and get all elements with class name sub-paragraph-->
+        var subParaBtn = function (c) {
+
+            var subParagraphs = document.getElementsByClassName('sub-paragraph');
+            subParagraphs[0].innerHTML = "Mission Accomplished";
+        };
+        var btnSubParagraph = document.getElementById('btnSubParagraph');
+        btnSubParagraph.addEventListener('click', subParaBtn, false);
+
+
+// <!--        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"-->
+    })();
+</script>
 </body>
 </html>
+
