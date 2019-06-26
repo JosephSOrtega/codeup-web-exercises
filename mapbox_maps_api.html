@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox API</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="js/mapbox_access_token.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="js/mapbox-geocoder-utils.js"></script>
+    <style>
+        .mapboxgl-popup {
+            max-width: 400px;
+            font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        }
+        .geocoder {
+            position:absolute;
+            z-index:1;
+            width:50%;
+            left:50%;
+            margin-left:-45%;
+            top:40px;
+        }
+        .mapboxgl-ctrl-geocoder { min-width:100%; }
+
+    </style>
+
+</head>
+<body>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.0/mapbox-gl-geocoder.css' type='text/css' />
+<div id='menu'>
+    <input id='streets-v11' type='radio' name='rtoggle' value='streets' checked='checked'>
+    <label for='streets'>streets</label>
+    <input id='light-v10' type='radio' name='rtoggle' value='light'>
+    <label for='light'>light</label>
+    <input id='dark-v10' type='radio' name='rtoggle' value='dark'>
+    <label for='dark'>dark</label>
+    <input id='outdoors-v11' type='radio' name='rtoggle' value='outdoors'>
+    <label for='outdoors'>outdoors</label>
+    <input id='satellite-v9' type='radio' name='rtoggle' value='satellite'>
+    <label for='satellite'>satellite</label>
+</div>
+
+<div id='map' style='width: 700px; height: 600px;'></div>
+
+<div id='geocoder' class='geocoder'></div>
+
+
+<script>
+    mapboxgl.accessToken = mapBoxAccessKey;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+
+    //nav bar
+    map.addControl(new mapboxgl.NavigationControl());
+    //geocoder bar
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapBoxAccessKey,
+        marker: {
+            color: 'orange'
+        },
+        mapboxgl: mapboxgl
+    });
+
+    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+
+
+    geocode("San Antonio International Airport", mapBoxAccessKey).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(10);
+    });
+
+
+
+    var places = [{
+        description: "<p id=\"chick infoBox\">Chick Fil A is a fast-food chain serving chicken sandwiches, strips & nuggets along with salads & sides." + "</p>",
+
+        Lat: 29.576052,
+        Lng: -98.322171
+    }, {
+        description: "<p id=\"melting infoBox\">The Melting Pot is a fondue restaurant chain offering heated pots of cheese, chocolate or broth for dipping & cooking." + "</p>",
+        Lat: 29.5778279,
+        Lng: -98.5148657
+    }, {
+        description: "<p id=\"chama infoBox\">Chama Gaucha is an upscale all-you-can-eat churrascaria with grilled beef, pork, chicken & lamb, plus a vast salad bar." + "</p>",
+        Lat: 29.610148,
+        Lng: -98.497906
+    }];
+
+    map.on('load', function() {
+// Insert the layer beneath any symbol layer.
+        var layers = map.getStyle().layers;
+
+        var labelLayerId;
+        for (var i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                labelLayerId = layers[i].id;
+                break;
+            }
+        }
+//3d buildings
+        map.addLayer({
+            'id': '3d-buildings',
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['==', 'extrude', 'true'],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+                'fill-extrusion-color': '#aaa',
+
+// use an 'interpolate' expression to add a smooth transition effect to the
+// buildings as the user zooms in
+                'fill-extrusion-height': [
+                    "interpolate", ["linear"], ["zoom"],
+                    15, 0,
+                    15.05, ["get", "height"]
+                ],
+                'fill-extrusion-base': [
+                    "interpolate", ["linear"], ["zoom"],
+                    15, 0,
+                    15.05, ["get", "min_height"]
+                ],
+                'fill-extrusion-opacity': .6
+            }
+        }, labelLayerId);
+    });
+
+
+//oceandepth
+    map.on('load', function() {
+
+        map.addSource('10m-bathymetry-81bsvj', {
+            type: 'vector',
+            url: 'mapbox://mapbox.9tm8dx88'
+        });
+
+        map.addLayer({
+            "id": "10m-bathymetry-81bsvj",
+            "type": "fill",
+            "source": "10m-bathymetry-81bsvj",
+            "source-layer": "10m-bathymetry-81bsvj",
+            "layout": {},
+            "paint": {
+                "fill-outline-color": "hsla(337, 82%, 62%, 0)",
+// cubic bezier is a four point curve for smooth and precise styling
+// adjust the points to change the rate and intensity of interpolation
+                "fill-color": [ "interpolate",
+                    [ "cubic-bezier",
+                        0, 0.5,
+                        1, 0.5 ],
+                    ["get", "DEPTH"],
+                    200,  "#78bced",
+                    9000, "#15659f"
+                ]
+            }
+        }, 'land-structure-polygon');
+    });
+
+//
+//     map.on('load', function () {
+// // Add a layer showing the places.
+//         map.addLayer({
+//             id: "places",
+//             type: "symbol",
+//             source: {
+//                 type: "geojson",
+//                 data: {
+//                     type: "FeatureCollection",
+//                     features: [{
+//                         type: "Feature",
+//                         properties: {
+//                             description: "<p id=\"chama infoBox\">Chama Gaucha is an upscale all-you-can-eat churrascaria with grilled beef, pork, chicken & lamb, plus a vast salad bar.\n" +
+//                                 "</p>",
+//                             icon: "restaurant"
+//                         },
+//                         geometry: {
+//                             type: "Point",
+//                             coordinates: [-98.322171, 29.576052]
+//                         }
+//                     }, {
+//                         type: "Feature",
+//                         properties: {
+//                             description: "<p id=\"melting infoBox\">The Melting Pot is a fondue restaurant chain offering heated pots of cheese, chocolate or broth for dipping & cooking.\n" +
+//                                 "</p>",
+//                             icon: "restaurant"
+//                         },
+//                         geometry: {
+//                             type: "Point",
+//                             coordinates: [-98.5148657, 29.5778279]
+//                         }
+//                     }, {
+//                         type: "Feature",
+//                         properties: {
+//                             description: "<p id=\"chick infoBox\">Chick Fil A is a fast-food chain serving chicken sandwiches, strips & nuggets along with salads & sides.\n" +
+//                                 "</p>",
+//                             icon: "restaurant"
+//                         },
+//                         geometry: {
+//                             type: "Point",
+//                             coordinates: [-98.497906, 29.610148]
+//                         }
+//                     }
+//                     ]
+//                 }
+//             },
+//             layout: {
+//                 "icon-image": "{icon}-15",
+//                 "icon-allow-overlap": true
+//             }
+//         });
+//     });
+//
+//
+//     // When a click event occurs on a feature in the places layer, open a popup at the
+//     // location of the feature, with description HTML from its properties.
+//     map.on('click', 'places', function (e) {
+//         var coordinates = e.features[0].geometry.coordinates.slice();
+//         var description = e.features[0].properties.description;
+//
+// // Ensure that if the map is zoomed out such that multiple
+// // copies of the feature are visible, the popup appears
+// // over the copy being pointed to.
+//         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+//             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+//         }
+//
+//         new mapboxgl.Popup()
+//             .setLngLat(coordinates)
+//             .setHTML(description)
+//             .addTo(map);
+//     });
+//
+//     // Change the cursor to a pointer when the mouse is over the places layer.
+//     map.on('mouseenter', 'places', function () {
+//         map.getCanvas().style.cursor = 'pointer';
+//     });
+//
+//     // Change it back to a pointer when it leaves.
+//     map.on('mouseleave', 'places', function () {
+//         map.getCanvas().style.cursor = '';
+//     });
+
+    // places.forEach(function (place, i){
+    //     var markers = new mapboxgl.Marker()
+    //         .setLngLat([places[i].Lng, places[i].Lat])
+    //         .addTo(map);
+    // });
+    // places.forEach(function (place, i){
+    //     var popup = new mapboxgl.Popup()
+    //         .setLngLat([places[i].Lng, places[i].Lat])
+    //         .setHTML(places[i].description)
+    //         .addTo(map);
+    //
+    // });
+
+//mapchanger
+    var layerList = document.getElementById('menu');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(layer) {
+        var layerId = layer.target.id;
+        map.setStyle('mapbox://styles/mapbox/' + layerId);
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].onclick = switchLayer;
+    }
+
+
+    places.forEach(function (place, i) {
+
+        var popup = new mapboxgl.Popup({closeButton: true})
+            .setLngLat([places[i].Lng, places[i].Lat])
+            .setHTML(places[i].description);
+            var markers = new mapboxgl.Marker()
+                .setLngLat([places[i].Lng, places[i].Lat])
+                .addTo(map)
+                .setPopup(popup);
+    });
+
+
+
+
+
+
+
+
+
+    // //chickfila
+    // var marker1 = new mapboxgl.Marker()
+    //     .setLngLat([-98.322171, 29.576052])
+    //     .addTo(map);
+    // //MeltingPot
+    // var marker2 = new mapboxgl.Marker()
+    //     .setLngLat([-98.5148657, 29.5778279])
+    //     .addTo(map);
+    // //chama
+    // var marker3 = new mapboxgl.Marker()
+    //     .setLngLat([-98.497906, 29.610148])
+    //     .addTo(map);
+
+
+
+    // //chickfila
+    // var marker1 = new mapboxgl.Marker()
+    //     .setLngLat([-98.322171, 29.576052])
+    //     .addTo(map);
+    // //MeltingPot
+    // var marker2 = new mapboxgl.Marker()
+    //     .setLngLat([-98.5148657, 29.5778279])
+    //     .addTo(map);
+    // //chama
+    // var marker3 = new mapboxgl.Marker()
+    //     .setLngLat([-98.497906, 29.610148])
+    //     .addTo(map);
+    // //Popup for chama
+    //     var clickedMarker = function (ev) {
+    //         var popup = new mapboxgl.Popup()
+    //             .setLngLat([-98.497906, 29.610148])
+    //             .setHTML("<p>Chama is the best!</p>")
+    //             .addTo(map);
+    //     };
+    //     marker3.addEventListener('click', clickedMarker, false);
+    // //
+
+    //
+
+    // document.getElementById('alamo').addEventListener("click", function () {
+    // reverseGeocode({lng: -98.4861, lat: 29.4260}, mapBoxAccessKey).then(function(ad) {
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat({lng: -98.49161, lat: 29.4260})
+    //         .addTo(map);
+    //     console.log(ad);
+    //
+    // });
+    //
+    //
+    // }, false);
+
+    // reverseGeocode({lng: -98.4861, lat: 29.4260}, mapBoxAccessKey).then(function(ad) {
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat({lng: -98.49161, lat: 29.4260})
+    //         .addTo(map);
+    //     console.log(ad);
+    //
+    //     document.getElementById('alamo').addEventListener("click", marker, false);
+    // });
+
+
+    // //Exercise shit below:
+    //
+    // //Marker for Codeup
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat([-98.4916, 29.4260])
+    //         .addTo(map);
+    // //Popup from example
+    //     var popup = new mapboxgl.Popup()
+    //         .setLngLat([-98.489615, 29.426827])
+    //         .setHTML("<p>Codeup Rocks!</p>")
+    //         .addTo(map);
+    // //Popup Alamo
+    //     var alamoPopup = new mapboxgl.Popup()
+    //         .setHTML("<p>Remember The Alamo!</p>")
+    //         .addTo(map);
+    //     marker.setPopup(alamoPopup);
+    //
+    // // the  geocode method from mapbox-geocoder-utils.js
+    //     geocode("600 Navarro St #350, San Antonio, TX 78205", mapBoxAccessKey).then(function(result) {
+    //         console.log(result);
+    //         map.setCenter(result);
+    //         map.setZoom(20);
+    //     });
+    // // reverse geocode method from mapbox-geocoder-utils.js
+    //     reverseGeocode({lng: -98.4861, lat: 29.4260}, mapBoxAccessKey).then(function(results) {
+    // // logs the address for The Alamo
+    //         console.log(results);
+    //     });
+    // //Bonus Example for UTSA
+    //     var alamoInfo = {
+    //         address: "The Alamo",
+    //         popupHTML: "<p>Remember the Alamo!</p>"
+    //     };
+    //
+    //     function placeMarkerAndPopup(info, mapBoxAccessKey, map) {
+    //         geocode(info.address, mapBoxAccessKey).then(function(coordinates) {
+    //             var popup = new mapboxgl.Popup()
+    //                 .setHTML(info.popupHTML);
+    //             var marker = new mapboxgl.Marker()
+    //                 .setLngLat(coordinates)
+    //                 .addTo(map)
+    //                 .setPopup(popup);
+    //             popup.addTo(map);
+    //         });
+    //     }
+    //
+    //     placeMarkerAndPopup(alamoInfo, mapBoxAccessKey, map);
+
+
+</script>
+
+//Alternative to current setup:
+
+
+</body>
+</html>
+
