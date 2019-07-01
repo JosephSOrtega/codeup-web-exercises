@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Pen+Script|Pangolin&display=swap');
+
+body {
+    font-family: "Pangolin";
+    background-color: darkgray;
+    margin-top: 55px;
+}
+h1 {
+    text-align: center;
+}
+.navbar {
+    background-color: whitesmoke;
+}
+.container {
+    margin-top: 50px;
+}
+
+.lABG {
+    background-image: url("LAImage.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.headerColor {
+    background: rgba(245,245,245, 0.6);
+    width: 80%;
+    height: 50%;
+}
+.headerText {
+    z-index: 2;
+    float: top;
+
+}
+@media screen and (min-width:768px) {
+
+
+
+}

@@ -1,50 +1,81 @@
 
-
-
-
-
-
-
 "use script";
 
-var lineCount = 1;
-
-if (lineCount >= 5){
-    removeLine()
-}
-var paragraph = document.getElementById("p");
-var div = document.getElementById("div");
 
 
-function newLine() {
-    lineCount+=1;
-    var newParagraph = document.getElementsByTagName('p')[0];
-    var newText = document.createTextNode("Another Text Line Here!");
-    newParagraph.appendChild(newText);
-    var newBreak = document.createElement("br");
-    newParagraph.appendChild(newBreak);
-    if (lineCount >= 5){
-        removeLine()
+
+
+function convertNameToObject (name) {
+    var nameArr = name.split(" ");
+    return {
+        firstName: nameArr[0],
+        lastName: nameArr[1]
     }
 }
 
-function removeLine() {
-    div.removeChild(paragraph);
+function capitalizeName(name) {
+    var nameObj = convertNameToObject(name);
+    var firstName = nameObj.firstName.substring(0,1).toUpperCase() + nameObj.firstName.substring(1);
+    var lastName = nameObj.lastName.substring(0,1).toUpperCase() + nameObj.lastName.substring(1);
+    return firstName + " " + lastName;
+
 }
 
-
-function lotsOfLines() {
-for (var i = 1; i < 10; i++) {
-        if(i > 11) {
-            return
-        } else {
-            newLine()
-        }
-    }
+function capitalizeAllNames(names) {
+    var arr = [];
+    arr.push(capitalizeName(name));
+    return arr;
 }
 
+//
+// document.querySelectorAll('li').forEach(function (element, i) {
+//     if (i % 2 ===0) {
+//         element.style.backgroundColor = '#ef0'
+//     }
+//
+// });
 
 
+
+
+// var lineCount = 1;
+//
+// if (lineCount >= 5){
+//     removeLine()
+// }
+// var paragraph = document.getElementById("p");
+// var div = document.getElementById("div");
+//
+//
+// function newLine() {
+//     lineCount+=1;
+//     var newParagraph = document.getElementsByTagName('p')[0];
+//     var newText = document.createTextNode("Another Text Line Here!");
+//     newParagraph.appendChild(newText);
+//     var newBreak = document.createElement("br");
+//     newParagraph.appendChild(newBreak);
+//     if (lineCount >= 5){
+//         removeLine()
+//     }
+// }
+//
+// function removeLine() {
+//     div.removeChild(paragraph);
+// }
+//
+//
+// function lotsOfLines() {
+// for (var i = 1; i < 10; i++) {
+//         if(i > 11) {
+//             return
+//         } else {
+//             newLine()
+//         }
+//     }
+// }
+//
+//
+//
 
 
 
