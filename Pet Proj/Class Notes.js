@@ -5,31 +5,31 @@
 
 
 
-function convertNameToObject (name) {
-    var nameArr = name.split(" ");
-    return {
-        firstName: nameArr[0],
-        lastName: nameArr[1]
-    }
-}
-
-function capitalizeName(name) {
-    var nameObj = convertNameToObject(name);
-    var firstName = nameObj.firstName.substring(0,1).toUpperCase() + nameObj.firstName.substring(1);
-    var lastName = nameObj.lastName.substring(0,1).toUpperCase() + nameObj.lastName.substring(1);
-    return firstName + " " + lastName;
-
-}
-
-function capitalizeAllNames(names) {
-    var arr = [];
-    arr.push(capitalizeName(name));
-    return arr;
-}
-
+// function convertNameToObject (name) {
+//     var nameArr = name.split(" ");
+//     return {
+//         firstName: nameArr[0],
+//         lastName: nameArr[1]
+//     }
+// }
 //
-// document.querySelectorAll('li').forEach(function (element, i) {
-//     if (i % 2 ===0) {
+// function capitalizeName(name) {
+//     var nameObj = convertNameToObject(name);
+//     var firstName = nameObj.firstName.substring(0,1).toUpperCase() + nameObj.firstName.substring(1);
+//     var lastName = nameObj.lastName.substring(0,1).toUpperCase() + nameObj.lastName.substring(1);
+//     return firstName + " " + lastName;
+//
+// }
+//
+// function capitalizeAllNames(names) {
+//     var arr = [];
+//     arr.push(capitalizeName(name));
+//     return arr;
+// }
+//
+// //
+// // document.querySelectorAll('li').forEach(function (element, i) {
+// //     if (i % 2 ===0) {
 //         element.style.backgroundColor = '#ef0'
 //     }
 //

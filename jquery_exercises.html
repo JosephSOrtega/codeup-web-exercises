@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--Page shit-->
+<!--<h1 id="codeup">Hello Codeup</h1>-->
+
+<!--<h1>Example Page</h1>-->
+<!--<div class="important">-->
+<!--    <h3>NOTICE</h3>-->
+<!--    <p>This is an important message!</p>-->
+<!--</div>-->
+<!--<div class="not-important">-->
+<!--    <h2>Lorem Ipsum</h2>-->
+<!--    <p>-->
+<!--        Lorem ipsum dolor sit amet, incididunt ut <span class="important">labore et dolore magna aliqua.</span>, quis ut-->
+<!--        aliquip ex ea commodo.-->
+<!--    </p>-->
+<!--</div>-->
+<!--<p class="important">This is also very important.</p>-->
+
+<!--for exercises-->
+<h1 class="bigAF" id="mainTitle">Hello, This is HTML</h1>
+<p class="styleItUp codeup" id="mainPara">paragraph paragraph paragraph paragraph paragraph paragraph paragraph
+    paragraph </p>
+<div>
+    <ul class="supahFancy codeup">
+        <li class="smallAF" id="codeup">one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+</div>
+<script>
+    //mouse event JQ
+
+    $('h1').hover(
+        function () {
+            $(this).css('background-color', 'darkorange')
+        },
+        function () {
+            $(this).css('background-color', 'white')
+        }
+    );
+    $('p').dblclick(function (e) {
+        $(this).css('font-size', "18px")
+        }
+    )
+    $('li').hover(
+        function () {
+            $(this).css('color', 'red')
+        },
+        function () {
+            $(this).css('color', 'black')
+        }
+    );
+
+</script>
+<script>
+    // var contents = $('#mainTitle').html();
+    // alert(contents);
+    // $('.codeup').css('border', 'red solid 1px');
+    // $('li').css('font-size', '20px');
+    // $('li').css('background-color', 'blue');
+    // $('h1').css('background-color', 'blue');
+    // $('p').css('background-color', 'blue');
+    //
+    // $('li, p, h1').css('background-color', 'blue');
+    // var contents = $('h1').html();
+    // alert(contents);
+
+
+</script>
+<!--Script Below-->
+<script>
+    // $(document).ready(function () {
+    //     alert("The DOM has finished loading")
+    // });
+    // var contents = $('#codeup').html();
+    // alert(contents);
+    // $('.important').css('background-color', 'yellow');
+    // $('p').css('font-size', '14px');
+    // $('.important, p').css('background-color', '#FF0');
+    // $('*').css('border', '1px solid #F00');
+
+</script>
+
+
+</body>
+</html>
