@@ -1,99 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Konami Code</title>
     <script src="js/jquery-2.2.4.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        body {
+            background-image: url("img/contact-1-2.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: auto;
+        }
+    </style>
 </head>
 
 <body>
-<h1>Konami Code</h1>
+<h1 style="text-align: center">Konami Code</h1>
+<img src="img/up-arrow.svg" alt="dsds">
 
-<p>
-    Click somewhere in the output box [here] to ensure focus.<br>
-    Then enter the following code using your keyboard:
-</p>
+<audio id="play" src="https://www.soundjay.com/button/button-3.wav"></audio>
 
-<p class="code">
-    <span>&uarr;</span>
-    <span>&uarr;</span>
-    <span>&darr;</span>
-    <span>&darr;</span>
-    <span>&larr;</span>
-    <span>&rarr;</span>
-    <span>&larr;</span>
-    <span>&rarr;</span>
-    <span>B</span>
-    <span>A</span>
-</p>
-<script src="/js/jquery-2.2.4.js"></script>
 <script>
     "use strict";
-    // var konamiCode = [38,38,40,40,37,39,37,39,66,65]
-    // $(document).keyup(function (event) {
-    //     console.log(event.keyCode);
-    //     var code = event;
-    //     var start = false;
-    //     if (code == 38) {
-    //         var start == true;
-    //     }
-    //     if (start === true) {
-    //         if (konamiCode[count] == code) {
-    //             alert('Good guess');
-    //             count += 1;
-    //         } else {
-    //             alert('Wrong code!');
-    //             reset()
-    //         }
-    //     }
-    // });
-    // function reset() {
-    //     var start = false;
-    //     var count = 0
-    // }
-    var global = {
 
-        konami: function() {
-            var konamikeys = [38,38,40,40,37,39,37,39,66,65],
-                started = false,
-                count = 0;
+    var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+    var count = 0;
+    var started = false;
 
-            $(document).keydown(function(e){
-                var reset = function() {
-                    started = false;
-                    count = 0;
-                    return;
-                };
 
-                var key = e.keyCode;
+    //resets things back to the start
 
-                if(!started){
-                    if(key == 38){
-                        started = true;
-                    }
-                }
+    //plays sound
+    function playSound() {
+        document.getElementById('play').play();
+    }
 
-                if (started){
+    //roll 'em
+    function rickTime() {
+        window.location.href = "https://www.youtube.com/watch?v=oHg5SJYRHA0?autoplay=1";
+    }
 
-                    if (konamikeys[count] == key){
-                        count++;
-                    } else {
-                        // Incorrect key, restart.
-                        reset();
-                    }
-                    if (count == 10){
-                        // Success!
-                        alert('You have added 30 lives!');
-                        reset();
-                    }
-                } else {
-                    reset();
-                }
-            });
+    //here we go
+    $(document).keyup(function (e) {
+
+
+        //stole this from https://codepen.io/kmaida/pen/oCkpt{
+        var reset = function() {
+            started = false;
+            count = 0;
+            return;
+        };
+        //}
+
+
+
+
+        //the juicy shit
+        var inputed = e.keyCode;
+        if (started === false) {
+            if (inputed === 38) {
+                started = true;
+            }
         }
-    };
 
-    global.konami();</script>
+        function countUp() {
+            count++;
+        }
+
+        if (started === true) {
+            if (konami[count] === inputed) {
+                countUp();
+                console.log(count);
+                playSound();
+            } else {
+                alert("Wrong!");
+                reset()
+            }
+            if (count === 11) {
+                alert("Did you hear that? Sounds like something is rolling...");
+                rickTime();
+                reset()
+            }
+        }
+
+        //replaces the images
+        $(document).on('keyup', function (event) {
+            if (count === 0) {
+                $('img').replaceWith("<img src=\"img/up-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "whitesmoke")
+            } else if (count === 1) {
+                $('img').replaceWith("<img src=\"img/up-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "dimgrey")
+            } else if (count === 2) {
+                $('img').replaceWith("<img src=\"img/down-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "whitesmoke")
+            } else if (count === 3) {
+                $('img').replaceWith("<img src=\"img/down-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "dimgrey")
+            } else if (count === 4) {
+                $('img').replaceWith("<img src=\"img/left-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "whitesmoke")
+            } else if (count === 5) {
+                $('img').replaceWith("<img src=\"img/right-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "dimgrey")
+            } else if (count === 6) {
+                $('img').replaceWith("<img src=\"img/left-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "whitesmoke")
+            } else if (count === 7) {
+                $('img').replaceWith("<img src=\"img/right-arrow.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "dimgrey")
+            } else if (count === 8) {
+                $('img').replaceWith("<img src=\"img/b-key.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "whitesmoke")
+            } else if (count === 9) {
+                $('img').replaceWith("<img src=\"img/a-key.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "dimgrey")
+            } else if (count === 10) {
+                $('img').replaceWith("<img src=\"img/return-key.png\" alt=\"dsds\">\n");
+                $('body').css("background-color", "darkorange")
+            }
+        });
+
+
+    });
+    //for testing purposes
+    $(document).keyup(function (e) {
+        console.log(e.keyCode);
+    });
+
+</script>
 </body>
 </html>
