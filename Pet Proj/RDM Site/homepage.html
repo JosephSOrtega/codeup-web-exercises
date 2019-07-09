@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <title>Rusty's Vault</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="homepagecss.css">
     <link rel="shortcut icon" type="image/x-icon" href="img/Die%20with%20Burnt%20Paper%20Emblem%20-%20CopyResized.png"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9ec51008e6.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="homepage.js"></script>
+
 
 </head>
 <body>
@@ -22,9 +29,9 @@
         </button>
         <a class="navbar-brand" id="title" href="#">RDM Productions</a>
 
-        <div class="collapse navbar-collapse device-fixed-width justify-content-center align-items-center"
+        <div class="collapse navbar-collapse device-fixed-width align-items-center"
              id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul id="navBarLeft" class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
                     <a class="nav-link btn-primary" href="http://www.therustydm.com/" target="_blank">Home <span
                             class="sr-only">(current)</span></a>
@@ -38,8 +45,8 @@
                         Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-primary" href="https://www.patreon.com/TheRustyDM" target="_blank">Support us
-                        on Patreon!</a>
+                    <a class="nav-link btn-primary" href="https://www.patreon.com/TheRustyDM" target="_blank">Our
+                        Patreon!</a>
                 </li>
 
             </ul>
@@ -47,12 +54,15 @@
             </form>
         </div>
     </nav>
-    <div>
+    <div class="jumboDiv">
         <div class="jumbotron jumbotron-fluid lABG">
-
             <div class="container headerColor">
-                <a class="scrollLink ct-btn-scroll ct-js-btn-scroll justify-content-center" href="#section2"><img alt="Arrow Down Icon"
-                                                                                src="https://www.solodev.com/assets/anchor/arrow-down.png"></a>
+                <div class="justify-content-center">
+                    <div class="arrow-pulse-down"></div>
+<!--                    <i class="fas fa-arrow-alt-circle-down"></i>-->
+                    <!--                    <i id="test" class="fas fa-arrow-circle-down"></i>-->
+
+                </div>
 
             </div>
         </div>
@@ -65,7 +75,7 @@
 
 
 <!--Main Body-->
-<main class="container mainContainerColor">
+<main data-aos="fade-up" class="container mainContainerColor">
     <div id="waveContainer">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -86,134 +96,263 @@
 
     <section>
         <div>
-            <h1 class="display-4 headerText anchor">Welcome to Rusty DM Productions</h1>
+            <h1 class="display-4 headerText" id="anchor">Welcome to Rusty DM Productions</h1>
             <h2 class="lead headerText">I am an independent writer of tabletop role-playing game products and am even
                 working on writing an RPG of my own, Life After!</h2>
             <h3 style="text-align: center">What I do:</h3>
-            <ul id="jumboList">
-                <li>I write Dungeon World Classes and additional rules to facilitate play.</li>
-                <li>I am writing my very own RPG, Life After. Life After is a post-apocalyptic based game where you make
-                    your end of the world and then endure the struggles of life after it.
-                </li>
-                <li>I write one-shot sessions that you can quickly pick up and run at your table.</li>
-                <li>I also write miscellaneous GM materials to help improve your GMing skills!</li>
+            <ul id="jumboList" style="text-align: center">
+                <li><hr>I write Dungeon World Classes and additional rules to facilitate play.</li>
+                <li><hr>I am writing my very own RPG, Life After. Life After is a post-apocalyptic based game where you make
+                    your end of the world and then endure the struggles of life after it.</li>
+                <li><hr>I write one-shot sessions that you can quickly pick up and run at your table.</li>
+                <li><hr>I also write miscellaneous GM materials to help improve your GMing skills!<hr></li>
             </ul>
         </div>
     </section>
 
+
     <!--Cards-->
     <div class="row justify-content-center">
-        <div class="d-flex col-md-6 col-12 justify-content-center cards">
+        <div data-aos="zoom-in-up" class="d-flex col-md-6 col-12 justify-content-center cards">
+
             <div class="card" style="width: 18rem;">
                 <img src="img/skull-card.jpg" class="card-img-top" alt="...">
                 <!--                https://depositphotos.com/stock-photos/dungeon.html?qview=76501407-->
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary modalBtn" data-toggle="modal" data-target="#exampleModal">
-                    Launch demo modal
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
+                    <h4 class="card-title">RPG Content</h4>
+                    <div class="card-text">I make custom rad materials to use in the Powered by the Apocalypse game,
+                        Dungeon World.
+                        <hr>
+                        Rather than just having more dumb fantasy or D&D trope classes and themes, all the content I
+                        make has strange and interesting twists on the norm, allowing you to create more of the back
+                        drop for your character or game.
+                        <br><br>
+                        If you think your Dungeon WOrld game needs spicing up or want to see some awesome takes on
+                        fantasy tropes, go to DrivethruRPG (or click below) and browse my wares!
                     </div>
                 </div>
-                <!---->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Playbooks</li>
+                    <li class="list-group-item">Magic Items and Compendium Classes</li>
+                    <li class="list-group-item">Much much more!</li>
+                </ul>
+                <button type="button" class="btn btn-primary" data-toggle="modal">
+                    <a href="https://www.drivethrurpg.com/browse/pub/14888/The-Rusty-DM-Productions"
+                       class="card-link modalBtn" target="_blank">Check it out!</a>
+                </button>
+
+                <!-- Button trigger modal -->
+                <!--                <button type="button" class="btn btn-primary modalBtn" data-toggle="modal"-->
+                <!--                        data-target="#exampleModal">-->
+                <!--                    Launch demo modal-->
+                <!--                </button>-->
+
+                <!--                &lt;!&ndash; Modal &ndash;&gt;-->
+                <!--                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"-->
+                <!--                     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+                <!--                    <div class="modal-dialog" role="document">-->
+                <!--                        <div class="modal-content">-->
+                <!--                            <div class="modal-header">-->
+                <!--                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+                <!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                <!--                                    <span aria-hidden="true">&times;</span>-->
+                <!--                                </button>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-body">-->
+                <!--                                ...-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-footer">-->
+                <!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <!--                                <button type="button" class="btn btn-primary">Save changes</button>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                &lt;!&ndash;&ndash;&gt;-->
             </div>
         </div>
+        <div data-aos="zoom-in-up" class="d-flex col-md-6 col-12 justify-content-center cards">
 
-        <div class="d-flex col-md-6 col-12 justify-content-center cards">
             <div class="card" style="width: 18rem;">
                 <img src="img/skull-card2.jpg" class="card-img-top" alt="...">
                 <!--                https://depositphotos.com/stock-photos/dungeon.html?qview=76501407-->
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary modalBtn" data-toggle="modal" data-target="#exampleModal">
-                    Launch demo modal
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
+                    <h4 class="card-title">RDM Rants</h4>
+                    <div class="card-text">Are you sick of all the +1s to hit? <br>Are you tired of seeing the flaming
+                        swords of badassness get chucked to the wayside because this sword has +2 damage instead?
+                        <br> If so, then Rusty's Corner of Bitching +2 is the blog for you!
+                        <hr>
+                        On the RDM Blog, Rusty and friends go on rants, raves, and even reviews of all things TTRPG
+                        related. If youre bored and want to get mad at Rusty, check out the blog!
+                        <br>There, Rusty rants about:
                     </div>
                 </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">RPG topics such as fudgeing rolls and how much tavern scenes suck</li>
+                    <li class="list-group-item">TTRPG game theroy and rules critics</li>
+                    <li class="list-group-item">RPG Reviews</li>
+                    <li class="list-group-item">Much much more!</li>
+                </ul>
+                <button type="button" class="btn btn-primary" data-toggle="modal">
+                    <a href="http://www.therustydm.com/blog/" class="card-link modalBtn" target="_blank">Check it
+                        out!</a>
+                </button>
+
+            </div>
+        </div>
+        <div data-aos="zoom-in-up" class="d-flex col-12 justify-content-center  big-card">
+            <div class="card" style="width: 18rem;">
+                <img src="img/LAImage.jpg" class="card-img-top2" style="width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);" alt="...">
+                <!--                https://depositphotos.com/stock-photos/dungeon.html?qview=76501407-->
+                <div class="card-body">
+                    <h4 class="card-title">Life After Development</h4>
+                    <h5>Welcome to the New World </h5>
+                    <h6>
+                        For the past year, I have been working on a TTRPG that tells stories of those
+                        that live through world changing events and their Life After.
+                    </h6>
+                    <h6>This hack is all about wild adventures in a forever changed world,
+                        meaning it is very adaptable to whatever setting you want!
+                    </h6>
+                    <h6>
+                        We have an ongoing playtest of Life After that is open to the public! Click here for more
+                        info.
+                    </h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>Life After is a game of struggle and perseverance, of horror and
+                            triumph. Life After sheds light on a
+                            group of people trying to survive in the ashes of a hateful world after it all came to an
+                            end,
+                            bearing
+                            the consequences for actions of the long dead.
+                            We play to see how the group struggles and is beaten down yet manages to push through and
+                            create
+                            the
+                            legends that the future generations will tell. Will this be a story of victory and glory or
+                            a
+                            story of
+                            pain and downfall? Only one way to find out…
+                        </h6>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Your Game, Your World </h5>
+                        <hr>
+                        <h6>Even though the Game Master, abbreviated as GM, facilitates the flow of the game, it is
+                            really a
+                            story
+                            for the Players as they endure the challenges of their Life After. The game is based off a
+                            single idea: </h6>
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Life After... what? </h5>
+                        <hr>
+                        <h6>What happened to bring the world to this state? Was there a reason? How
+                            long has it been since
+                            it all
+                            went down? Did anything of the old world survive? These are all questions that get answered
+                            throughout
+                            gameplay. Just remember that no matter what apocalypse you place your game in, it’s always
+                            your
+                            apocalypse your way.</h6>
+                        <br>
+                        <h6>For the purposes of demonstration and rule examples, this book uses, “Life After the bombs
+                            fell,” as its
+                            setting. This means that the book’s contents are geared towards that theme, but the joy of
+                            Life
+                            After is
+                            that it can easily be reskinned and edited to fit whatever apocalypse you want it to be. All
+                            themes and
+                            related items in this book can be used, changed, or even outright ignored, as long as it
+                            benefits the
+                            narrative you’re trying to make. </h6>
+
+                    </li>
+                    <li class="list-group-item">
+                        <h5>Apocalypsepunk? What’s that? </h5>
+                        <hr>
+                        <h6>Life After is geared to handle settings and genres that have something to do with end of the
+                            world or
+                            world-changing scenarios. This means that rather than having a game that’s specifically
+                            geared
+                            for one
+                            type of apocalypse, you can run anything you want! The original game that Life After is a
+                            hack
+                            of is
+                            called Apocalypse World, which one might think fulfills the same purpose as Life After. This
+                            is
+                            very
+                            wrong. Both games bring a lot to the table and can be geared to handle similar situations
+                            but
+                            have core
+                            concepts that differ greatly.</h6> <br><br>
+
+                        <p style="text-align: left"><i class="fas fa-biohazard"></i> Apocalypse World is meant to
+                            facilitate games about sex, guns, and rock & roll after the
+                            apocalypse. <br>
+                            <br>
+                        </p>
+                        <p style="text-align: left"><i class="fas fa-biohazard"></i> Life After is meant to facilitate
+                            adventures in the remnants of the old and seeing where
+                            your
+                            life
+                            after the end of your world, in a literal and/or metaphorical sense, takes you.
+                        </p>
+                    </li>
+                </ul>
+                <button type="button" class="btn btn-primary modalBtn" data-toggle="modal">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvR8Z2C3tLhaFOxV6LJH3nI18WAY4CTjP5No8tmDVKzrrO0w/viewform"
+                       target="_blank" class="card-link">Join in on the playtest!</a>
+                </button>
+
+
+                <!--                &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                <!--                <button type="button" class="btn btn-primary modalBtn" data-toggle="modal"-->
+                <!--                        data-target="#exampleModal2">-->
+                <!--                    Launch demo modal-->
+                <!--                </button>-->
+
+                <!-- Modal -->
+                <!--                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"-->
+                <!--                     aria-labelledby="exampleModalLabel2" aria-hidden="true">-->
+                <!--                    <div class="modal-dialog" role="document">-->
+                <!--                        <div class="modal-content">-->
+                <!--                            <div class="modal-header">-->
+                <!--                                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>-->
+                <!--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                <!--                                    <span aria-hidden="true">&times;</span>-->
+                <!--                                </button>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-body">-->
+                <!--                                ...-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-footer">-->
+                <!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <!--                                <button type="button" class="btn btn-primary">Save changes</button>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <!---->
+
+                <!--                3rd-->
+
+
             </div>
         </div>
     </div>
+
 </main>
 
 <footer>
     <div class="parallax2"></div>
 </footer>
+
 <script>
-    $(document).ready(function(){
-        $( "a.scrollLink" ).click(function() {
-            $("html, body").animate({
-                window.scrollTo("headerText");
-
-        }, 500);
-        });
-    });
-
+    AOS.init();
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
