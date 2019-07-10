@@ -1,10 +1,74 @@
 
 "use script";
 
+//AJAX Notes
+// GET requests can be submitted in
+//      Forms - <form method='get' action="url here"></form>
+//      Link - <a href="url here"></a>
+//      Type in URL
+// POST vs GET
+// GET can be cashed in the system
+// POST is more secure and isnt seen or cashed.
+//
+//AJAX uses XML and JSON, should be called JSON
+//JSON is just for sending data, not functions
+//
+//      $.ajax("/some-url") is a basic request
+//
+//      $.ajax("/some-url", {
+//     type: "POST",
+//     data: {
+//         name:     "John",
+//         location: "Boston"
+//     }
+// });
+//      The easiest way to manipulate the Ajax options is to pass a JavaScript object
+//      In this example, we are instructing jQuery to send a POST request rather than GET and to pass some additional information to the server with the request (name: John, location: Boston).
+//
+//      The Ajax options object has numerous parameters and values it can use. Some of the most common options are:
+//
+// type — The type of HTTP request to send to the server. Can be "GET", "POST", "PUT", or "DELETE". The default is "GET".
+// data — Data to be included with the request. Typically this will be a JavaScript object. If the request type is GET the data will be encoded into the URL being requested. Otherwise, it is included with the request behind the scenes.
+// dataType — The type of data we expect the server to send back from our request. Common options are "json", "xml", "html", or "text". By default, jQuery will try to guess this value based on the response content.
+// url — Rather than passing the request URL as a string to $.ajax() you can just pass a JavaScript object on its own and include the url option to specify where to send the request. We will see an example of this further on.
+// username & password — If a server requires a username and password you can specify it using these parameters.
+// headers — an object of whose key value pairs represent custom HTTP headers to send along with the request
+//
+//
+//A function that we create to be called when some process completes is called a callback function. The primary way to attach a callback to your Ajax request is to tack .done() to the end of your request and pass your callback to it, like the following:
+//
+//
+// $.ajax("/some-url").done(function(data, status, jqXhr) {
+//     alert("AJAX call completed successfully!");
+//     console.log("Request status: " + status);
+//     console.log("Data returned from server:");
+//     console.log(data);
+// });
+//
+//                                      jslint.com to check syntax
+//
+//
+//
+//          A Higher Order Function- A higher order function is a function that takes a function as an argument, or returns a function . Higher order function is in contrast to first order functions, which don't take a function as an argument or return a function as output.Mar 3, 2017
+//
+//
+//
+//
+//
 
 
 
 
+
+
+
+
+
+//
+//
+//
+//
+//
 // function convertNameToObject (name) {
 //     var nameArr = name.split(" ");
 //     return {

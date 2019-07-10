@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax blog</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+<body>
+
+<button id="refresh">Refresh</button>
+
+
+<div id="posts"></div>
+
+
+<script>
+
+    (function () {
+        "use strict";
+        $(document).ready(function () {
+            function main() {
+                $.get("data/blog.json").done(function (data, status, jqXhr) {
+                    $("#posts").html('');
+
+                    console.log(data);
+
+                    data.forEach(function (blog, i) {
+                        $("#posts").append(
+                            '<div>Title: ' + data[i].title + '</div>' +
+                            '<div>' + data[i].content + '</div>' +
+                            '<div>Tags: ' + data[i].categories[0] + '</div>' +
+                            '<div style="margin-bottom: 20px">Date: ' + data[i].date + '</div>'
+                        )});
+                    alert("Load was performed.");
+                }).fail(function (jqXhr, status, error) {
+                    alert("Error: Request failed!" + status);
+                    console.log("Error: Request failed!" + status)
+                }).always(function () {
+                    alert("Request made");
+                    console.log("Request made")
+                })
+            }
+
+            main();
+            $('#refresh').on('click', function () {
+                alert("Refreshing");
+                main();
+            })
+
+        });
+
+    })();
+
+
+</script>
+
+
+</body>
+</html>

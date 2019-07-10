@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+<button id="refresh">Refresh</button>
+<table id="products">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Categories</th>
+    </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+    (function () {
+        "use strict";
+        $(document).ready(function () {
+
+            function main() {
+                $.get("data/inventory.json").done(function (data, status, jqXhr) {
+                    $("#insertProducts").html('');
+
+                    console.log(data);
+
+                    data.forEach(function (tools, i) {
+                        $("#insertProducts").append(
+                            '<div>Title: ' + data[i].title + '</div>' +
+                            '<div>Quantity: ' + data[i].quantity + '</div>' +
+                            '<div>Type of Product: ' + data[i].categories[0] + '</div>' +
+                            '<div style="margin-bottom: 20px">Price: ' + data[i].price + '</div>'
+                        )});
+                    alert("Load was performed.");
+                }).fail(function (jqXhr, status, error) {
+                    alert("Error: Request failed!" + status);
+                    console.log("Error: Request failed!" + status)
+                }).always(function () {
+                    alert("Request made");
+                    console.log("Request made")
+                })
+            }
+
+            main();
+            $('#refresh').on('click', function () {
+                alert("Refreshing");
+                main();
+            })
+
+        });
+
+    })();
+
+</script>
+
+</body>
+</html>
