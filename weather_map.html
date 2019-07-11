@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="css/weather_map.css">
+    <script src="https://kit.fontawesome.com/9ec51008e6.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/keys.js"></script>
+    <script src="js/weather_map.js"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-dark text-light">
+    <a class="navbar-brand text-light" href="#">
+        <i class="fas fa-umbrella d-inline-block align-top" alt=""></i>
+        Weather Mapper
+    </a>
+    <h6>A Super Cool Weather Application</h6>
+
+</nav>
+<div class="mainBox container">
+    <h3>San Antonio</h3>
+
+    <div class="row">
+        <!--    Box 1-->
+        <div id="box1" class="box col-4">
+
+        </div>
+
+
+        <!--    Box 2-->
+        <div id="box2" class="box col-4">
+
+        </div>
+
+
+        <!--    Box 3-->
+        <div id="box3" class="box col-4">
+
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input id="lat" type="text" class="form-control" placeholder="Latitude" aria-label="Latitude"
+               aria-describedby="Latitude">
+        <input id="lng" type="text" class="form-control" placeholder="Longitude" aria-label="Longitude"
+               aria-describedby="Longitude">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Find my location!</button>
+        </div>
+    </div>
+    <div id='map' style='width: 100%; height: 100%; min-width: 350px;min-height: 350px'></div>
+    <pre id='coordinates' class='coordinates'></pre>
+
+</div>
+
+<script>
+    mapboxgl.accessToken = mapBoxAccessKey;
+    var coordinates = document.getElementById('coordinates');
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+    var marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([-98.4916, 29.4252])
+        .addTo(map);
+
+    function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+    }
+
+    marker.on('dragend', onDragEnd);
+    marker.on('dragend', refreshed);
+
+
+</script>
+
+
+<script>AOS.init();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>

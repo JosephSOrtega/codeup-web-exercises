@@ -2,3 +2,4 @@
 .idea/*
 *.iml
 js/mapbox_access_token.js
+js/keys.js

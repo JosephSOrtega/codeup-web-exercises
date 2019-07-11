@@ -1,0 +1,49 @@
+.box {
+    text-align: center;
+
+}
+
+#box1 {
+
+}
+
+#box2 {
+
+}
+
+#box3 {
+
+}
+
+.mainBox {
+
+}
+.fas {
+    font-size: smaller;
+    vertical-align: super;
+}
+h4 {
+    font-size: large;
+
+}
+h4, .mainBox {
+    border-radius: 5px;
+    border: dimgray 1px solid;
+    padding: 5px;
+}
+.weatherIcon {
+    font-size: 3rem;
+}
+.coordinates {
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    padding:5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
