@@ -18,6 +18,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/keys.js"></script>
     <script src="js/weather_map.js"></script>
+    <script src="js/mapbox-geocoder-utils.js"></script>
 
 
 </head>
@@ -54,10 +55,8 @@
     </div>
 
     <div class="input-group mb-3">
-        <input id="lat" type="text" class="form-control" placeholder="Latitude" aria-label="Latitude"
+        <input id="place" type="text" class="form-control" placeholder="Search for a location here!" aria-label="Search for a location here!"
                aria-describedby="Latitude">
-        <input id="lng" type="text" class="form-control" placeholder="Longitude" aria-label="Longitude"
-               aria-describedby="Longitude">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Find my location!</button>
         </div>
@@ -68,10 +67,13 @@
 </div>
 
 <script>
+    var coord;
+
     function onDragEnd() {
         var lngLat = marker.getLngLat();
         var lng = (lngLat.lng).toFixed(4);
         var lat = (lngLat.lat).toFixed(4);
+        coord += [lng, lat];
         console.log(lngLat.lng.toFixed(4));
         console.log(lngLat.lat.toFixed(4));
 
@@ -80,6 +82,7 @@
         refreshed();
         console.log(lngLat.lng);
         console.log(lngLat.lat);
+        // return coord;
 
     }
 
