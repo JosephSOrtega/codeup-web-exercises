@@ -160,10 +160,11 @@ $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + 
 
 
 //Button stuff
-$('button').on('click', finder());
+$('button').on('click', finder);
 
 function finder() {
-    geocode((#place).value), mapBoxAccessKey).then(function (result) {
+    var place = ($('#place').val()).toString();
+    geocode(place, mapBoxAccessKey).then(function (result) {
         console.log(result);
         map.setCenter(result);
         map.setZoom(10);
