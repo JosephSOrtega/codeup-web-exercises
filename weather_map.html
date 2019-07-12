@@ -11,7 +11,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet'/>
 
     <link rel="stylesheet" href="css/weather_map.css">
     <script src="https://kit.fontawesome.com/9ec51008e6.js"></script>
@@ -68,6 +68,21 @@
 </div>
 
 <script>
+    function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        var lng = (lngLat.lng).toFixed(4);
+        var lat = (lngLat.lat).toFixed(4);
+        console.log(lngLat.lng.toFixed(4));
+        console.log(lngLat.lat.toFixed(4));
+
+        coordinates.style.display = 'block';
+        coordinates.innerHTML = 'Longitude: ' + lng + '<br />Latitude: ' + lat;
+        refreshed();
+        console.log(lngLat.lng);
+        console.log(lngLat.lat);
+
+    }
+
     mapboxgl.accessToken = mapBoxAccessKey;
     var coordinates = document.getElementById('coordinates');
     var map = new mapboxgl.Map({
@@ -82,14 +97,8 @@
         .setLngLat([-98.4916, 29.4252])
         .addTo(map);
 
-    function onDragEnd() {
-        var lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-    }
 
     marker.on('dragend', onDragEnd);
-    marker.on('dragend', refreshed);
 
 
 </script>

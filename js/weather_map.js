@@ -1,6 +1,7 @@
 "use strict";
 
-(function () {
+// (function () {
+
 
     //Fix map drag issue
     var weatherStuff = [
@@ -234,7 +235,7 @@
     //
     // });
 
-})();
+// })();
 
 
 
