@@ -2,7 +2,13 @@
 
 // (function () {
 
-// $(document).ready(pushed);
+
+
+
+
+
+
+
 //Fix map drag issue
 var weatherStuff = [
     "<i class=\"far weatherIcon fa-sun\"></i>",
@@ -16,7 +22,6 @@ var weatherStuff = [
     "<i class=\"fas weatherIcon fa-cloud-sun\"></i>",
     "<i class=\"fas weatherIcon fa-cloud-moon\"></i>"
 ];
-
 function refreshed() {
     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + coord[1] + "," + coord[0]).done(function (data) {
 
