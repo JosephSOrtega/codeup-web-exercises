@@ -2,12 +2,7 @@
 
 // (function () {
 
-
-
-
-
-
-
+$('#geocoder').val();
 
 //Fix map drag issue
 var weatherStuff = [
@@ -22,6 +17,7 @@ var weatherStuff = [
     "<i class=\"fas weatherIcon fa-cloud-sun\"></i>",
     "<i class=\"fas weatherIcon fa-cloud-moon\"></i>"
 ];
+
 function refreshed() {
     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + coord[1] + "," + coord[0]).done(function (data) {
 
@@ -91,87 +87,8 @@ function refreshed() {
         $('#box2').html(newHtml2);
         $('#box3').html(newHtml3);
 
-    })
+    });
 }
-
-// function pushed() {
-//     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
-//
-//         var newHtml = '';
-//         var newHtml2 = '';
-//         var newHtml3 = '';
-//         var call = data.daily.data;
-//         console.log(data);
-//         call.forEach(function (apple, i) {
-//             switch (data.daily.data[i].icon) {
-//                 case "clear-day":
-//                     var icons = weatherStuff[0];
-//                     break;
-//                 case "clear-night":
-//                     var icons = weatherStuff[1];
-//                     break;
-//                 case "rain":
-//                     var icons = weatherStuff[2];
-//                     break;
-//                 case "snow":
-//                     var icons = weatherStuff[3];
-//                     break;
-//                 case "sleet":
-//                     var icons = weatherStuff[4];
-//                     break;
-//                 case "wind":
-//                     var icons = weatherStuff[5];
-//                     break;
-//                 case "fog":
-//                     var icons = weatherStuff[6];
-//                     break;
-//                 case "cloudy":
-//                     var icons = weatherStuff[7];
-//                     break;
-//                 case "partly-cloudy-day":
-//                     var icons = weatherStuff[8];
-//                     break;
-//                 case "partly-cloudy-night":
-//                     var icons = weatherStuff[9];
-//                     break;
-//                 default:
-//                     console.log('ERROR WITH ICON, TRY AGAIN.');
-//             }
-//
-//             if (i === 0) {
-//                 newHtml += "<h4 class='text-light bg-dark'>" + (data.daily.data[0].temperatureHigh).toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[0].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
-//                 newHtml += "<h6>" + icons + '<br>' + data.daily.data[0].summary + "</h6>";
-//                 newHtml += "<h6>Humidity:" + data.daily.data[0].humidity + "</h6>";
-//                 newHtml += "<h6>Wind:" + data.daily.data[0].windSpeed + "</h6>";
-//                 newHtml += "<h6>Pressure:" + data.daily.data[0].pressure + "</h6>"
-//             } else if (i === 1) {
-//                 newHtml2 += "<h4 class='text-light bg-dark'>" + data.daily.data[i].temperatureHigh.toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[i].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
-//                 newHtml2 += "<h6>" + icons + '<br>' + data.daily.data[i].summary + "</h6>";
-//                 newHtml2 += "<h6>Humidity:" + data.daily.data[i].humidity + "</h6>";
-//                 newHtml2 += "<h6>Wind:" + data.daily.data[i].windSpeed + "</h6>";
-//                 newHtml2 += "<h6>Pressure:" + data.daily.data[i].pressure + "</h6>"
-//
-//             } else if (i === 2) {
-//                 newHtml3 += "<h4 class='text-light bg-dark'>" + data.daily.data[2].temperatureHigh.toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[i].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
-//                 newHtml3 += "<h6>" + icons + '<br>' + data.daily.data[i].summary + "</h6>";
-//                 newHtml3 += "<h6>Humidity:" + data.daily.data[i].humidity + "</h6>";
-//                 newHtml3 += "<h6>Wind:" + data.daily.data[i].windSpeed + "</h6>";
-//                 newHtml3 += "<h6>Pressure:" + data.daily.data[i].pressure + "</h6>"
-//             }
-//         });
-//         $('#box1').html(newHtml);
-//         $('#box2').html(newHtml2);
-//         $('#box3').html(newHtml3);
-//     });
-//
-//     var marker = new mapboxgl.Marker({
-//         draggable: true
-//     });
-//     marker.remove()
-//         .setLngLat([-98.4916, 29.4252])
-//         .addTo(map);
-//
-// }
 
 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
 
@@ -242,6 +159,78 @@ $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + 
     $('#box3').html(newHtml3);
 });
 
+
+
+function pushed() {
+    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+
+        var newHtml = '';
+        var newHtml2 = '';
+        var newHtml3 = '';
+        var call = data.daily.data;
+        console.log(data);
+        call.forEach(function (apple, i) {
+            switch (data.daily.data[i].icon) {
+                case "clear-day":
+                    var icons = weatherStuff[0];
+                    break;
+                case "clear-night":
+                    var icons = weatherStuff[1];
+                    break;
+                case "rain":
+                    var icons = weatherStuff[2];
+                    break;
+                case "snow":
+                    var icons = weatherStuff[3];
+                    break;
+                case "sleet":
+                    var icons = weatherStuff[4];
+                    break;
+                case "wind":
+                    var icons = weatherStuff[5];
+                    break;
+                case "fog":
+                    var icons = weatherStuff[6];
+                    break;
+                case "cloudy":
+                    var icons = weatherStuff[7];
+                    break;
+                case "partly-cloudy-day":
+                    var icons = weatherStuff[8];
+                    break;
+                case "partly-cloudy-night":
+                    var icons = weatherStuff[9];
+                    break;
+                default:
+                    console.log('ERROR WITH ICON, TRY AGAIN.');
+            }
+
+            if (i === 0) {
+                newHtml += "<h4 class='text-light bg-dark'>" + (data.daily.data[0].temperatureHigh).toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[0].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
+                newHtml += "<h6>" + icons + '<br>' + data.daily.data[0].summary + "</h6>";
+                newHtml += "<h6>Humidity:" + data.daily.data[0].humidity + "</h6>";
+                newHtml += "<h6>Wind:" + data.daily.data[0].windSpeed + "</h6>";
+                newHtml += "<h6>Pressure:" + data.daily.data[0].pressure + "</h6>"
+            } else if (i === 1) {
+                newHtml2 += "<h4 class='text-light bg-dark'>" + data.daily.data[i].temperatureHigh.toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[i].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
+                newHtml2 += "<h6>" + icons + '<br>' + data.daily.data[i].summary + "</h6>";
+                newHtml2 += "<h6>Humidity:" + data.daily.data[i].humidity + "</h6>";
+                newHtml2 += "<h6>Wind:" + data.daily.data[i].windSpeed + "</h6>";
+                newHtml2 += "<h6>Pressure:" + data.daily.data[i].pressure + "</h6>"
+
+            } else if (i === 2) {
+                newHtml3 += "<h4 class='text-light bg-dark'>" + data.daily.data[2].temperatureHigh.toFixed(1) + ' <i class="fas fa-temperature-high"></i> / ' + data.daily.data[i].temperatureLow.toFixed(1) + " <i class=\"fas fa-temperature-low\"></i></h4>";
+                newHtml3 += "<h6>" + icons + '<br>' + data.daily.data[i].summary + "</h6>";
+                newHtml3 += "<h6>Humidity:" + data.daily.data[i].humidity + "</h6>";
+                newHtml3 += "<h6>Wind:" + data.daily.data[i].windSpeed + "</h6>";
+                newHtml3 += "<h6>Pressure:" + data.daily.data[i].pressure + "</h6>"
+            }
+        });
+        $('#box1').html(newHtml);
+        $('#box2').html(newHtml2);
+        $('#box3').html(newHtml3);
+    });
+}
 
 //Button stuff
 
