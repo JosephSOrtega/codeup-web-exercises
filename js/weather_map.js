@@ -2,24 +2,6 @@
 
 // (function () {
 
-// var mark = function(){
-//     if(marker === undefined){
-//         marker = new mapboxgl.Marker({
-//             draggable: true
-//         })
-//             .setLngLat(lngLat)
-//             .addTo(map);
-//     } else{
-//         marker.setLngLat(lngLat)
-//     }
-//     map.panTo(lngLat, {
-//         zoom: 10,
-//         duration: 1000,
-//         animate: true
-//     });
-// };
-//
-
 
 
 

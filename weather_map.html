@@ -80,23 +80,70 @@
 
 <script>
     var coord;
+    var mark = function(){
+        if(marker === undefined){
+            marker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat(coord)
+                .addTo(map);
+        } else{
+            marker.setLngLat(coord)
+        }
+        map.panTo(coord, {
+            zoom: 10,
+            duration: 1000,
+            animate: true
+        });
+
+    };
 
 
-    // function finder(){
-    //     geocode(val, mapBoxAccessKey).then(function(results) {
-    //         console.log(results.features[0].center);
-    //     });
-    // }
-    //
-    //
-    // var val;
-    //
-    // $('#geoButton').on('click' , function () {
-    //     val = $('#geocoder').val().toString();
-    //     console.log(val.toString());
-    //     finder();
-    // });
-    //
+
+    function finder(){
+        geocode(val, mapBoxAccessKey).then(function(results) {
+            var lng = results[0].toFixed(4);
+            var lat = results[1].toFixed(4);
+            console.log(lng);
+            console.log(lat);
+
+            coord = [lng, lat];
+            console.log(coord);
+            mark()
+
+
+
+            // var marker = new mapboxgl.Marker({
+            //     draggable: true
+            // })
+            //     .setLngLat([lng,lat])
+            //     .addTo(map);
+
+        }).then(function () {
+            reverseGeocode({lng: coord[0], lat: coord[1]}, mapBoxAccessKey).then(function(results) {
+                console.log(results);
+                $('h3').html(results)
+            });
+
+        }).then(function () {
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = 'Longitude: ' + coord[0] + '<br />Latitude: ' + coord[1];
+            refreshed();
+
+        })
+    }
+
+
+    var val;
+
+    //mew searchbar
+
+    $('#geoButton').on('click' , function () {
+        val = $('#geocoder').val().toString();
+        console.log(val);
+        finder();
+    });
+
 
 
 
@@ -119,6 +166,10 @@
         refreshed();
     }
 
+    // function geocodeMe() {
+    //
+    // }
+
     mapboxgl.accessToken = mapBoxAccessKey;
     var coordinates = document.getElementById('coordinates');
     var map = new mapboxgl.Map({
@@ -135,10 +186,6 @@
 
 
     marker.on('dragend', onDragEnd);
-
-    //mew searchbar
-
-    $('#geoButton')
 
 
     map.addControl(new mapboxgl.GeolocateControl({
