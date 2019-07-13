@@ -2,7 +2,26 @@
 
 // (function () {
 
-$('#geocoder').val();
+// var mark = function(){
+//     if(marker === undefined){
+//         marker = new mapboxgl.Marker({
+//             draggable: true
+//         })
+//             .setLngLat(lngLat)
+//             .addTo(map);
+//     } else{
+//         marker.setLngLat(lngLat)
+//     }
+//     map.panTo(lngLat, {
+//         zoom: 10,
+//         duration: 1000,
+//         animate: true
+//     });
+// };
+//
+
+
+
 
 //Fix map drag issue
 var weatherStuff = [
@@ -20,7 +39,7 @@ var weatherStuff = [
 
 function refreshed() {
     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + coord[1] + "," + coord[0]).done(function (data) {
-
+        // mark();
         var newHtml = '';
         var newHtml2 = '';
         var newHtml3 = '';
