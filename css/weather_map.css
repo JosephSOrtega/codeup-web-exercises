@@ -1,27 +1,16 @@
 .box {
     text-align: center;
-
 }
 
-#box1 {
-
-}
-
-#box2 {
-
-}
-
-#box3 {
-
-}
-
-.mainBox {
-
-}
 .fas {
     font-size: smaller;
     vertical-align: super;
+    color: #343A40;
 }
+.fa-temperature-high, .fa-temperature-low {
+    color: white
+}
+
 h4 {
     font-size: large;
 
