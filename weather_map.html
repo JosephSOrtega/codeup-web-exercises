@@ -22,20 +22,18 @@
     <script src="js/weather_map.js"></script>
 
 
-
 </head>
 <body>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
-
-
-
+<link rel='stylesheet'
+      href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
+      type='text/css'/>
 
 
 <nav class="navbar navbar-light bg-dark text-light">
     <a class="navbar-brand text-light" href="#">
-        <i class="fas fa-umbrella d-inline-block align-top" alt=""></i>
+        <i class="fas fa-umbrella d-inline-block align-top" alt="" style="color: whitesmoke;"></i>
         Weather Mapper
     </a>
     <h6>A Super Cool Weather Application</h6>
@@ -62,33 +60,48 @@
 
         </div>
     </div>
-
-    <div class="input-group mb-3">
-        <input type="text" id='geocoder' aria-label="First name" placeholder="Enter in a location" class="form-control">
+    <div class="input-group mb-3 justify-content-center col-12 mx-auto">
+        <input type="text" id='geocoder' aria-label="First name" placeholder="Enter in a location"
+               class="form-control">
 
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" id="geoButton">Search!</button>
         </div>
     </div>
+
     <div id='map' style='width: 100%; height: 100%; min-width: 350px;min-height: 350px'></div>
     <div id='restart' class='restart'></div>
 
 
     <pre id='coordinates' class='coordinates'></pre>
+    <div class="col-12 mx-auto" id="features" style="margin-bottom: 1em">
+        <div>
+            <h5 style="text-align: center">Map's Features:</h5>
+            <ul style="list-style: none; padding-left: 2px">
+                <li class="col-8" style="margin-bottom: .5em"><p><strong>1)</strong> Displays 3 day forecast of San Antonio</p></li>
+                <li class="col-8" style="margin-bottom: .5em"><p><strong>2)</strong> Enter in a location to see the forecast there</p></li>
+                <li class="col-12" style="margin-bottom: .5em"><p><strong>3)</strong> Drag the blue marker on the map to get the address of the marker's new position and the 3 day
+                    forecast there
+                </p></li>
+                <li class="col-8" style="margin-bottom: .5em"><p><strong>4)</strong> Click the Geolocation button on the top right of the map to get your exact location</p></li>
+
+            </ul>
+        </div>
+    </div>
 
 
 </div>
 
 <script>
     var coord;
-    var mark = function(){
-        if(marker === undefined){
+    var mark = function () {
+        if (marker === undefined) {
             marker = new mapboxgl.Marker({
                 draggable: true
             })
                 .setLngLat(coord)
                 .addTo(map);
-        } else{
+        } else {
             marker.setLngLat(coord)
         }
         map.panTo(coord, {
@@ -100,9 +113,8 @@
     };
 
 
-
-    function finder(){
-        geocode(val, mapBoxAccessKey).then(function(results) {
+    function finder() {
+        geocode(val, mapBoxAccessKey).then(function (results) {
             var lng = results[0].toFixed(4);
             var lat = results[1].toFixed(4);
             console.log(lng);
@@ -113,7 +125,6 @@
             mark()
 
 
-
             // var marker = new mapboxgl.Marker({
             //     draggable: true
             // })
@@ -121,7 +132,7 @@
             //     .addTo(map);
 
         }).then(function () {
-            reverseGeocode({lng: coord[0], lat: coord[1]}, mapBoxAccessKey).then(function(results) {
+            reverseGeocode({lng: coord[0], lat: coord[1]}, mapBoxAccessKey).then(function (results) {
                 console.log(results);
                 $('h3').html(results)
             });
@@ -139,13 +150,11 @@
 
     //mew searchbar
 
-    $('#geoButton').on('click' , function () {
+    $('#geoButton').on('click', function () {
         val = $('#geocoder').val().toString();
         console.log(val);
         finder();
     });
-
-
 
 
     function onDragEnd() {
@@ -156,7 +165,7 @@
         console.log(lng);
         console.log(lat);
 
-        reverseGeocode({lng: lng, lat: lat}, mapBoxAccessKey).then(function(results) {
+        reverseGeocode({lng: lng, lat: lat}, mapBoxAccessKey).then(function (results) {
             console.log(results);
             $('h3').html(results)
         });
@@ -220,7 +229,6 @@
     // navigator.geolocation.getCurrentPosition(success, error, options);
 
 
-
 </script>
 
 
@@ -231,7 +239,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 
 
 </body>

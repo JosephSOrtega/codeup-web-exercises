@@ -15,13 +15,13 @@ h4 {
     font-size: large;
 
 }
-h4, .mainBox {
+h4, .mainBox, #features  {
     border-radius: 5px;
     border: dimgray 1px solid;
     padding: 5px;
 }
 .weatherIcon {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 .coordinates {
     background: rgba(0,0,0,0.5);
@@ -35,4 +35,16 @@ h4, .mainBox {
     line-height: 18px;
     border-radius: 3px;
     display: none;
+}
+.input-group  {
+    max-width: 60%;
+    margin-top: .5em;
+}
+#map {
+    border-radius: 5px;
+    border: dimgray 5px solid;
+}
+#features  {
+    max-width: 80%;
+    margin-top: .5em;
 }
