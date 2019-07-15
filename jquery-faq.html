@@ -285,6 +285,11 @@
     $('li').click(function () {
         $(this).parent().children().first().toggleClass('colorBlue')
     });
+
+
+
+
+
     //bonus
 
     $('.moveLeft').click(function () {
@@ -319,14 +324,9 @@
 
     var count = 0;
 
-    // var dupe = 0;
     function numUp() {
         count++
     }
-
-    // function numUpAgain() {
-    //     dupe++
-    // }
 
 
     $('#buttonMain').click(function () {
@@ -356,75 +356,9 @@
         } else if (count > 10) {
             count = 0;
 
-            // if (count === 1) {
-            //     $('#num1').toggleClass('invisible').toggle('');
-            // } else if (count === 2) {
-            //     $('#num2').toggleClass('invisible').toggle('');
-            // } else if (count === 3) {
-            //     $('#num3').toggleClass('invisible').toggle('');
-            // } else if (count === 4) {
-            //     $('#num4').toggleClass('invisible').toggle('');
-            // } else if (count === 5) {
-            //     $('#num5').toggleClass('invisible').toggle('');
-            // } else if (count === 6) {
-            //     $('#num6').toggleClass('invisible').toggle('');
-            // } else if (count === 7) {
-            //     $('#num7').toggleClass('invisible').toggle('');
-            // } else if (count === 8) {
-            //     $('#num8').toggleClass('invisible').toggle('');
-            // } else if (count === 9) {
-            //     $('#num9').toggleClass('invisible').toggle('');
-            // } else if (count === 10) {
-            //     $('#num10').toggleClass('invisible').toggle('');
-            // } else if (count > 10) {
-            //     count = 0;
-            // $('#button').toggleClass('dupe').removeAttr('id');
-
         }
     });
 
-    // $('.dupe').click(function () {
-    //         numUpAgain();
-    //         console.log(dupe);
-    //
-    //         if (dupe === 1) {
-    //         $('#num1').toggleClass('invisible');
-    //         $('#dt1').addClass('invisible');
-    //     } else if (dupe === 2) {
-    //         $('#num2').toggleClass('invisible');
-    //         $('#dt2').addClass('invisible');
-    //
-    //     } else if (dupe === 3) {
-    //         $('#num3').toggleClass('invisible');
-    //         $('#dt3').addClass('invisible');
-    //
-    //     } else if (dupe === 4) {
-    //         $('#num4').toggleClass('invisible');
-    //         $('#dt4').addClass('invisible');
-    //     } else if (dupe === 5) {
-    //         $('#num5').toggleClass('invisible');
-    //         $('#dt5').addClass('invisible');
-    //     } else if (dupe === 6) {
-    //         $('#num6').toggleClass('invisible');
-    //         $('#dt6').addClass('invisible');
-    //     } else if (dupe === 7) {
-    //         $('#num7').toggleClass('invisible');
-    //         $('#dt7').addClass('invisible');
-    //     } else if (dupe === 8) {
-    //         $('#num8').toggleClass('invisible');
-    //         $('#dt8').addClass('invisible');
-    //     } else if (dupe === 9) {
-    //         $('#num9').toggleClass('invisible');
-    //         $('#dt9').addClass('invisible');
-    //     } else if (dupe === 10) {
-    //         $('#num10').toggleClass('invisible');
-    //         $('#dt10').addClass('invisible');
-    //     } else if (dupe > 10) {
-    //         count = 0
-    //     }
-    //
-    //
-    // });
 
     $('dt').click(function () {
         $(this).toggleClass('high')
@@ -432,13 +366,6 @@
     $('#closeStuff').click(function () {
         $("#thisDiv").hide()
     });
-
-    // $('#myModal').modal('show');
-
-    // $('#myAlert').on('closed.bs.alert', function () {
-    //     $(this).fadeOut()
-    //
-    // });
 
     $(document).ready(function () {
         setTimeout(function () {
@@ -448,36 +375,6 @@
     $('close').click(function () {
         $(this).clearTimeout()
     });
-
-
-    // $('#dt2').click(function () {
-    //     $('#dt2').toggleClass('high')
-    // });
-    // $('#dt3').click(function () {
-    //     $('#dt3').toggleClass('high')
-    // });
-    // $('#dt4').click(function () {
-    //     $('#dt4').toggleClass('high')
-    // });
-    // $('#dt5').click(function () {
-    //     $('#dt5').toggleClass('high')
-    // });
-    // $('#dt6').click(function () {
-    //     $('#dt6').toggleClass('high')
-    // });
-    // $('#dt7').click(function () {
-    //     $('#dt7').toggleClass('high')
-    // });
-    // $('#dt8').click(function () {
-    //     $('#dt8').toggleClass('high')
-    // });
-    // $('#dt9').click(function () {
-    //     $('#dt9').toggleClass('high')
-    // });
-    // $('#dt10').click(function () {
-    //     $('#dt10').toggleClass('high')
-    // });
-
 
 
 </script>
