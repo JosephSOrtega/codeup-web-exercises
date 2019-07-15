@@ -38,6 +38,7 @@ html {
     padding-left: 2%;
     padding-right: 2%;
 }
+
 .slide {
     position: relative;
     padding: 25vh 10%;
@@ -59,11 +60,22 @@ html {
 }
 
 .title {
-    width: 50%;
+    width: 80%;
     padding: 5%;
+    max-height: 500px;
+    margin: 0!important;
+    /*margin-right: 50%;*/
+    /*margin-left: 50%;*/
+    /*align-self: center;*/
     border-radius: 5px;
     background: rgba(240, 230, 220, .7);
     box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+}
+.title h1 {
+    font-size: 2rem;
+}
+.title h4 {
+    font-size: 1rem;
 }
 
 .slide:nth-child(2n) .title {
@@ -79,6 +91,11 @@ html {
 .slide, .slide:before {
     background: 50% 50% / cover;
 }
+div.title {
+    margin-left: 50%;
+    margin-right: 50%;
+
+}
 
 /*#slide1:before {*/
 /*    transform: translateZ(-1px) scale(2);*/
@@ -92,55 +109,17 @@ main#end.row {
 }
 
 .arrow-pulse-down:after {
-    content: "➜"; /* Here you can change the style of the arrow */
-    transform: rotate(90deg);
-    /*∇*/
-    position: absolute;
-    width: 70px; height: 70px;
-    margin: 0 auto;
-    left: 0; right: 0;
-    font-size: 70px;
-    animation: arrow-pulse-down 1000ms linear infinite;
-    color: whitesmoke;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    display: none;
 }
-@keyframes arrow-pulse-down {
-    0% {
-        bottom: 40px;
-        opacity: 0;
-    }
-    25% {
-        opacity: .25;
-    }
-    50% {
-        opacity: .5;
-    }
-    75% {
-        opacity: .75;
-    }
-    100% {
-        bottom: 20px;
-        opacity: 1;
-    }
-}
+
 .arrow-pulse-down2:after {
-    content: "➜"; /* Here you can change the style of the arrow */
-    transform: rotate(90deg);
-    /*∇*/
-    position: absolute;
-    width: 70px; height: 70px;
-    margin: 0 auto;
-    left: 0; right: 40%;
-    top: 50%;
-    font-size: 70px;
-    animation: arrow-pulse-down 1000ms linear infinite;
-    color: whitesmoke;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    display: none;
 }
 
 .card-img-top {
     max-height: 208px;
 }
+
 .card-text {
     font-size: 1.2rem;
 }
@@ -491,6 +470,99 @@ main {
 
     h5 {
         font-size: 1.5rem;
+    }
+
+    .arrow-pulse-down:after {
+        content: "➜"; /* Here you can change the style of the arrow */
+        transform: rotate(90deg);
+        /*∇*/
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        font-size: 70px;
+        animation: arrow-pulse-down 1000ms linear infinite;
+        color: whitesmoke;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+    @keyframes arrow-pulse-down {
+        0% {
+            bottom: 40px;
+            opacity: 0;
+        }
+        25% {
+            opacity: .25;
+        }
+        50% {
+            opacity: .5;
+        }
+        75% {
+            opacity: .75;
+        }
+        100% {
+            bottom: 20px;
+            opacity: 1;
+        }
+    }
+    .arrow-pulse-down2:after {
+        content: "➜"; /* Here you can change the style of the arrow */
+        transform: rotate(90deg);
+        /*∇*/
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        left: 0;
+        right: 40%;
+        top: 50%;
+        font-size: 70px;
+        animation: arrow-pulse-down 1000ms linear infinite;
+        color: whitesmoke;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+    .slide {
+        position: relative;
+        padding: 25vh 10%;
+        min-height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+        box-shadow: 0 -1px 10px rgba(0, 0, 0, .7);
+        transform-style: inherit;
+    }
+
+    .slide:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        box-shadow: 0 0 8px 1px rgba(0, 0, 0, .7);
+    }
+
+    .title {
+        width: 50%;
+        padding: 5%;
+        border-radius: 5px;
+        background: rgba(240, 230, 220, .7);
+        box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+    }
+
+    .slide:nth-child(2n) .title {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    .slide:nth-child(2n+1) .title {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    .slide, .slide:before {
+        background: 50% 50% / cover;
     }
 
 }
