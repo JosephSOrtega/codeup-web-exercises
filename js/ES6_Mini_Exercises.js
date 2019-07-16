@@ -61,6 +61,7 @@ const instructors = [
     'Terrell'
 ];
 
+
 instructors.forEach(function (instructor) {
     console.log(instructor);
 });
@@ -144,12 +145,12 @@ const subtract = (a, b) => a - b;
      Check your work.
  */
 
-const myGreeting = (greeting, name) => {
-    return greeting + name;
+const myGreeting = (greeting = 'Good morning', name = "Betelgeuse") => {
+    return `${greeting}, ${name}`;
 };
 
 console.log(myGreeting());
-console.log(myGreeting("Hello", "Sophie"));
+console.log(myGreeting("Hello ", "Sophie"));
 
 /*
     OBJECT PROPERTY VARIABLE ASSIGNMENT
@@ -161,10 +162,17 @@ const cat = "Tom";
 const mouse = "Jerry";
 
 const pals = {
-    dog: dog,
-    cat: cat,
-    mouse: mouse
+    dog,
+    cat,
+    mouse
 };
+
+// const pals = {
+//     dog: dog,
+//     cat: cat,
+//     mouse: mouse
+// };
+
 
 /*
     OBJECT DESTRUCTURING
@@ -181,12 +189,24 @@ const myCar = {
     color
 };
 
-const carInfo = (car) => {
-    var make = myCar.make;
-    var model = myCar.model;
+// const {make, model} = carInfo;
+//equals
+// const make = myCar.make;
+// const model = myCar.model;
+
+//pulling the info called make and model from carInfo and setting a variable with the info
+
+
+const carInfo = ({make , model}) => {
     console.log(make);
     console.log(model);
 };
+// const carInfo = (car) => {
+//     var make = myCar.make;
+//     var model = myCar.model;
+//     console.log(make);
+//     console.log(model);
+// };
 
 carInfo(myCar);
 
@@ -196,3 +216,9 @@ carInfo(myCar);
      file? Use Array Destructuring to return the first 3 instructors. Use
       the curriculum example as a reference.
  */
+
+
+const [a,b,c] = instructors;
+console.log(a);
+console.log(b);
+console.log(c);

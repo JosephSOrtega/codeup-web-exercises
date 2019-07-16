@@ -4,7 +4,6 @@
 html {
     scroll-behavior: smooth;
 }
-
 .topBox {
     background-color: dimgray;
     color: whitesmoke;
@@ -20,6 +19,7 @@ html {
 .mr-3 {
     padding-left: 2%;
     padding-right: 2%;
+    margin-right: 0!important;
 }
 
 .slide {
@@ -565,6 +565,11 @@ main {
     .title h4 {
         font-size: 1.5rem;
     }
+    .mx-auto {
+        margin-right: 0!important;
+    }
+
+
 
     /*#waveContainer {*/
     /*    padding-bottom: 100px;*/
