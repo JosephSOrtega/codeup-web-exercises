@@ -22,9 +22,10 @@ console.log(random);
     Why does this happen?
     How do we fix this behavior?
  */
-
-random = Math.floor(Math.random() * x);
+const random = Math.floor(Math.random() * 2);
 console.log(random);
+
+//cant reassign a const's variable. Turn into a Let to make it work.
 
 /*
     STRING INTERPOLATION
@@ -35,9 +36,13 @@ console.log(random);
      Refactor the code down below to use template strings.
  */
 
-// const name = Insert your name here
-// const cohort = Insert your cohort here
-// const greeting = "Hello" + name + "! You are in the " + cohort + " cohort.";
+const name = "another";
+const cohort = "more";
+const greeting = `Hello ${name}! You are in the ${cohort} cohort.`;
+console.log(greeting);
+
+//Use backticks for the strings with temp strings in them!!!!!!!
+
 
 /*
     FOR...OF
@@ -56,9 +61,30 @@ const instructors = [
     'Terrell'
 ];
 
-instructors.forEach(function(instructor){
+instructors.forEach(function (instructor) {
     console.log(instructor);
 });
+
+//or
+for (let names of instructors) {
+    console.log(names);
+}
+
+//or
+
+for (let [index, names] of instructors.entries()) {
+    console.log(names);
+    console.log(index);
+}
+//can use break and continue
+
+
+//iterate over char of a string
+const myString = "doghouse";
+for (let chr of myString) {
+    console.log(chr.toUpperCase());
+}
+
 
 /*
     ARROW FUNCTIONS
@@ -69,13 +95,47 @@ instructors.forEach(function(instructor){
     Make it as concise as possible.
  */
 
-function add(x = 2, y = 3){
+function add(x = 2, y = 3) {
     return x + y;
 }
 
-function square(x){
+const add = (x = 2, y = 3) => x + y;
+
+function square(x) {
     return x * x;
 }
+
+const square = (x) => x * x;
+
+const yourName = name => `My name is ${name}'`;
+
+const subtract = (a, b) => a - b;
+// Equals
+// const subtract = (a, b) => {
+//     let c = a - b;
+//     return c;
+// };
+
+
+
+
+// var userId = 1;
+//
+// //user object
+// const users = {
+//     userId: 2;
+// allUsers: ['Vivian', 'Sophie', 'Daniel'],
+//     printUsers
+// :
+//
+// function () {
+//     return this.allUsers.map((users) => {
+//         return user + this.userId
+//     });
+// }
+// }
+//
+//
 /*
     DEFAULT FUNCTION PARAMETER VALUES
     refactor the following so that variable 'greeting' has a value of 'Good
@@ -84,8 +144,8 @@ function square(x){
      Check your work.
  */
 
-const myGreeting = (greeting,name) => {
-   return greeting + name;
+const myGreeting = (greeting, name) => {
+    return greeting + name;
 };
 
 console.log(myGreeting());
@@ -112,7 +172,7 @@ const pals = {
  */
 
 const make = 'nissan';
-const model= 'rogue';
+const model = 'rogue';
 const color = 'white';
 
 const myCar = {

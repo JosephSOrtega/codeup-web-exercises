@@ -290,7 +290,7 @@ svg {
     min-width: 100px;
     text-align: center;
     color: whitesmoke !important;
-    font-size: 1em;
+    font-size: .9em;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px dimgray;
     max-width: 80%;
     margin-left: 10%;
@@ -492,6 +492,21 @@ main {
         display: initial;
 
     }
+    .arrow-pulse-down {
+        content: "➜"; /* Here you can change the style of the arrow */
+        /*∇*/
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        left: 30px;
+        right: 0;
+        font-size: 70px;
+        color: whitesmoke;
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        display: initial;
+
+    }
 
     @keyframes arrow-pulse-down {
         0% {
@@ -544,10 +559,11 @@ main {
     .slide:nth-child(2n) .title {
         margin-left: 0;
         margin-right: auto;
+
     }
 
     .slide:nth-child(2n+1) .title {
-        margin-left: auto;
+        margin-left: 55%;
         margin-right: 0;
     }
 
@@ -557,6 +573,13 @@ main {
     #section2 {
         margin-top: 0;
     }
+    .title h1 {
+        font-size: 2.5rem;
+    }
+    .title h4 {
+        font-size: 1.5rem;
+    }
+
 
 
 }
