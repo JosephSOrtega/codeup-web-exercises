@@ -60,10 +60,10 @@ html {
 }
 
 .title {
-    width: 80%;
+    /*width: 80%;*/
     padding: 5%;
     max-height: 500px;
-    margin: 0!important;
+    /*margin: 0!important;*/
     /*margin-right: 50%;*/
     /*margin-left: 50%;*/
     /*align-self: center;*/
@@ -91,11 +91,11 @@ html {
 .slide, .slide:before {
     background: 50% 50% / cover;
 }
-div.title {
-    margin-left: 50%;
-    margin-right: 50%;
+/*div.title {*/
+/*    margin-left: 0;*/
+/*    margin-right: 0;*/
 
-}
+/*}*/
 
 /*#slide1:before {*/
 /*    transform: translateZ(-1px) scale(2);*/
@@ -486,6 +486,8 @@ main {
         animation: arrow-pulse-down 1000ms linear infinite;
         color: whitesmoke;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        display: initial;
+
     }
 
     @keyframes arrow-pulse-down {
@@ -506,22 +508,6 @@ main {
             bottom: 20px;
             opacity: 1;
         }
-    }
-    .arrow-pulse-down2:after {
-        content: "➜"; /* Here you can change the style of the arrow */
-        transform: rotate(90deg);
-        /*∇*/
-        position: absolute;
-        width: 70px;
-        height: 70px;
-        margin: 0 auto;
-        left: 0;
-        right: 40%;
-        top: 50%;
-        font-size: 70px;
-        animation: arrow-pulse-down 1000ms linear infinite;
-        color: whitesmoke;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
     .slide {
         position: relative;
@@ -546,6 +532,7 @@ main {
     .title {
         width: 50%;
         padding: 5%;
+        /*margin: inherit;*/
         border-radius: 5px;
         background: rgba(240, 230, 220, .7);
         box-shadow: 0 0 8px rgba(0, 0, 0, .7);
