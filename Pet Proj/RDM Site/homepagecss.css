@@ -214,7 +214,7 @@ body {
     background-image: url("img/enter.jpg");
 
     /* Set a specific height */
-    height: 750px;
+    height: 850px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -230,7 +230,7 @@ body {
     background-image: url("img/end-image.jpg");
 
     /* Set a specific height */
-    height: 750px;
+    height: 850px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
