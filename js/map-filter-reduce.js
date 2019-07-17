@@ -62,44 +62,55 @@ const yearsTotal = users.reduce((years, folks) => {
 }, 0);
 console.log(yearsTotal);
 
-const longestEmail = users.reduce((largest, folk) => {
+// const longestEmail = users.reduce((largest, folk) => {
+//
+//     const herewego = users.reduce((biggest, person) => {
+//         return biggest + ',' + person.email
+//     }, "");
+//     const emailsHere = largest.split(',');
+//     const thisHere = emailsHere.reduce((long, guy) => {
+//         if (long.length < guy.email.length) {
+//             long = guy.email;
+//             return long
+//         } else if (long.length < guy.email.length) {
+//             long = guy.email;
+//             return long
+//         }
+//             return long
+//     }, 0);
+//
+//     return largest;
+//     // console.log(person.email.length);
+//     // let a = 0;
+//     // // console.log(biggest.length);
+//     // if (person.email.length > a) {
+//     //     // console.log(person.email);
+//     //     person.email.length = a;
+//     //     person.email = biggest;
+//     // }
+//
+//     // if (folks.email.length > email) {
+//     //     largest = folks.email
+//     // }
+//     // return largest
+//     // if (typeof email[folks] === "undefined") {
+//     //     email[folks] = 1
+//     // }
+// }, '');
+// console.log(longestEmail);
 
-    const herewego = users.reduce((biggest, person) => {
-        return biggest + ',' + person.email
-    }, "");
-    const emailsHere = largest.split(',');
-    const thisHere = emailsHere.reduce((long, guy) => {
-        if (long.length < guy.email.length) {
-            long = guy.email;
-            return long
-        } else if (long.length < guy.email.length) {
-            long = guy.email;
-            return long
-        }
-            return long
-    }, 0);
-
-    return largest;
-    // console.log(person.email.length);
-    // let a = 0;
-    // // console.log(biggest.length);
-    // if (person.email.length > a) {
-    //     // console.log(person.email);
-    //     person.email.length = a;
-    //     person.email = biggest;
-    // }
-
-    // if (folks.email.length > email) {
-    //     largest = folks.email
-    // }
-    // return largest
-    // if (typeof email[folks] === "undefined") {
-    //     email[folks] = 1
-    // }
+const longestEmail = users.reduce(function (previous, current) {
+    const currentEmail = current.email;
+    if (currentEmail.length > previous.length) {
+        return currentEmail
+    } else {
+        return previous
+    }
 }, '');
 console.log(longestEmail);
 
+
 const names = users.reduce((names, folks) => {
     return names + ' ' + folks.name;
-}, {});
+}, '');
 console.log(names);

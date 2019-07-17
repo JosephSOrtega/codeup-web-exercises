@@ -293,7 +293,9 @@ console.log(reduce);
 const longestName = books.reduce(function (previous, current) {
     const currentName = current.author;
     if (currentName.length > previous.length) {
-
+        return currentName
+    } else {
+        return previous
     }
 }, '');
 console.log(longestName);
