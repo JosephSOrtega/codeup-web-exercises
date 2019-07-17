@@ -1,6 +1,69 @@
 
 "use script";
 
+
+
+
+// Promises
+//////////////////////////////////////////////////////////////////////////////////////
+$.get("https://api.chucknorris.io/jokes/random")
+    .done(function (data) {
+        console.log(data.value)
+    })
+    .fail(function (data) {
+        console.log("there was an error")
+    });
+
+//equals:
+
+$.get("https://api.chucknorris.io/jokes/random")
+    .done((data) => {
+        resolve(data)
+    })
+    .fail((err) => {
+        reject(err)
+    })
+    .then(data => {
+        console.log(data.value)
+    })
+    .catch(err => {
+        console.log("there was an error" + err)
+    });
+
+//Equals with Fetch
+
+fetch("https://api.chucknorris.io/jokes/random")
+//gets the shit from the site
+    .then(response => response.json())
+    //delivers and formats to json
+    .then(data => console.log(data.value));
+//displays the results
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+$.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
+    .done(function (data) {
+        console.log(data.joke)
+    })
+    .then(data => {
+        console.log(data.value)
+    })
+    .catch(err => {
+        console.log("there was an error" + err)
+    });
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 //AJAX Notes
 // GET requests can be submitted in
 //      Forms - <form method='get' action="url here"></form>

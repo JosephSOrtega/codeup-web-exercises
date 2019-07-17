@@ -73,7 +73,30 @@ const longestEmail = users.reduce(function (previous, current) {
 console.log(longestEmail);
 
 
-const names = users.reduce((names, folks) => {
-    return names + ' ' + folks.name;
-}, '');
+// const names = users.reduce((names, folks) => {
+//     return names + ' ' + folks.name;
+// }, '');
+// console.log(names);
+
+const names = users.reduce((language, peeps, index, arr
+) => {
+    if (index === (arr.length - 1)) {
+        return `${language} ${peeps.name}.`
+    } else {
+        return `${language} ${peeps.name},`
+    }
+}, "Your Instructors are: ");
 console.log(names);
+
+
+//bonus
+// Use .reduce to get the unique list of languages from the list of users.
+const theirLang = users.reduce((list, current
+) => {
+    const langs = current.languages;
+    for(const lang of langs){
+        list.add(lang);
+    }
+    return list;
+}, new Set);
+console.log(theirLang);

@@ -20,25 +20,31 @@
     let counter = 0;
     let runCounter = 0;
     let talkCounter = 0;
-
+    // let seconds = 1000;
+    //
+    // function randomSeconds() {
+    //     seconds = ((Math.ceil(Math.random() * 3) + 2) * 1000);     // returns a random integer from 0 to 9
+    //     return seconds
+    // }
 
     function attackEnd() {
         $('#test').css('background-image', 'url(\'pngs/Mis-attackendNormalized.png\')')
-        setTimeout(function(){
+        setTimeout(function () {
             idle()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     }
+
     function step() {
         $('#test').css('background-image', 'url(\'pngs/Mis-steppingNormalized.png\')')
-        setTimeout(function(){
+        setTimeout(function () {
             runCounter += 1;
             running()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     }
 
     function running() {
         $('#test').css('background-image', 'url(\'pngs/Mis-standingNormalized.png\')')
-        setTimeout(function(){
+        setTimeout(function () {
             $('#test').css('background-image', 'url(\'pngs/Mis-steppingNormalized.png\')');
             if (runCounter >= 3) {
                 runCounter = 0;
@@ -46,29 +52,30 @@
             } else {
                 step()
             }
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     }
 
     function talking2() {
         $('#test').css('background-image', 'url(\'pngs/Mis-Talk1-Normalized.png\')')
-        setTimeout(function(){
+        setTimeout(function () {
             talkCounter += 1;
             talking1()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     }
+
     function talking1() {
         $('#test').css('background-image', 'url(\'pngs/Mis-Talk2-Normalized.png\')')
-        setTimeout(function(){
+        setTimeout(function () {
             if (talkCounter >= 2) {
                 talkCounter = 0;
                 return idle()
             } else {
                 talking2()
             }
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     }
 
-    function idle(){
+    function idle() {
         if (counter === 0) {
             $('#test').css('background-image', 'url(\'pngs/Mis-idleNormalized.png\')');
             counter += 1;
@@ -82,36 +89,37 @@
     //The good stuff:
 
     //sets the idle change
-    window.onload=function(){
-        setInterval(function(){
-            idle()
-        },5000) //2 seconds
+    window.onload = function () {
+        setInterval(function () {
+            idle();
+            // randomSeconds();
+            // console.log(seconds);
+        }, 4000)
     };
 
     //Attacking
     $('#attack').on('click', function () {
         $('#test').css('background-image', 'url(\'pngs/Mis-attackNormalized.png\')');
-        setTimeout(function(){
+        setTimeout(function () {
             attackEnd()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     });
-
 
 
     //Running
     $('#run').on('click', function () {
         $('#test').css('background-image', 'url(\'pngs/Mis-steppingNormalized.png\')');
-        setTimeout(function(){
+        setTimeout(function () {
             running()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     });
 
     //Talking
     $('#talk').on('click', function () {
         $('#test').css('background-image', 'url(\'pngs/Mis-Talk1-Normalized.png\')');
-        setTimeout(function(){
+        setTimeout(function () {
             talking1()
-        },250) //.25 seconds
+        }, 250) //.25 seconds
     });
 
 
