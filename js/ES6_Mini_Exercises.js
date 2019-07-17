@@ -228,7 +228,72 @@ console.log(c);
 //give cohort a default value of "Betelgeuse"
 //rewrite the return to use template strings instead of concatenation
 
-const goodMorning = (greeting = "Good Morning", cohort = "Betelgeuse") => `${greeting}, ${cohort}!`;
+const goodMorning = (greeting = "Good Morning", cohort = "Betelgeuse") => {
+    return `${greeting}, ${cohort}!`;
+};
 
 console.log(goodMorning());
-console.log(goodMorning(greeting, "Ceres"));
+console.log(goodMorning(undefined, "Ceres"));
+
+
+// Next Lesson
+
+
+const books = [
+    {
+        title: "To Kill a Mockingbird",
+        author: "Harper Lee",
+        genres: ["southern", "gothic", "coming of age"],
+        yearsInPublication: 59
+    },
+    {
+        title: "No Longer Human",
+        author: "Osamu Dazai",
+        genres: ["autobiography", "short novel"],
+        yearsInPublication: 71
+    },
+    {
+        title: "1984",
+        author: "George Orwell",
+        genres: ["dystopian", "sci-fi", "political fiction"],
+        yearsInPublication: 70
+    },
+    {
+        title: "Noruwei no Mori",
+        author: "Haruki Murakami",
+        genres: ["coming of age", "novel"],
+        yearsInPublication: 32
+    }
+];
+
+/*
+    MAP
+    using .map, create an array that returns all author names.
+ */
+const map = books.map(book => book.author);
+console.log(map);
+/*
+    FILTER
+    using .filter, create an array that returns all books with at least 3 genres
+ */
+const filter = books.filter(n => n.genres.length >= 3);
+console.log(filter);
+
+/*
+    REDUCE
+    using .reduce, return the total years between all books.
+ */
+const reduce = books.reduce((years, bookInfo) => {
+    return years + bookInfo.yearsInPublication
+}, 0);
+console.log(reduce);
+
+
+// Longest Author name
+const longestName = books.reduce(function (previous, current) {
+    const currentName = current.author;
+    if (currentName.length > previous.length) {
+
+    }
+}, '');
+console.log(longestName);

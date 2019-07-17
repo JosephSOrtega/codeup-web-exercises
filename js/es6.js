@@ -66,13 +66,15 @@ let names = [];
 // });
 //
 //
-const emailsPush = (user) => emails.push(user.email);
-const namesPush = (user) => names.push(user.name);
+users.forEach( user => emails.push(user.email));
+users.forEach( user => names.push(user.name));
+console.log(names);
+console.log(emails);
 
 // TODO: replace `var` with `let` in the following declaration
 let developers = [];
 
-users.forEach(function({name, email, languages}) {
+users.forEach(({name, email, languages}) => {
   // TODO: rewrite the code below to use object destructuring assignment
   //       note that you can also use destructuring assignment in the function
   //       parameter definition
