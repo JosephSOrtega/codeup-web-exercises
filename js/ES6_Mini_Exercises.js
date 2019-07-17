@@ -285,7 +285,7 @@ console.log(filter);
  */
 const reduce = books.reduce((years, bookInfo) => {
     return years + bookInfo.yearsInPublication
-}, 0);
+},0);
 console.log(reduce);
 
 

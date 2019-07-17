@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="test">
+
+</div>
+<button id="attack">Attack</button>
+<button id="run">Run</button>
+<button id="talk">Talk</button>
+
+<script>
+    let counter = 0;
+
+
+    function attackEnd() {
+        $('#test').css('background-image', 'url(\'pngs/Mis-attackendNormalized.png\')')
+        setTimeout(function(){
+            idle()
+        },250) //.1 seconds
+    }
+    function idle(){
+        if (counter === 0) {
+            $('#test').css('background-image', 'url(\'pngs/Mis-idleNormalized.png\')');
+            counter += 1;
+        } else {
+            $('#test').css('background-image', 'url(\'pngs/Mis-standingNormalized.png\')');
+            counter -= 1;
+
+        }
+    }
+
+    //The good stuff:
+
+    //sets the idle change
+    window.onload=function(){
+        setInterval(function(){
+            idle()
+        },2000) //2 seconds
+    };
+
+    //attacking
+    $('#attack').on('click', function () {
+        $('#test').css('background-image', 'url(\'pngs/Mis-attackNormalized.png\')');
+        setTimeout(function(){
+            attackEnd()
+        },250) //.25 seconds
+    });
+
+</script>
+</body>
+</html>
