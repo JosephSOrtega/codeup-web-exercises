@@ -118,8 +118,6 @@ const subtract = (a, b) => a - b;
 // };
 
 
-
-
 // var userId = 1;
 //
 // //user object
@@ -197,7 +195,7 @@ const myCar = {
 //pulling the info called make and model from carInfo and setting a variable with the info
 
 
-const carInfo = ({make , model}) => {
+const carInfo = ({make, model}) => {
     console.log(make);
     console.log(model);
 };
@@ -218,7 +216,19 @@ carInfo(myCar);
  */
 
 
-const [a,b,c] = instructors;
+const [a, b, c] = instructors;
 console.log(a);
 console.log(b);
 console.log(c);
+
+
+//bonus
+//rewrite this as an arrow function
+//give greeting a default value of "Good Morning"
+//give cohort a default value of "Betelgeuse"
+//rewrite the return to use template strings instead of concatenation
+
+const goodMorning = (greeting = "Good Morning", cohort = "Betelgeuse") => `${greeting}, ${cohort}!`;
+
+console.log(goodMorning());
+console.log(goodMorning(greeting, "Ceres"));
