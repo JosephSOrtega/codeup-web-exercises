@@ -89,9 +89,10 @@ fetch("https://api.chucknorris.io/jokes/random")
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-$.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
-    .done(function (data) {
-        console.log(data.joke)
+fetch("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
+    .then(function (data) {
+        console.log(data.joke);
+        console.log(data)
     })
     .then(data => {
         console.log(data.value)
