@@ -1,11 +1,49 @@
-
 "use script";
 
 
+// Morning "Push-ups"
+//////////////////////////////////////////////////////////////////////////////////////
+const fizzbuzz = num => {
+    for (var i = 1; i <= num; i++) {
+        console.log(i);
+        if (i % 3 === 0) {
+            console.log("Fizz ")
+        } else if (i % 5 === 0) {
+            console.log("Buzz!")
+        } else if (i === num) {
+            console.log("Done! ");
+        }
+    }
+};
+fizzbuzz(50);
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 
 
 // Promises
 //////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////Works!
+fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
+//gets the shit from the site
+    .then(response => response.json())
+    //delivers and formats to json
+    .then(usersArray => {
+        console.log(usersArray[0].login);
+        return usersArray[0].login
+    }).then(data => {
+    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': 'bbec08673798a7b5345ba95705c734a751f409e3'}})
+        .then(response => response.json())
+        //delivers and formats to json
+        .then(usersArray => {
+            console.log(usersArray);
+            console.log("The latest public events performed by the user: " + usersArray[0].created_at);
+            return usersArray[0].created_at
+        })
+});
+////////////////////////////////////
+
 $.get("https://api.chucknorris.io/jokes/random")
     .done(function (data) {
         console.log(data.value)
@@ -39,13 +77,28 @@ fetch("https://api.chucknorris.io/jokes/random")
     .then(data => console.log(data.value));
 //displays the results
 
+//////////OR
+
+
+fetch('https://api.github.com/users')
+//gets the shit from the site
+    .then(response => response.json())
+    //delivers and formats to json
+    .then(usersArray => {
+        for (let user of usersArray) {
+            console.log(user.html_url);
+            //displays the results
+        }
+    });
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-$.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
-    .done(function (data) {
-        console.log(data.joke)
+fetch("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
+    .then(function (data) {
+        console.log(data.joke);
+        console.log(data)
     })
     .then(data => {
         console.log(data.value)
@@ -56,12 +109,9 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 //AJAX Notes
@@ -120,13 +170,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //
 
 
-
-
-
-
-
-
-
 //
 //
 //
@@ -161,8 +204,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //     }
 //
 // });
-
-
 
 
 // var lineCount = 1;
@@ -203,22 +244,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //
 //
 //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // // fizzbuz
@@ -282,13 +307,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //
 //
 //
-
-
-
-
-
-
-
 
 
 //
@@ -380,21 +398,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //         count++
 //     }
 // })();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // //Assessment shit
@@ -538,7 +541,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //
 //
 //
-
 
 
 // //If/else statements
@@ -685,10 +687,6 @@ $.ajax("https://icanhazdadjoke.com", {headers: {Accept: "application"}})
 //
 //
 //
-
-
-
-
 
 
 // function sayHello(){

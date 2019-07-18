@@ -5,12 +5,18 @@
 /////////////////////
 
 // the listeners are looking for these ids:
+
+// id="test"
+//This is what the image changing is targeting.
+
+
+//The rest do what you think.
+
 // id="attack"
 // id="run"
 // id="talk"
 // id="damaged"
 // id="dead"
-//They do what you think.
 
 
 

@@ -13,7 +13,6 @@ wait(1000).then(() => console.log('You\'ll see this after 1 second'));
 wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
-const githubKey = "bbec08673798a7b5345ba95705c734a751f409e3";
 
 
 // function getGithubUsernames(username) {
@@ -27,31 +26,49 @@ const githubKey = "bbec08673798a7b5345ba95705c734a751f409e3";
 //     });
 // }).catch(error => console.error(error));
 
-function getGithubUsernames(user) {
-    return fetch('https://api.github.com/users')
-        .then(response => response.json())
-        .then(users => users.map(user => user.login));
-}
-
-// later on...
-
-getGithubUsernames(JustinSOrtega).then((usernames) => {
-    usernames.forEach((username) => {
-        console.log("yay!");
-        fetch('/users/:username/events/public', {headers: {'Authorization': githubKey}})
-            .then(data => data.json())
-
-
-    });
-}).catch(error => console.error(error));
-
+// function getGithubUsernames(user) {
+//     return fetch('https://api.github.com/users')
+//         .then(response => response.json())
+//         .then(users => users.map(user => user.login));
+// }
+//
+// // later on...
+//
+// getGithubUsernames(JustinSOrtega).then((usernames) => {
+//     usernames.forEach((username) => {
+//         console.log("yay!");
+//         fetch('/users/:username/events/public', {headers: {'Authorization': githubKey}})
+//             .then(data => data.json())
+//
+//
+//     });
+// }).catch(error => console.error(error));
+//
 
 // WTF, mate?
 
 
-// GET /users/:username/events/public
+////////////////////////////////////////////////Works!
+fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
+//gets the shit from the site
+    .then(response => response.json())
+    //delivers and formats to json
+    .then(usersArray => {
+        console.log(usersArray[0].login);
+        return usersArray[0].login
+    }).then(data => {
+    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': 'bbec08673798a7b5345ba95705c734a751f409e3'}})
+        .then(response => response.json())
+        //delivers and formats to json
+        .then(usersArray => {
+                    console.log(usersArray);
+            console.log("The latest public events performed by the user: " + usersArray[0].created_at);
+            return usersArray[0].created_at
+            })
+});
 
-//////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////// Examples!
 $.get("https://api.chucknorris.io/jokes/random")
     .done(function (data) {
         console.log(data.value)
@@ -79,11 +96,25 @@ $.get("https://api.chucknorris.io/jokes/random")
 //Equals with Fetch
 
 fetch("https://api.chucknorris.io/jokes/random")
-    //gets the shit from the site
+//gets the shit from the site
     .then(response => response.json())
     //delivers and formats to json
     .then(data => console.log(data.value));
-    //displays the results
+//displays the results
+
+//////////OR
+
+
+fetch('https://api.github.com/users')
+//gets the shit from the site
+    .then(response => response.json())
+    //delivers and formats to json
+    .then(usersArray => {
+        for (let user of usersArray) {
+            console.log(user.html_url);
+            //displays the results
+        }
+    });
 
 
 //////////////////////////////////////////////////////////////////////////////////////
