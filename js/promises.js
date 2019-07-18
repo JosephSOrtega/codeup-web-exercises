@@ -13,8 +13,6 @@ wait(1000).then(() => console.log('You\'ll see this after 1 second'));
 wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
-
-
 // function getGithubUsernames(username) {
 // fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
 //         .then(response => response.json())
@@ -49,7 +47,7 @@ wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
 ////////////////////////////////////////////////Works!
-fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
+fetch('https://api.github.com/users', {headers: {'Authorization': 'bbec08673798a7b5345ba95705c734a751f409e3'}})
 //gets the shit from the site
     .then(response => response.json())
     //delivers and formats to json
@@ -61,10 +59,15 @@ fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
         .then(response => response.json())
         //delivers and formats to json
         .then(usersArray => {
-                    console.log(usersArray);
-            console.log("The latest public events performed by the user: " + usersArray[0].created_at);
-            return usersArray[0].created_at
-            })
+            console.log(usersArray);
+            for (let i = 0; i < usersArray.length; i++) {
+                if (usersArray[i].type === "PushEvent") {
+                    console.log(i);
+                    console.log("The latest public events performed by the user: " + usersArray[i].created_at);
+                    break;
+                }
+            }
+        })
 });
 
 
