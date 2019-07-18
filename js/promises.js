@@ -47,7 +47,7 @@ wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
 ////////////////////////////////////////////////Works!
-fetch('https://api.github.com/users', {headers: {'Authorization': 'bbec08673798a7b5345ba95705c734a751f409e3'}})
+fetch('https://api.github.com/users', {headers: {'Authorization': 'a397edabfefa407391190c57dd42ecdd437327ae'}})
 //gets the shit from the site
     .then(response => response.json())
     //delivers and formats to json
@@ -55,7 +55,7 @@ fetch('https://api.github.com/users', {headers: {'Authorization': 'bbec08673798a
         console.log(usersArray[0].login);
         return usersArray[0].login
     }).then(data => {
-    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': 'bbec08673798a7b5345ba95705c734a751f409e3'}})
+    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': 'a397edabfefa407391190c57dd42ecdd437327ae'}})
         .then(response => response.json())
         //delivers and formats to json
         .then(usersArray => {
@@ -70,6 +70,24 @@ fetch('https://api.github.com/users', {headers: {'Authorization': 'bbec08673798a
         })
 });
 
+///////////////Accepts a name
+
+function gitName(username) {
+        fetch('https://api.github.com/users/' + username + '/events/public', {"headers": {'Authorization': githubKey}})
+            .then(response => response.json())
+            //delivers and formats to json
+            .then(usersArray => {
+                console.log(usersArray);
+                for (let i = 0; i < usersArray.length; i++) {
+                    if (usersArray[i].type === "PushEvent") {
+                        console.log(i);
+                        console.log("The latest public events performed by the user: " + usersArray[i].created_at);
+                        break;
+                    }
+                }
+            })
+}
+gitName('JustinSOrtega');
 
 ////////////////////////////////////////////////////////////////////////////////////// Examples!
 $.get("https://api.chucknorris.io/jokes/random")
