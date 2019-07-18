@@ -47,7 +47,7 @@ wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
 ////////////////////////////////////////////////Works!
-fetch('https://api.github.com/users', {headers: {'Authorization': 'a397edabfefa407391190c57dd42ecdd437327ae'}})
+fetch('https://api.github.com/users', {headers: {'Authorization': githubKey}})
 //gets the shit from the site
     .then(response => response.json())
     //delivers and formats to json
@@ -55,7 +55,7 @@ fetch('https://api.github.com/users', {headers: {'Authorization': 'a397edabfefa4
         console.log(usersArray[0].login);
         return usersArray[0].login
     }).then(data => {
-    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': 'a397edabfefa407391190c57dd42ecdd437327ae'}})
+    fetch('https://api.github.com/users/' + data + '/events/public', {headers: {'Authorization': githubKey}})
         .then(response => response.json())
         //delivers and formats to json
         .then(usersArray => {

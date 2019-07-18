@@ -135,6 +135,14 @@ window.onload = function () {
     console.log(mainTimer);
 };
 
+
+// $('#here').on('click', function () {
+//     $('#test').css('background-image', 'url(\'pngs/Mis-attackNormalized.png\')')
+//         .then($(this).off())
+//
+// });
+
+
 ////////////////////////////////////Attacking Listener
 $('#attack').on('click', function () {
     $('#test').css('background-image', 'url(\'pngs/Mis-attackNormalized.png\')');
