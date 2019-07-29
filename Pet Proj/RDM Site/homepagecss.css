@@ -304,6 +304,7 @@ h1 {
 
 .btn-primary:hover {
     background-color: orange;
+    color: whitesmoke;
 }
 
 #jumbo {
