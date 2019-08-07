@@ -1,4 +1,4 @@
-public class Items {
+public class items {
     static int gold;
     static int molotov;
     static int blade;
@@ -13,6 +13,6 @@ public class Items {
     static int bar;
 
 
-    //TODO: Add what Items do to code, refer to their descriptions in the shop.
+    //TODO: Add what items do to code, refer to their descriptions in the shop.
 
 }

@@ -129,7 +129,7 @@ public class game_story_old {
                 character.sharp = 0;
                 character.presence = 1;
                 character.damageDie = 10;
-                Items.gold = 2;
+                items.gold = 2;
 
                 System.out.println(
 
@@ -155,7 +155,7 @@ public class game_story_old {
                 character.sharp = 2;
                 character.presence = 1;
                 character.damageDie = 4;
-                Items.gold = 3;
+                items.gold = 3;
 
                 System.out.println(
 
@@ -181,7 +181,7 @@ public class game_story_old {
                 character.sharp = 0;
                 character.presence = -1;
                 character.damageDie = 8;
-                Items.gold = 1;
+                items.gold = 1;
 
                 System.out.println("Your stats are:\n" +
                         "Strength = " + character.strength + "\n" +
@@ -203,7 +203,7 @@ public class game_story_old {
                 character.sharp = -1;
                 character.presence = 2;
                 character.damageDie = 6;
-                Items.gold = 4;
+                items.gold = 4;
 
                 System.out.println(
 

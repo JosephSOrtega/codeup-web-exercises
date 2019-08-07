@@ -64,11 +64,11 @@ public class Rager_old {
 
                 int killIt2 = 1;
                 do {
-                    if (rando == 1 && Items.molotov >= 1 ||
-                            rando == 2 && Items.charm >= 1 ||
-                            rando == 3 && Items.shield >= 1) {
+                    if (rando == 1 && items.molotov >= 1 ||
+                            rando == 2 && items.charm >= 1 ||
+                            rando == 3 && items.shield >= 1) {
                         rando += 1;
-                    } else if (rando == 4 && Items.hat >= 1) {
+                    } else if (rando == 4 && items.hat >= 1) {
                         rando = 1;
                     } else {
                         killIt2 = 0;
@@ -78,36 +78,36 @@ public class Rager_old {
                 switch (rando) {
                     case 1:
                         int gold = (int) game_story_old.twoDice(6) + game_story_old.character.presence;
-                        Items.gold += gold;
+                        items.gold += gold;
                         System.out.println(gold + " gold!");
                         break;
                     case 2:
-                        Items.gold += game_story_old.character.presence + 1;
-                        Items.molotov += 1;
+                        items.gold += game_story_old.character.presence + 1;
+                        items.molotov += 1;
                         System.out.println(game_story_old.character.presence + 1 + " gold and a Molotov!");
 
                         break;
                     case 3:
-                        Items.gold += game_story_old.character.presence + 1;
-                        Items.charm += 1;
+                        items.gold += game_story_old.character.presence + 1;
+                        items.charm += 1;
                         System.out.println(game_story_old.character.presence + 1 + " gold and a Lucky Charm!");
 
                         break;
                     case 4:
-                        Items.gold += game_story_old.character.presence + 1;
-                        Items.potion += 1;
+                        items.gold += game_story_old.character.presence + 1;
+                        items.potion += 1;
                         System.out.println(game_story_old.character.presence + 1 + " gold and a \"healing\" potion!");
 
                         break;
                     case 5:
-                        Items.gold += game_story_old.character.presence + 1;
-                        Items.shield += 1;
+                        items.gold += game_story_old.character.presence + 1;
+                        items.shield += 1;
                         System.out.println(game_story_old.character.presence + 1 + " gold and a Shield!");
 
                         break;
                     default:
-                        Items.gold += game_story_old.character.presence + 1;
-                        Items.hat += 1;
+                        items.gold += game_story_old.character.presence + 1;
+                        items.hat += 1;
                         System.out.println(game_story_old.character.presence + 1 + " gold and a Cool Hat!");
                 }
                 break;
