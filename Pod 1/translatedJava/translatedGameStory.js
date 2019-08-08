@@ -1,4 +1,11 @@
-"use strict";
+// "use strict";
+
+import array from 'game-array.js';
+// import town from './game-shop.js';
+
+//TODO: fix import issue
+
+
 
 // let character = new character;
 // let items = new items;
@@ -12,31 +19,31 @@
 let character = {
     name,
     misses: 0,
-     yourClass,
-     hp,
-     maxHP,
-     strength,
-     agility,
-     sharp,
-     presence,
-     damageDie,
-     spell,
-     scenes,
-     xp,
-     energy,
-     maxEnergy,
-     moveLevel,
-     bonusForward,
-     negForward
+    yourClass,
+    hp,
+    maxHP,
+    strength,
+    agility,
+    sharp,
+    presence,
+    damageDie,
+    spell,
+    scenes,
+    xp,
+    energy,
+    maxEnergy,
+    moveLevel,
+    bonusForward,
+    negForward
 
 //        for later use
 };
 
 let baddie = {
-     hp,
-     mp,
-     chase,
-     damageDie
+    hp,
+    mp,
+    chase,
+    damageDie
 };
 
 let rolls = {
@@ -44,35 +51,68 @@ let rolls = {
 };
 
 let choices = {
-     choice1,
-     choice2
+    choice1,
+    choice2
 };
+
+let items = {
+    gold,
+    molotov,
+    blade,
+    charm,
+    shield,
+    plate,
+    powder,
+    potion,
+    stone,
+    scroll,
+    hat,
+    bar
+    //TODO: Add what items do to code, refer to their descriptions in the shop.
+};
+let introAnswer;
+let yourChoice;
+
+
+$("#log-form").submit(function (e) {
+    e.preventDefault();
+    elem.html($("#log-form-input").val());
+    $("#log-form-input").html("");
+});
+
+
 /////////////////////////////////////////////
 
 //    Intro Section //////////////////////////////////////////////
 function intro() {
-    console.log(
-        "Hello! What is your name?");
+    console.log("Hello! What is your name?");
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        character.name = elem.html($("#log-form-input").val());
+        $("#log-form-input").html("");
+    });
 
 // TODO: add input puller and make it character.name
-    console.log(
-        "Hey there, " + character.name + "!\n" +
+    console.log("Hey there, " + character.name + "!\n" +
         "Want to go on an adventure? [y/n]");
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        introAnswer = elem.html($("#log-form-input").val());
+        $("#log-form-input").html("");
+    });
 
 // TODO: add input puller
-    if (introAnswer.contentEquals("n")) {
-        console.log(
-            "Okay! Have a great day!");
+    if (introAnswer === "n") {
+        console.log("Okay! Have a great day!");
+        window.stop()
 
-    } else if (introAnswer.contentEquals("y")) {
-        console.log(
-            "Let's get going, then!\n\n");
+    } else if (introAnswer === "y") {
+        console.log("Let's get going, then!\n\n");
 
         classPicker();
 
     } else {
-        console.log(
-            "I didn't understand. Please submit your answer again.");
+        console.log("I didn't understand. Please submit your answer again.");
         intro();
     }
 }
@@ -93,6 +133,11 @@ function classPicker() {
         "An Incredibly Inept Wizard? [type: Wizard] \n" +
         "Or a Noisy Thief? [type: Thief]");
 
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        yourChoice = elem.html($("#log-form-input").val());
+        $("#log-form-input").html("");
+    });
 
     switch (yourChoice.toLowerCase()) {
         case "knight":
@@ -239,13 +284,20 @@ function sceneOne() {
         "Or will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]\n\n");
 
     // choices.choice1 = scanner.nextLine().toLowerCase();
-    switch (game_shop.choices.choice1) {
+
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        choices.choice1 = elem.html($("#log-form-input").val().toLowerCase());
+        $("#log-form-input").html("");
+    });
+
+    switch (choices.choice1) {
         case "agi":
             console.log(
                 "As you try to be sneaky,\n" +
                 "we will roll to see what happens.");
 
-            rolls.roll1 = twoDice(6) + character.agility;
+            rolls.roll1 = array.twoDiceRoll(6) + character.agility;
             console.log("" +
 
                 "You rolled a " + rolls.roll1 + ".\n" +
@@ -258,7 +310,7 @@ function sceneOne() {
                 "As you try spot the danger before it has the jump\n" +
                 "on you, we will roll to see what happens.\n");
 
-            rolls.roll1 = twoDice(6) + character.sharp;
+            rolls.roll1 = array.twoDiceRoll(6) + character.sharp;
             console.log(
                 "You rolled a " + rolls.roll1 + ".\n" +
                 "Lets see what they means for our adventurer...\n\n");
@@ -293,6 +345,12 @@ function agiSceneOne() {
             "Or, you can try and get the jump on them? [type: Fight]\n\n");
 // TODO: add input puller and make it choices.choice2
         // Scanner scanner = new Scanner(System.in);
+        $("#log-form").submit(function (e) {
+            e.preventDefault();
+            choices.choice2 = elem.html($("#log-form-input").val().toLowerCase());
+            $("#log-form-input").html("");
+        });
+
         choices.choice2 = scanner.nextLine();
         if (choices.choice2.equalsIgnoreCase("fight")) {
             Ambush();
@@ -322,7 +380,13 @@ function shpSceneOne() {
 
         // Scanner scanner = new Scanner(System.in);
         // choices.choice2 = scanner.nextLine();
-        if (choices.choice2.equalsIgnoreCase("fight")) {
+        $("#log-form").submit(function (e) {
+            e.preventDefault();
+            choices.choice2 = elem.html($("#log-form-input").val().toLowerCase());
+            $("#log-form-input").html("");
+        });
+
+        if (choices.choice2 === "fight") {
             Ambush();
         } else {
             sceneOneOutro();
@@ -332,7 +396,7 @@ function shpSceneOne() {
 
 //Scene 1 results
 function sceneOneBut() {
-    let dam = dice(baddie.damageDie);
+    let dam = array.diceRoll(baddie.damageDie);
     console.log(
         "Fuuuuuuck....\n" +
         "That hurt. \n" +
@@ -357,7 +421,7 @@ function sceneOneBut() {
 }
 
 function shitHitsFanSceneOne() {
-    let dam = dice(baddie.damageDie);
+    let dam = array.diceRoll(baddie.damageDie);
     console.log(
         "Fuuuuuuck....\n" +
         "That hurt. \n" +
@@ -375,7 +439,7 @@ function shitHitsFanSceneOne() {
 
 
 function sceneOneOutro() {
-    game_shop.town();
+    town();
     console.log(
         "\nAs you walk into the sunset, \n" +
         "the screen fades to black... \n\n" +
@@ -402,8 +466,7 @@ function youDied() {
         "You rolled " + character.misses + " misses and \n" +
         "got through " + character.scenes + " scenes. \n" +
         "Better luck next time!");
-
-    System.exit(0);
+    window.stop();
 }
 
 //////////////////////////////////////////////////////////
@@ -428,14 +491,14 @@ function combatTurnAttack(a) {
     if (a <= 6) {
         console.log("You rolled a miss! Oh no!");
         character.misses = character.misses + 1;
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
         console.log("You take " + badDam + " damage from their blow!");
         fight();
     } else if (a > 6 && a < 10) {
         console.log("You rolled a mixed success!");
-        let badDam = dice(baddie.damageDie);
-        let dam = character.damageDie;
+        let badDam = array.diceRoll(baddie.damageDie);
+        let dam = array.diceRoll(character.damageDie);
         character.hp -= badDam;
         baddie.hp -= dam;
         console.log(
@@ -446,7 +509,7 @@ function combatTurnAttack(a) {
         fight();
     } else if (a >= 10) {
         console.log("You rolled a success with little consequence!");
-        let dam = dice(character.damageDie);
+        let dam = array.diceRoll(character.damageDie);
         baddie.hp -= dam;
         console.log("You dealt " + dam + " damage!");
         fight();
@@ -455,14 +518,14 @@ function combatTurnAttack(a) {
 
 
 function spellDamage() {
-    if (character.spell.equalsIgnoreCase("bolt")) {
-        let dam = twoDice(4) + character.sharp;
+    if (character.spell.toLowerCase()==="bolt") {
+        let dam = array.twoDiceRoll(4) + character.sharp;
         baddie.hp -= dam;
         console.log("Your magical attack hit the foe for " + dam + " damage!");
     } else {
-        let dam = twoDice(6) + character.sharp;
+        let dam = array.twoDiceRoll(6) + character.sharp;
         console.log("Your magical attack hit the foe for " + dam + " damage!");
-        let damself = dice(4);
+        let damself = array.diceRoll(4);
         console.log(
             "You hit your target, \n" +
             "but that blast was brutal. \n" +
@@ -476,13 +539,13 @@ function combatTurnSpell(a) {
     if (a <= 6) {
         console.log("You rolled a miss! Oh no!");
         character.misses += 1;
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
         console.log("You take " + badDam + " damage from their blow!");
         fight();
     } else if (a > 6 && a < 10) {
         console.log("You rolled a mixed success!");
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
         console.log("You take " + badDam + " damage from their blow!");
         spellDamage();
@@ -501,13 +564,13 @@ function combatTurnRun(a) {
     if ((a - baddie.chase) <= 6) {
         console.log("You rolled a miss! Oh no!");
         character.misses += 1;
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
         console.log("You take " + badDam + " damage from their blow! and couldn't escape!");
         fight();
     } else if ((a - baddie.chase) > 6 && (a - baddie.chase) < 10) {
         console.log("You rolled a mixed success!");
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
         console.log(
             "You only can do one: \n" +
@@ -516,11 +579,11 @@ function combatTurnRun(a) {
 //TODO: input thingy here too
 //         String runChoice = scanner.nextLine().toLowerCase();
         if (runChoice.equalsIgnoreCase("run")) {
-            badDam = dice(baddie.damageDie);
+            badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam * 2);
             console.log("You got away, but took " + badDam + " damage in the escape!");
         } else {
-            badDam = dice(baddie.damageDie);
+            badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam - character.agility);
             console.log("You got away, but took " + badDam + " damage in the escape!");
             fight();
@@ -537,14 +600,14 @@ function combatTurnTalk(a) {
     if (a <= 6) {
         console.log("You rolled a miss! Oh no!");
         character.misses = character.misses + 1;
-        let badDam = dice(baddie.damageDie);
+        let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
         console.log("You take " + badDam + " damage from their blow!");
         fight();
     } else if (a > 6 && a < 10) {
         console.log("You rolled a mixed success!");
-        let badDam = dice(baddie.damageDie);
-        let dam = dice(character.damageDie) + character.sharp;
+        let badDam = array.diceRoll(baddie.damageDie);
+        let dam = array.diceRoll(character.damageDie) + character.sharp;
         character.hp -= badDam;
         baddie.mp -= dam;
         console.log(
@@ -556,7 +619,7 @@ function combatTurnTalk(a) {
         fight();
     } else if (a >= 10) {
         console.log("You rolled a success with little consequence!");
-        let dam = dice(character.damageDie) + character.sharp;
+        let dam = array.diceRoll(character.damageDie) + character.sharp;
         baddie.mp -= dam;
         console.log(
             "Your words are getting to them! \n" +
@@ -575,7 +638,7 @@ function fight() {
         youDied();
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
         console.log("\nYou defeated the baddie! Congrats!\n" +
-            "You got " + game_story.dice(baddie.damageDie) + " gold from them\n");
+            "You got " + array.diceRoll(baddie.damageDie) + " gold from them\n");
         sceneOneOutro();
     }
 //battle
@@ -590,11 +653,11 @@ function fight() {
             console.log("Would you like to attack or cast a spell? [type: Y/N]");
             //TODO: here too
             // let spellChoice = scanner.nextLine().toLowerCase();
-            if (spellChoice.equalsIgnoreCase("y")) {
+            if (spellChoice.toLowerCase()==="y") {
                 console.log("What spell would you like to cast? Bolt or Blast?");
                 character.spell = scanner.nextLine().toLowerCase();
                 console.log("Let's see if your spell casted successfully");
-                combatTurnSpell(twoDice(6) + character.sharp);
+                combatTurnSpell(array.twoDiceRoll(6) + character.sharp);
             }
         } else {
             console.log("How do you fight? \n" +
