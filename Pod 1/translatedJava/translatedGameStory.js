@@ -255,14 +255,13 @@ function classPicker() {
                 character.presence = 2;
                 character.damageDie = 6;
                 items.gold = 4;
-
                 setTimeout(function () {
                     pText = "<p class='output-p'><span class='output-arrow'>-></span>Your stats are:<br>Strength = " + character.strength + "<br>Agility = " + character.agility + "<br>Sharp = " + character.sharp + "<br>Presence = " + character.presence + "<br></p>";
                     $("#log-output").html(pText);
                     setTimeout(function () {
-                        // sceneOne();
-                        pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
-                        $("#log-output").html(pText);
+                        sceneOne();
+                        // pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
+                        // $("#log-output").html(pText);
                     }, 3000); //3 seconds
                 }, 5000); //5 seconds
                 break;
@@ -288,51 +287,52 @@ function sceneOne() {
     setTimeout(function () {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br>*snap!*<br><br>What was that?<br>Hello?<br><br>What will you do now?<br>Will you try to sneak past whatever is there? [type: AGI]<br>Will you try to spot the danger before it even strikes? [type: SHP]<br>Or will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]<br><br></p>";
         $("#log-output").html(pText);
+
+        // choices.choice1 = scanner.nextLine().toLowerCase();
+
+        $("#log-form").submit(function (e) {
+            e.preventDefault();
+            choices.choice1 = $("#log-form-input").val().toLowerCase();
+            $("#log-form").trigger("reset");
+            $("#log-form-input").html("");
+            $("#log-form").off();
+            setTimeout(function () {
+                switch (choices.choice1) {
+                    case "agi":
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try to be sneaky,<br>we will roll to see what happens.</p>";
+                        $("#log-output").html(pText);
+
+                        setTimeout(function () {
+                            rolls.roll1 = array.twoDiceRoll(6,6) + character.agility;
+                            pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Let's see what they means for our adventurer...<br><br></p>";
+                            $("#log-output").html(pText);
+                            agiSceneOne();
+                        }, 2000); //2 seconds
+                        break;
+                    case "shp":
+
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try spot the danger before it has the jump<br>on you, we will roll to see what happens.<br></p>";
+                        $("#log-output").html(pText);
+
+                        setTimeout(function () {
+                            rolls.roll1 = (array.twoDiceRoll(6,6) + character.sharp);
+                            pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Lets see what they means for our adventurer...<br><br></p>";
+                            $("#log-output").html(pText);
+                            shpSceneOne();
+                        }, 2000); //2 seconds
+                        break;
+                    default:
+                        setTimeout(function () {
+                            pText = "<p class='output-p'><span class='output-arrow'>-></span>Shit you made a lot of noise!<br>Here they come....<br><br></p>";
+                            $("#log-output").html(pText);
+                            shitHitsFanSceneOne();
+                        }, 2000); //2 seconds
+                        break;
+                }
+            }, 2000); //2 seconds
+        });
+
     }, 5000); //5 seconds
-
-    // choices.choice1 = scanner.nextLine().toLowerCase();
-
-    $("#log-form").submit(function (e) {
-        e.preventDefault();
-        choices.choice1 = $("#log-form-input").val().toLowerCase();
-        $("#log-form").trigger("reset");
-        $("#log-form-input").html("");
-        $("#log-form").off();
-    });
-    setTimeout(function () {
-        switch (choices.choice1) {
-            case "agi":
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try to be sneaky,<br>we will roll to see what happens.</p>";
-                $("#log-output").html(pText);
-
-                setTimeout(function () {
-                    rolls.roll1 = array.twoDiceRoll(6) + character.agility;
-                    pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Let's see what they means for our adventurer...<br><br></p>";
-                    $("#log-output").html(pText);
-                    agiSceneOne();
-                }, 2000); //2 seconds
-                break;
-            case "shp":
-
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try spot the danger before it has the jump<br>on you, we will roll to see what happens.<br></p>";
-                $("#log-output").html(pText);
-
-                setTimeout(function () {
-                    rolls.roll1 = array.twoDiceRoll(6) + character.sharp;
-                    pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Lets see what they means for our adventurer...<br><br></p>";
-                    $("#log-output").html(pText);
-                    shpSceneOne();
-                }, 2000); //2 seconds
-                break;
-            default:
-                setTimeout(function () {
-                    pText = "<p class='output-p'><span class='output-arrow'>-></span>Shit you made a lot of noise!<br>Here they come....<br><br></p>";
-                    $("#log-output").html(pText);
-                    shitHitsFanSceneOne();
-                }, 2000); //2 seconds
-                break;
-        }
-    }, 2000); //2 seconds
 
 }
 
@@ -470,6 +470,7 @@ function youDied() {
     $("#log-output").html(pText);
     // window.stop();
     exit();
+    x
 
 }
 
@@ -524,7 +525,7 @@ function spellDamage() {
         baddie.hp -= dam;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
     } else {
-        let dam = array.twoDiceRoll(6) + character.sharp;
+        let dam = array.twoDiceRoll(6,6) + character.sharp;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
         let damself = array.diceRoll(4);
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You hit your target, <br>but that blast was brutal. <br>You take " + damself + " damage from the blast.</p>"
@@ -643,7 +644,7 @@ function fight() {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
                 character.spell = scanner.nextLine().toLowerCase();
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
-                combatTurnSpell(array.twoDiceRoll(6) + character.sharp);
+                combatTurnSpell(array.twoDiceRoll(6,6) + character.sharp);
             }
         } else {
             pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
