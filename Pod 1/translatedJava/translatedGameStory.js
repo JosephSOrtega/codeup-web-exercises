@@ -4,8 +4,6 @@ import array from "./game-array.js";
 // import town from './game-shop.js';
 
 
-
-
 // let character = new character;
 // let items = new items;
 // let dice = new dice;
@@ -77,8 +75,14 @@ let yourChoice;
 //
 // $("#log-form").submit(function (e) {
 //     e.preventDefault();
-//     elem.html($("#log-form-input").val());
+//     character.name = $("#log-form-input").val();
+//     $("#log-form").trigger("reset");
 //     $("#log-form-input").html("");
+//     $("#log-form").off();
+//     setTimeout(function () {
+//         intro2();
+//     }, 1000); //1 seconds
+//
 // });
 //
 // function part1() {
@@ -92,38 +96,53 @@ let yourChoice;
 /////////////////////////////////////////////
 
 //    Intro Section //////////////////////////////////////////////
-function intro() {
+function intro1() {
     console.log("Hello! What is your name?");
     $("#log-form").submit(function (e) {
         e.preventDefault();
-        character.name = elem.html($("#log-form-input").val());
+        character.name = $("#log-form-input").val();
+        $("#log-form").trigger("reset");
         $("#log-form-input").html("");
-    });
+        $("#log-form").off();
+        setTimeout(function () {
+            intro2();
+        }, 1000); //1 seconds
 
+    });
+}
+
+function intro2() {
 // TODO: add input puller and make it character.name
     console.log("Hey there, " + character.name + "!\n" +
         "Want to go on an adventure? [y/n]");
     $("#log-form").submit(function (e) {
         e.preventDefault();
-        introAnswer = elem.html($("#log-form-input").val());
+        introAnswer = $("#log-form-input").val();
+        $("#log-form").trigger("reset");
         $("#log-form-input").html("");
+        $("#log-form").off();
+        setTimeout(function () {
+            if (introAnswer === "n") {
+                console.log("Okay! Have a great day!");
+                window.stop()
+
+            } else if (introAnswer === "y") {
+                console.log("Let's get going, then!\n\n");
+                setTimeout(function () {
+                    // classPicker();
+                    console.log("Worked");
+                }, 3000); //4 seconds
+
+                classPicker();
+
+            } else {
+                console.log("I didn't understand. Please submit your answer again.");
+                intro2();
+            }
+        }, 1000); //1 seconds
     });
-
-// TODO: add input puller
-    if (introAnswer === "n") {
-        console.log("Okay! Have a great day!");
-        window.stop()
-
-    } else if (introAnswer === "y") {
-        console.log("Let's get going, then!\n\n");
-
-        classPicker();
-
-    } else {
-        console.log("I didn't understand. Please submit your answer again.");
-        intro();
-    }
 }
+
 
 
 //    Class Selection //////////////////////////////////////////////
@@ -526,7 +545,7 @@ function combatTurnAttack(a) {
 
 
 function spellDamage() {
-    if (character.spell.toLowerCase()==="bolt") {
+    if (character.spell.toLowerCase() === "bolt") {
         let dam = array.twoDiceRoll(4) + character.sharp;
         baddie.hp -= dam;
         console.log("Your magical attack hit the foe for " + dam + " damage!");
@@ -661,7 +680,7 @@ function fight() {
             console.log("Would you like to attack or cast a spell? [type: Y/N]");
             //TODO: here too
             // let spellChoice = scanner.nextLine().toLowerCase();
-            if (spellChoice.toLowerCase()==="y") {
+            if (spellChoice.toLowerCase() === "y") {
                 console.log("What spell would you like to cast? Bolt or Blast?");
                 character.spell = scanner.nextLine().toLowerCase();
                 console.log("Let's see if your spell casted successfully");
@@ -763,7 +782,7 @@ function Ambush() {
 // mobs have Health points, Mental points, and Chase value
 }
 
-intro();
+intro1();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //Combat end
