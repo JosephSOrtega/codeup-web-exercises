@@ -112,3 +112,4 @@ var enemies = [{
     }
 }];
 export default {diceRoll, twoDiceRoll, characters, enemies}; // es6 shorthand
+// module.exports = {diceRoll, twoDiceRoll, characters, enemies};

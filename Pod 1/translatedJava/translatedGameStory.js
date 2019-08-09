@@ -1,9 +1,8 @@
 // "use strict";
 
-import array from 'game-array.js';
+import array from "./game-array.js";
 // import town from './game-shop.js';
 
-//TODO: fix import issue
 
 
 
@@ -17,69 +16,78 @@ import array from 'game-array.js';
 
 ///////////////////////////////Objects
 let character = {
-    name,
+    name: "",
     misses: 0,
-    yourClass,
-    hp,
-    maxHP,
-    strength,
-    agility,
-    sharp,
-    presence,
-    damageDie,
-    spell,
-    scenes,
-    xp,
-    energy,
-    maxEnergy,
-    moveLevel,
-    bonusForward,
-    negForward
+    yourClass: "",
+    hp: "",
+    maxHP: "",
+    strength: "",
+    agility: "",
+    sharp: "",
+    presence: "",
+    damageDie: "",
+    spell: "",
+    scenes: "",
+    xp: "",
+    energy: "",
+    maxEnergy: "",
+    moveLevel: "",
+    bonusForward: "",
+    negForward: ""
 
 //        for later use
 };
 
 let baddie = {
-    hp,
-    mp,
-    chase,
-    damageDie
+    hp: "",
+    mp: "",
+    chase: "",
+    damageDie: ""
 };
 
 let rolls = {
-    roll1
+    roll1: ""
 };
 
 let choices = {
-    choice1,
-    choice2
+    choice1: "",
+    choice2: ""
 };
 
 let items = {
-    gold,
-    molotov,
-    blade,
-    charm,
-    shield,
-    plate,
-    powder,
-    potion,
-    stone,
-    scroll,
-    hat,
-    bar
+    gold: "",
+    molotov: "",
+    blade: "",
+    charm: "",
+    shield: "",
+    plate: "",
+    powder: "",
+    potion: "",
+    stone: "",
+    scroll: "",
+    hat: "",
+    bar: ""
     //TODO: Add what items do to code, refer to their descriptions in the shop.
 };
 let introAnswer;
 let yourChoice;
+//
 
-
-$("#log-form").submit(function (e) {
-    e.preventDefault();
-    elem.html($("#log-form-input").val());
-    $("#log-form-input").html("");
-});
-
+//Notes:
+//
+// $("#log-form").submit(function (e) {
+//     e.preventDefault();
+//     elem.html($("#log-form-input").val());
+//     $("#log-form-input").html("");
+// });
+//
+// function part1() {
+//     var pText = "<p class='output-p'><span class='output-arrow'>-></span>Hey there! Want to go on an adventure?</p>";
+//     $("#log-output").append(pText).scrollTop(9999999999999999);
+//     setTimeout(function () {
+//         part2();
+//     }, 4000); //4 seconds
+// }
 
 /////////////////////////////////////////////
 
