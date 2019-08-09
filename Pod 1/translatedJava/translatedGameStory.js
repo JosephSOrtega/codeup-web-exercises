@@ -117,7 +117,7 @@ function intro1() {
 
 function intro2() {
 //Asks to start adventure.
-    pText = "<p class='output-p'><span class='output-arrow'>-></span>Hey there, " + character.name + "! Want to go on an adventure? [y/n]</p>";
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Hey there, " + character.name + "! <br>Want to go on an adventure? [y/n]</p>";
     $("#log-output").html(pText);
     $("#log-form").submit(function (e) {
         e.preventDefault();
@@ -134,7 +134,7 @@ function intro2() {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's get going, then!</p>";
                 $("#log-output").html(pText);
                 setTimeout(function () {
-                    // classPicker();
+                    classPicker();
                 }, 2000); //2 seconds
             } else {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand. Please submit your answer again.</p>";
@@ -151,120 +151,121 @@ function intro2() {
 //    Class Selection //////////////////////////////////////////////
 function classPicker() {
 // TODO: add input puller and make it yourClass
-    console.log(
-        "Oh shit, It's an adventurer! \n" +
-        "Quick, everyone hide! They always bring trouble. \n" +
-        "..." +
-        "It looks like it's a...\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Oh shit, It's an adventurer! Quick, everyone hide! They always bring trouble.<br><br>It looks like it's a...<br><br><hr>What kind of adventurer are you? <br><br>A Washed-Up Knight? [type: Knight] <br>An Incredibly Inept Wizard? [type: Wizard] <br>Or a Noisy Thief? [type: Thief]<br></p>";
+    $("#log-output").html(pText);
 
-    console.log(
-        "What kind of adventurer are you? \n\n" +
-        "A Washed-Up Knight? [type: Knight] \n" +
-        "An Incredibly Inept Wizard? [type: Wizard] \n" +
-        "Or a Noisy Thief? [type: Thief]");
 
     $("#log-form").submit(function (e) {
         e.preventDefault();
-        yourChoice = elem.html($("#log-form-input").val());
+        yourChoice = $("#log-form-input").val();
+        $("#log-form").trigger("reset");
         $("#log-form-input").html("");
+        $("#log-form").off();
+
+        switch (yourChoice) {
+            case "knight":
+                character.yourClass = "Washed-Up Knight";
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Excelsior!<br>You are a " + character.yourClass + ",<br>sworn to defend the realms of men from all manner of evil and icky things! <br>...Too bad married life caught up with you.<br><br></p>";
+                $("#log-output").html(pText);
+
+
+                character.hp = 24;
+                character.strength = 2;
+                character.agility = -1;
+                character.sharp = 0;
+                character.presence = 1;
+                character.damageDie = 10;
+                items.gold = 2;
+                setTimeout(function () {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>Your stats are:<br>Strength = " + character.strength + "<br>Agility = " + character.agility + "<br>Sharp = " + character.sharp + "<br>Presence = " + character.presence + "<br></p>";
+                    $("#log-output").html(pText);
+                    setTimeout(function () {
+                        // sceneOne();
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
+                        $("#log-output").html(pText);
+                    }, 3000); //3 seconds
+
+                }, 5000); //5 seconds
+
+
+                break;
+
+            case "wizard":
+                character.yourClass = "Incredibly Inept Wizard";
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Woah! Careful where you point that wand of yours!<br>You are an " + character.yourClass + " of the highest order.<br>Too bad you have never actually cast a spell before. <br>And don't even get me started on that pointy hat of yours...<br><br></p>";
+                $("#log-output").html(pText);
+
+
+                character.hp = 16;
+                character.strength = -1;
+                character.agility = 0;
+                character.sharp = 2;
+                character.presence = 1;
+                character.damageDie = 4;
+                items.gold = 3;
+                setTimeout(function () {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>Your stats are:<br>Strength = " + character.strength + "<br>Agility = " + character.agility + "<br>Sharp = " + character.sharp + "<br>Presence = " + character.presence + "<br></p>";
+                    $("#log-output").html(pText);
+                    setTimeout(function () {
+                        // sceneOne();
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
+                        $("#log-output").html(pText);
+                    }, 3000); //3 seconds
+                }, 5000); //5 seconds
+
+                break;
+
+            case "thief":
+                character.yourClass = "Noisy Thief";
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Oh my! You almost very nearly came somewhat close to actually startling me there!<br>Your steps as a " + character.yourClass + " might not be as quiet as a panther on the prowl,<br>but this little kitty cat has claws.<br>Rawr.<br><br></p>";
+                $("#log-output").html(pText);
+
+
+                character.hp = 20;
+                character.strength = 1;
+                character.agility = 2;
+                character.sharp = 0;
+                character.presence = -1;
+                character.damageDie = 8;
+                items.gold = 1;
+
+                setTimeout(function () {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>Your stats are:<br>Strength = " + character.strength + "<br>Agility = " + character.agility + "<br>Sharp = " + character.sharp + "<br>Presence = " + character.presence + "<br></p>";
+                    $("#log-output").html(pText);
+                    setTimeout(function () {
+                        // sceneOne();
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
+                        $("#log-output").html(pText);
+                    }, 3000); //3 seconds
+                }, 5000); //5 seconds
+                break;
+
+            default:
+                character.yourClass = "Mischievous";
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Hey, that wasn't an answer listed!<br>It seems we have a little troublemaker on our hands.<br>Why don't we make you a " + character.yourClass + " instead?<br></p>";
+                $("#log-output").html(pText);
+
+
+                character.hp = 18;
+                character.strength = 0;
+                character.agility = 1;
+                character.sharp = -1;
+                character.presence = 2;
+                character.damageDie = 6;
+                items.gold = 4;
+
+                setTimeout(function () {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>Your stats are:<br>Strength = " + character.strength + "<br>Agility = " + character.agility + "<br>Sharp = " + character.sharp + "<br>Presence = " + character.presence + "<br></p>";
+                    $("#log-output").html(pText);
+                    setTimeout(function () {
+                        // sceneOne();
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>Worked</p>";
+                        $("#log-output").html(pText);
+                    }, 3000); //3 seconds
+                }, 5000); //5 seconds
+                break;
+        }
     });
-
-    switch (yourChoice.toLowerCase()) {
-        case "knight":
-            character.yourClass = "Washed-Up Knight";
-            console.log(
-                "Excelsior!\n" +
-                "You are a " + character.yourClass + ",\n" +
-                "sworn to defend the realms of men from all manner of evil and icky things! \n" +
-                "...Too bad married life caught up with you.\n\n");
-
-            character.hp = 24;
-            character.strength = 2;
-            character.agility = -1;
-            character.sharp = 0;
-            character.presence = 1;
-            character.damageDie = 10;
-            items.gold = 2;
-
-            console.log(
-                "Your stats are:\n" +
-                "Strength = " + character.strength + "\n" +
-                "Agility = " + character.agility + "\n" +
-                "Sharp = " + character.sharp + "\n" +
-                "Presence = " + character.presence + "\n\n");
-            break;
-
-        case "wizard":
-            character.yourClass = "Incredibly Inept Wizard";
-            console.log(
-                "Woah! Careful where you point that wand of yours!\n" +
-                "You are an " + character.yourClass + " of the highest order." + "\n" +
-                "Too bad you have never actually cast a spell before. \n" +
-                "And don't even shpget me started on that pointy hat of yours...\n\n");
-
-            character.hp = 16;
-            character.strength = -1;
-            character.agility = 0;
-            character.sharp = 2;
-            character.presence = 1;
-            character.damageDie = 4;
-            items.gold = 3;
-
-            console.log(
-                "Your stats are: " + "\n" +
-                "Strength = " + character.strength + " \n" +
-                "Agility = " + character.agility + " \n" +
-                "Sharp = " + character.sharp + " \n" +
-                "Presence = " + character.presence + "\n\n");
-            break;
-
-        case "thief":
-            character.yourClass = "Noisy Thief";
-            console.log(
-                "Oh my! You almost very nearly came somewhat close to actually startling me there!\n" +
-                "Your steps as a " + character.yourClass + " might not be as quiet as a panther on the prowl,\n" +
-                "but this little kitty cat has claws.\n" +
-                "Rawr.\n\n");
-
-            character.hp = 20;
-            character.strength = 1;
-            character.agility = 2;
-            character.sharp = 0;
-            character.presence = -1;
-            character.damageDie = 8;
-            items.gold = 1;
-
-            console.log("Your stats are:\n" +
-                "Strength = " + character.strength + "\n" +
-                "Agility = " + character.agility + "\n" +
-                "Sharp = " + character.sharp + "\n" +
-                "Presence = " + character.presence + "\n\n");
-            break;
-
-        default:
-            character.yourClass = "Mischievous";
-            console.log(
-                "Hey, that wasn't an answer listed!\n" +
-                "It seems we have a little troublemaker on our hands.\n" +
-                "Why don't we make you a " + character.yourClass + " instead?\n");
-
-            character.hp = 18;
-            character.strength = 0;
-            character.agility = 1;
-            character.sharp = -1;
-            character.presence = 2;
-            character.damageDie = 6;
-            items.gold = 4;
-
-            console.log(
-                "Your stats are:\n" +
-                "Strength = " + character.strength + "\n" +
-                "Agility = " + character.agility + "\n" +
-                "Sharp = " + character.sharp + "\n" +
-                "Presence = " + character.presence + "\n\n");
-            break;
-    }
-    sceneOne();
 }
 
 //    Scenario 1: Bandit trap /////////////////////////////////////////
@@ -280,38 +281,11 @@ function sceneOne() {
     baddie.damageDie = 8;
 //        End stats/////////////////////////////////////////
 
-    console.log("\n\n\n" +
-
-        "Scene One: Our Journey Begins...\n\n" +
-
-        "What started as a quiet night enjoying\n" +
-        "a couple pints of grog at the local pub\n" +
-        "ends with the townsfolk of Friendly\n" +
-        "chasing you out the city gates with torches,\n" +
-        "pitchforks, and other makeshift\n" +
-        "weaponry early the next morning.\n\n\n" +
-
-        "After a bath in the local river and a hearty\n" +
-        "breakfast of varmint and woodland critters,\n" +
-        "you continue along your lonesome journey.\n\n" +
-        "Through the forests and dales,\n" +
-        "over the valleys and hills you trod,\n" +
-        "eager to to overcome whatever might stand \n" +
-        "between you and the great City of Whoknowsville...\n");
+    console.log("\n\n\nScene One: Our Journey Begins...\n\nWhat started as a quiet night enjoying\na couple pints of grog at the local pub\nends with the townsfolk of Friendly\nchasing you out the city gates with torches,\npitchforks, and other makeshift\nweaponry early the next morning.\n\n\nAfter a bath in the local river and a hearty\nbreakfast of varmint and woodland critters,\nyou continue along your lonesome journey.\n\nThrough the forests and dales,\nover the valleys and hills you trod,\neager to to overcome whatever might stand \nbetween you and the great City of Whoknowsville...\n");
 
 
     console.log(
-        "\n" +
-
-        "*snap!*\n\n" +
-
-        "What was that?\n" +
-        "Hello?\n\n" +
-
-        "What will you do now?\n" +
-        "Will you try to sneak past whatever is there? [type: AGI]\n" +
-        "Will you try to spot the danger before it even strikes? [type: SHP]\n" +
-        "Or will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]\n\n");
+        "\n*snap!*\n\nWhat was that?\nHello?\n\nWhat will you do now?\nWill you try to sneak past whatever is there? [type: AGI]\nWill you try to spot the danger before it even strikes? [type: SHP]\nOr will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]\n\n");
 
     // choices.choice1 = scanner.nextLine().toLowerCase();
 
@@ -324,33 +298,26 @@ function sceneOne() {
     switch (choices.choice1) {
         case "agi":
             console.log(
-                "As you try to be sneaky,\n" +
-                "we will roll to see what happens.");
+                "As you try to be sneaky,\nwe will roll to see what happens.");
 
             rolls.roll1 = array.twoDiceRoll(6) + character.agility;
-            console.log("" +
-
-                "You rolled a " + rolls.roll1 + ".\n" +
-                "Let's see what they means for our adventurer...\n\n");
+            console.log("You rolled a " + rolls.roll1 + ".\nLet's see what they means for our adventurer...\n\n");
 
             agiSceneOne();
             break;
         case "shp":
             console.log(
-                "As you try spot the danger before it has the jump\n" +
-                "on you, we will roll to see what happens.\n");
+                "As you try spot the danger before it has the jump\non you, we will roll to see what happens.\n");
 
             rolls.roll1 = array.twoDiceRoll(6) + character.sharp;
             console.log(
-                "You rolled a " + rolls.roll1 + ".\n" +
-                "Lets see what they means for our adventurer...\n\n");
+                "You rolled a " + rolls.roll1 + ".\nLets see what they means for our adventurer...\n\n");
 
             shpSceneOne();
             break;
         default:
             console.log(
-                "Shit you made a lot of noise!\n" +
-                "Here they come....\n\n");
+                "Shit you made a lot of noise!\nHere they come....\n\n");
 
             shitHitsFanSceneOne();
             break;
@@ -370,9 +337,7 @@ function agiSceneOne() {
     } else if (rolls.roll1 >= 10) {
         console.log("You rolled a success with little consequence!");
         console.log(
-            "You managed to sneak around their ambush!\n" +
-            "You can sneak away? [type: Run]\n" +
-            "Or, you can try and get the jump on them? [type: Fight]\n\n");
+            "You managed to sneak around their ambush!\nYou can sneak away? [type: Run]\nOr, you can try and get the jump on them? [type: Fight]\n\n");
 // TODO: add input puller and make it choices.choice2
         // Scanner scanner = new Scanner(System.in);
         $("#log-form").submit(function (e) {
@@ -402,9 +367,7 @@ function shpSceneOne() {
     } else if (rolls.roll1 >= 10) {
         console.log("You rolled a success with little consequence!");
         console.log(
-            "You managed to spot them before they spotted you.\n" +
-            "Will you try and sneak away? [type: Run]\n" +
-            "Or get the jump on them? [type: Fight]\n\n");
+            "You managed to spot them before they spotted you.\nWill you try and sneak away? [type: Run]\nOr get the jump on them? [type: Fight]\n\n");
 
 // TODO: add input puller and make it choices.choice2
 
@@ -428,17 +391,11 @@ function shpSceneOne() {
 function sceneOneBut() {
     let dam = array.diceRoll(baddie.damageDie);
     console.log(
-        "Fuuuuuuck....\n" +
-        "That hurt. \n" +
-        "Like, super bad.\n\n" +
-
-        "Their trap was tripped, hitting you for " + dam + " damage\n" +
-        "and they are coming right for you!\n\n");
+        "Fuuuuuuck....\nThat hurt. \nLike, super bad.\n\nTheir trap was tripped, hitting you for " + dam + " damage\nand they are coming right for you!\n\n");
 
     character.hp -= dam;
     console.log(
-        "Will you stand tall and fight? \n" +
-        "Or run like a coward?\n\n");
+        "Will you stand tall and fight? \nOr run like a coward?\n\n");
 
     // TODO: add input puller and make it choices.choice2
     // Scanner scanner = new Scanner(System.in);
@@ -453,17 +410,11 @@ function sceneOneBut() {
 function shitHitsFanSceneOne() {
     let dam = array.diceRoll(baddie.damageDie);
     console.log(
-        "Fuuuuuuck....\n" +
-        "That hurt. \n" +
-        "Like, super bad.\n\n" +
-
-        "Their trap was tripped, hitting you for " + dam + " damage\n" +
-        "and they are coming right for you!\n\n");
+        "Fuuuuuuck....\nThat hurt. \nLike, super bad.\n\nTheir trap was tripped, hitting you for " + dam + " damage\nand they are coming right for you!\n\n");
 
     character.hp -= dam;
     console.log(
-        "Oh no, here they come! \n" +
-        "You have no choice but to fight!\n\n");
+        "Oh no, here they come! \nYou have no choice but to fight!\n\n");
     fight();
 }
 
@@ -471,10 +422,7 @@ function shitHitsFanSceneOne() {
 function sceneOneOutro() {
     town();
     console.log(
-        "\nAs you walk into the sunset, \n" +
-        "the screen fades to black... \n\n" +
-
-        "Thanks for trying our demo!");
+        "\nAs you walk into the sunset, \nthe screen fades to black... \n\nThanks for trying our demo!");
 
     System.exit(0);
 }
@@ -491,11 +439,7 @@ function sceneOneOutro() {
 
 function youDied() {
     console.log(
-        "Though your journey has come to an end,\n" +
-        "let's see how far you got! \n" +
-        "You rolled " + character.misses + " misses and \n" +
-        "got through " + character.scenes + " scenes. \n" +
-        "Better luck next time!");
+        "Though your journey has come to an end,\nlet's see how far you got! \nYou rolled " + character.misses + " misses and \ngot through " + character.scenes + " scenes. \nBetter luck next time!");
     window.stop();
 }
 
@@ -532,9 +476,7 @@ function combatTurnAttack(a) {
         character.hp -= badDam;
         baddie.hp -= dam;
         console.log(
-            "You dealt " + dam + " damage, \n" +
-            "but you opened yourself up to an attack! \n" +
-            "You take " + badDam + " damage from their blow!");
+            "You dealt " + dam + " damage, \nbut you opened yourself up to an attack! \nYou take " + badDam + " damage from their blow!");
 
         fight();
     } else if (a >= 10) {
@@ -557,9 +499,7 @@ function spellDamage() {
         console.log("Your magical attack hit the foe for " + dam + " damage!");
         let damself = array.diceRoll(4);
         console.log(
-            "You hit your target, \n" +
-            "but that blast was brutal. \n" +
-            "You take " + damself + " damage from the blast.");
+            "You hit your target, \nbut that blast was brutal. \nYou take " + damself + " damage from the blast.");
 
         character.hp -= damself;
     }
@@ -603,9 +543,7 @@ function combatTurnRun(a) {
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
         console.log(
-            "You only can do one: \n" +
-            "Make it away, but take a hit in the escape, [type: Run]  \n" +
-            "or stay in the fight, and avoid the damage? [type: Stay");
+            "You only can do one: \nMake it away, but take a hit in the escape, [type: Run]  \nor stay in the fight, and avoid the damage? [type: Stay");
 //TODO: input thingy here too
 //         String runChoice = scanner.nextLine().toLowerCase();
         if (runChoice.equalsIgnoreCase("run")) {
@@ -641,10 +579,7 @@ function combatTurnTalk(a) {
         character.hp -= badDam;
         baddie.mp -= dam;
         console.log(
-            "Your words are getting to them!\n" +
-            "You dealt " + dam + " damage to their moral but \n" +
-            "you opened yourself up to an attack! \n" +
-            "You take " + badDam + " damage from their blow!");
+            "Your words are getting to them!\nYou dealt " + dam + " damage to their moral but \nyou opened yourself up to an attack! \nYou take " + badDam + " damage from their blow!");
 
         fight();
     } else if (a >= 10) {
@@ -652,8 +587,7 @@ function combatTurnTalk(a) {
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         baddie.mp -= dam;
         console.log(
-            "Your words are getting to them! \n" +
-            "You dealt " + dam + " damage to their moral!");
+            "Your words are getting to them! \nYou dealt " + dam + " damage to their moral!");
         fight();
     }
 }
@@ -667,14 +601,12 @@ function fight() {
         console.log("\n\nShit, you died!");
         youDied();
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
-        console.log("\nYou defeated the baddie! Congrats!\n" +
-            "You got " + array.diceRoll(baddie.damageDie) + " gold from them\n");
+        console.log("\nYou defeated the baddie! Congrats!\nYou got " + array.diceRoll(baddie.damageDie) + " gold from them\n");
         sceneOneOutro();
     }
 //battle
     console.log(
-        "You're in a fight for your life! What do you do? \n" +
-        "[type: Run | Attack | Talk]");
+        "You're in a fight for your life! What do you do? \n[type: Run | Attack | Talk]");
 //TODO: here too
     // String everyBodyWas = scanner.nextLine().toLowerCase();
 //melee
@@ -690,9 +622,7 @@ function fight() {
                 combatTurnSpell(array.twoDiceRoll(6) + character.sharp);
             }
         } else {
-            console.log("How do you fight? \n" +
-                "With dexterity and fast moves? [type: AGI} \n" +
-                "Or do you fight with power and prowess? [type: STR]");
+            console.log("How do you fight? \nWith dexterity and fast moves? [type: AGI} \nOr do you fight with power and prowess? [type: STR]");
             //TODO: here too
             // let howAttack = scanner.nextLine().toLowerCase();
             if (howAttack.equalsIgnoreCase("agi")) {
@@ -710,9 +640,7 @@ function fight() {
 //talk
     else if (everyBodyWas.equalsIgnoreCase("talk")) {
         console.log(
-            "How do you talk them down? \n" +
-            "With quick thinking? [type: SHP] \n" +
-            "Or with your charm and persuasion? [type: PRE]");
+            "How do you talk them down? \nWith quick thinking? [type: SHP] \nOr with your charm and persuasion? [type: PRE]");
 //TODO: here too
 //         String howAttack = scanner.nextLine().toLowerCase();
         if (howAttack.equalsIgnoreCase("shp")) {
@@ -733,8 +661,7 @@ function Ambush() {
     // Scanner scanner = new Scanner(System.in);
 //battle
     console.log(
-        "You're in a fight for your life! What do you do? \n" +
-        "[type: Run | Attack | Talk]");
+        "You're in a fight for your life! What do you do? \n[type: Run | Attack | Talk]");
 //TODO: here too
 //     String everyBodyWas = scanner.nextLine().toLowerCase();
 //melee
@@ -751,9 +678,7 @@ function Ambush() {
             }
         } else {
             console.log(
-                "How do you fight? \n" +
-                "With dexterity and fast moves? [type: AGI] \n" +
-                "Or with power and prowess? [type: STR]");
+                "How do you fight? \nWith dexterity and fast moves? [type: AGI] \nOr with power and prowess? [type: STR]");
 //TODO: here too
 //             String howAttack = scanner.nextLine().toLowerCase();
             if (howAttack.equalsIgnoreCase("agi")) {
@@ -771,9 +696,7 @@ function Ambush() {
 //talk
     else if (everyBodyWas.equalsIgnoreCase("talk")) {
         console.log(
-            "How do you talk them down? \n" +
-            "With quick thinking? [type: SHP]\n" +
-            "Or with your charm and persuasion? [type: PRE]");
+            "How do you talk them down? \nWith quick thinking? [type: SHP]\nOr with your charm and persuasion? [type: PRE]");
 //TODO: here too
 //         String howAttack = scanner.nextLine().toLowerCase();
         if (howAttack.equalsIgnoreCase("shp")) {
