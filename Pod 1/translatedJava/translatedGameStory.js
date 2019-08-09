@@ -130,7 +130,8 @@ function intro2() {
             if (introAnswer === "n") {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Okay! Have a great day!</p>";
                 $("#log-output").html(pText);
-                window.stop()
+                // window.stop()
+                exit();
             } else if (introAnswer === "y") {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's get going, then!</p>";
                 $("#log-output").html(pText);
@@ -394,8 +395,6 @@ function shpSceneOne() {
             $("#log-form").trigger("reset");
             $("#log-form-input").html("");
             $("#log-form").off();
-
-            // choices.choice2 = scanner.nextLine();
             if (choices.choice2 === "fight") {
                 Ambush();
             } else {
@@ -409,35 +408,51 @@ function shpSceneOne() {
 function sceneOneBut() {
     let dam = array.diceRoll(baddie.damageDie);
     pText = "<p class='output-p'><span class='output-arrow'>-></span>Fuuuuuuck....<br>That hurt. <br>Like, super bad.<br><br>Their trap was tripped, hitting you for " + dam + " damage<br>and they are coming right for you!<br><br></p>"
+    $("#log-output").html(pText);
 
     character.hp -= dam;
-    pText = "<p class='output-p'><span class='output-arrow'>-></span>Will you stand tall and fight? <br>Or run like a coward?<br><br></p>"
+    setTimeout(function () {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Will you stand tall and fight? <br>Or run like a coward?<br><br></p>"
+        $("#log-output").html(pText);
+    }, 2000); //2 seconds
 
-    // TODO: add input puller and make it choices.choice2
-    // Scanner scanner = new Scanner(System.in);
-    // choices.choice2 = scanner.nextLine().toLowerCase();
-    if (choices.choice2.equalsIgnoreCase("fight")) {
-        fight();
-    } else {
-        sceneOneOutro();
-    }
+
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        choices.choice2 = $("#log-form-input").val().toLowerCase();
+        $("#log-form").trigger("reset");
+        $("#log-form-input").html("");
+        $("#log-form").off();
+        if (choices.choice2 === "fight") {
+            fight();
+        } else {
+            sceneOneOutro();
+        }
+    });
 }
 
 function shitHitsFanSceneOne() {
     let dam = array.diceRoll(baddie.damageDie);
     pText = "<p class='output-p'><span class='output-arrow'>-></span>Fuuuuuuck....<br>That hurt. <br>Like, super bad.<br><br>Their trap was tripped, hitting you for " + dam + " damage<br>and they are coming right for you!<br><br></p>"
+    $("#log-output").html(pText);
 
     character.hp -= dam;
-    pText = "<p class='output-p'><span class='output-arrow'>-></span>Oh no, here they come! <br>You have no choice but to fight!<br><br></p>"
-    fight();
+    setTimeout(function () {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Oh no, here they come! <br>You have no choice but to fight!<br><br></p>";
+        $("#log-output").html(pText);
+        setTimeout(function () {
+            fight();
+        }, 2000); //2 seconds
+    }, 2000); //2 seconds
+
 }
 
 
 function sceneOneOutro() {
-    town();
+    // town();
     pText = "<p class='output-p'><span class='output-arrow'>-></span><br>As you walk into the sunset, <br>the screen fades to black... <br><br>Thanks for trying our demo!</p>"
-
-    System.exit(0);
+    $("#log-output").html(pText);
+    exit();
 }
 
 
@@ -452,7 +467,10 @@ function sceneOneOutro() {
 
 function youDied() {
     pText = "<p class='output-p'><span class='output-arrow'>-></span>Though your journey has come to an end,<br>let's see how far you got! <br>You rolled " + character.misses + " misses and <br>got through " + character.scenes + " scenes. <br>Better luck next time!</p>"
-    window.stop();
+    $("#log-output").html(pText);
+    // window.stop();
+    exit();
+
 }
 
 //////////////////////////////////////////////////////////
