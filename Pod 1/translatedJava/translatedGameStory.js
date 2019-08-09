@@ -95,12 +95,18 @@ $("#log-output").html(pText);
 //         part2();
 //     }, 4000); //4 seconds
 // }
-
+$("#log-form").submit(function (e) {
+    e.preventDefault();
+});
 /////////////////////////////////////////////
 
 //    Intro Section //////////////////////////////////////////////
 
 function intro1() {
+    $(document).submit(function (e) {
+        e.preventDefault();
+    });
+
 //Gets character Name
     pText = "<p class='output-p'><span class='output-arrow'>-></span>Hello! What is your name?</p>";
     $("#log-output").html(pText);
@@ -131,8 +137,8 @@ function intro2() {
             if (introAnswer === "n") {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Okay! Have a great day!</p>";
                 $("#log-output").html(pText);
-                // window.stop()
-                exit();
+                window.stop()
+                // exit();
             } else if (introAnswer === "y") {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's get going, then!</p>";
                 $("#log-output").html(pText);
@@ -274,7 +280,6 @@ function classPicker() {
 
 
 function sceneOne() {
-// TODO: add input puller and make it choices.choice1
 
 //            Bandit stats declared/////////////////////////////////////////
     baddie.hp = 6;
@@ -342,19 +347,22 @@ function sceneOne() {
 function agiSceneOne() {
     if (rolls.roll1 <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
         character.misses += 1;
         setTimeout(function () {
             shitHitsFanSceneOne();
         }, 2000); //2 seconds
     } else if (rolls.roll1 > 6 && rolls.roll1 < 10) {
-        console.log(("You rolled a mixed success!"));
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>";
+        $("#log-output").html(pText);
+
         setTimeout(function () {
             sceneOneBut();
         }, 2000); //2 seconds
     } else if (rolls.roll1 >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence! <br>You managed to sneak around their ambush!<br>You can sneak away? [type: Run]<br>Or, you can try and get the jump on them? [type: Fight]<br><br></p>"
-// TODO: add input puller and make it choices.choice2
-        // Scanner scanner = new Scanner(System.in);
+        $("#log-output").html(pText);
+
         $("#log-form").submit(function (e) {
             e.preventDefault();
             choices.choice2 = $("#log-form-input").val().toLowerCase();
@@ -413,7 +421,7 @@ function sceneOneBut() {
 
     character.hp -= dam;
     setTimeout(function () {
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>Will you stand tall and fight? <br>Or run like a coward?<br><br></p>"
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Will you stand tall and fight? <br>Or run like a coward? [type: Fight or Run]<br><br></p>"
         $("#log-output").html(pText);
     }, 2000); //2 seconds
 
@@ -427,7 +435,14 @@ function sceneOneBut() {
         if (choices.choice2 === "fight") {
             fight();
         } else {
-            sceneOneOutro();
+            setTimeout(function () {
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>You barely manage to escape, but escape you did!<br><br></p>"
+                $("#log-output").html(pText);
+                setTimeout(function () {
+                    sceneOneOutro();
+                }, 2000); //2 seconds
+            }, 2000); //2 seconds
+
         }
     });
 }
@@ -453,7 +468,8 @@ function sceneOneOutro() {
     // town();
     pText = "<p class='output-p'><span class='output-arrow'>-></span><br>As you walk into the sunset, <br>the screen fades to black... <br><br>Thanks for trying our demo!</p>"
     $("#log-output").html(pText);
-    exit();
+    window.stop()
+    // exit();
 }
 
 
@@ -469,9 +485,8 @@ function sceneOneOutro() {
 function youDied() {
     pText = "<p class='output-p'><span class='output-arrow'>-></span>Though your journey has come to an end,<br>let's see how far you got! <br>You rolled " + character.misses + " misses and <br>got through " + character.scenes + " scenes. <br>Better luck next time!</p>"
     $("#log-output").html(pText);
-    // window.stop();
-    exit();
-    x
+    window.stop();
+    // exit();
 
 }
 
@@ -493,10 +508,6 @@ function youDied() {
 //    }
 ////////////////////////////////////////////////////////
 
-
-setTimeout(function () {
-    fight();
-}, 2000); //2 seconds
 
 function combatTurnAttack(a) {
     if (a <= 6) {
@@ -702,7 +713,7 @@ function combatTurnRun(a) {
 
 }
 
-function combatTurnTalk(a) {
+function combatTurnTalkShp(a) {
     if (a <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         $("#log-output").html(pText);
@@ -754,27 +765,87 @@ function combatTurnTalk(a) {
 
     }
 }
+function combatTurnTalkPre(a) {
+    if (a <= 6) {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
+        character.misses = character.misses + 1;
+        let badDam = array.diceRoll(baddie.damageDie);
+        character.hp -= badDam;
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
+    } else if (a > 6 && a < 10) {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
+        $("#log-output").html(pText);
+        let badDam = array.diceRoll(baddie.damageDie);
+        let dam = array.diceRoll(character.damageDie) + character.presence;
+        character.hp -= badDam;
+        baddie.mp -= dam;
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them!<br>You dealt " + dam + " damage to their moral but <br>you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
+    } else if (a >= 10) {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        $("#log-output").html(pText);
+        let dam = array.diceRoll(character.damageDie) + character.presence;
+        baddie.mp -= dam;
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them! <br>You dealt " + dam + " damage to their moral!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
+    }
+}
 
 
 //fighting
 function fight() {
-    // Scanner scanner = new Scanner(System.in);
     //Dead
     if (character.hp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br>Shit, you died!</p>"
+        $("#log-output").html(pText);
+
         setTimeout(function () {
             youDied();
         }, 2000); //2 seconds
 
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br>You defeated the baddie! Congrats!<br>You got " + array.diceRoll(baddie.damageDie) + " gold from them<br></p>"
+        $("#log-output").html(pText);
+
         setTimeout(function () {
             sceneOneOutro();
         }, 2000); //2 seconds
 
     }
 //battle
-    pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
+    setTimeout(function () {
+
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>";
+    $("#log-output").html(pText);
+}, 3000); //2 seconds
+
 
     $("#log-form").submit(function (e) {
         e.preventDefault();
@@ -783,12 +854,12 @@ function fight() {
         $("#log-form-input").html("");
         $("#log-form").off();
 
-//TODO: here too
-        // String everyBodyWas = scanner.nextLine().toLowerCase();
 //melee
         if (everyBodyWas === ("attack")) {
             if (character.sharp === 2) {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
+                $("#log-output").html(pText);
+
                 $("#log-form").submit(function (e) {
                     e.preventDefault();
                     let spellChoice = $("#log-form-input").val().toLowerCase();
@@ -798,6 +869,8 @@ function fight() {
 
                     if (spellChoice === "y") {
                         pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
+                        $("#log-output").html(pText);
+
                         $("#log-form").submit(function (e) {
                             e.preventDefault();
                             character.spell = $("#log-form-input").val().toLowerCase();
@@ -805,6 +878,8 @@ function fight() {
                             $("#log-form-input").html("");
                             $("#log-form").off();
                             pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
+                            $("#log-output").html(pText);
+
                             setTimeout(function () {
                                 combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp);
                             }, 2000); //2 seconds
@@ -814,6 +889,8 @@ function fight() {
                 });
             } else {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
+                $("#log-output").html(pText);
+
                 $("#log-form").submit(function (e) {
                     e.preventDefault();
                     let howAttack = $("#log-form-input").val().toLowerCase();
@@ -821,9 +898,9 @@ function fight() {
                     $("#log-form-input").html("");
                     $("#log-form").off();
                     if (howAttack === ("agi")) {
-                        combatTurnAttack(array.twoDiceRoll(6,6) + character.strength);
+                        combatTurnAttack(array.twoDiceRoll(6, 6) + character.strength);
                     } else if (howAttack === ("str")) {
-                        combatTurnAttack(array.twoDiceRoll(6,6) + character.agility);
+                        combatTurnAttack(array.twoDiceRoll(6, 6) + character.agility);
                     }
                 });
             }
@@ -831,28 +908,41 @@ function fight() {
         }
 //run
         else if (everyBodyWas === ("run")) {
-            combatTurnRun(array.twoDiceRoll(6,6) + character.agility);
+            combatTurnRun(array.twoDiceRoll(6, 6) + character.agility);
         }
 //talk
         else if (everyBodyWas === ("talk")) {
             pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
+            $("#log-output").html(pText);
+
             $("#log-form").submit(function (e) {
                 e.preventDefault();
                 let howAttack = $("#log-form-input").val().toLowerCase();
                 $("#log-form").trigger("reset");
                 $("#log-form-input").html("");
                 $("#log-form").off();
-                if (howAttack.equalsIgnoreCase("shp")) {
+                if (howAttack ===("shp")) {
                     combatTurnTalk(array.twoDiceRoll(6, 6) + character.sharp);
-                } else if (howAttack.equalsIgnoreCase("pre")) {
+                } else if (howAttack ===("pre")) {
                     combatTurnTalk(array.twoDiceRoll(6, 6) + character.presence);
                 } else {
                     pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+                    $("#log-output").html(pText);
+
                     setTimeout(function () {
                         fight();
                     }, 2000); //2 seconds
                 }
             });
+        } else if (everyBodyWas === "fuckthis") {
+            sceneOneOutro();
+        } else {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+            $("#log-output").html(pText);
+
+            setTimeout(function () {
+                fight();
+            }, 2000); //2 seconds
         }
     });
 
@@ -864,12 +954,16 @@ function fight() {
 function Ambush() {
     if (character.hp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br>Shit, you died!</p>"
+        $("#log-output").html(pText);
+
         setTimeout(function () {
             youDied();
         }, 2000); //2 seconds
 
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br>You defeated the baddie! Congrats!<br>You got " + array.diceRoll(baddie.damageDie) + " gold from them<br></p>"
+        $("#log-output").html(pText);
+
         setTimeout(function () {
             sceneOneOutro();
         }, 2000); //2 seconds
@@ -877,6 +971,8 @@ function Ambush() {
     }
 //battle
     pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
+    $("#log-output").html(pText);
+
 
     $("#log-form").submit(function (e) {
         e.preventDefault();
@@ -887,6 +983,8 @@ function Ambush() {
         if (everyBodyWas === ("attack")) {
             if (character.sharp === 2) {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
+                $("#log-output").html(pText);
+
                 $("#log-form").submit(function (e) {
                     e.preventDefault();
                     let spellChoice = $("#log-form-input").val().toLowerCase();
@@ -896,6 +994,8 @@ function Ambush() {
 
                     if (spellChoice === "y") {
                         pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
+                        $("#log-output").html(pText);
+
                         $("#log-form").submit(function (e) {
                             e.preventDefault();
                             character.spell = $("#log-form-input").val().toLowerCase();
@@ -903,6 +1003,8 @@ function Ambush() {
                             $("#log-form-input").html("");
                             $("#log-form").off();
                             pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
+                            $("#log-output").html(pText);
+
                             setTimeout(function () {
                                 combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp + 2);
                             }, 2000); //2 seconds
@@ -912,6 +1014,8 @@ function Ambush() {
                 });
             } else {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
+                $("#log-output").html(pText);
+
                 $("#log-form").submit(function (e) {
                     e.preventDefault();
                     let howAttack = $("#log-form-input").val().toLowerCase();
@@ -919,9 +1023,9 @@ function Ambush() {
                     $("#log-form-input").html("");
                     $("#log-form").off();
                     if (howAttack === ("agi")) {
-                        combatTurnAttack(array.twoDiceRoll(6,6) + character.strength + 2);
+                        combatTurnAttack(array.twoDiceRoll(6, 6) + character.strength + 2);
                     } else if (howAttack === ("str")) {
-                        combatTurnAttack(array.twoDiceRoll(6,6) + character.agility + 2);
+                        combatTurnAttack(array.twoDiceRoll(6, 6) + character.agility + 2);
                     }
                 });
             }
@@ -929,23 +1033,27 @@ function Ambush() {
         }
 //run
         else if (everyBodyWas === ("run")) {
-            combatTurnRun(array.twoDiceRoll(6,6) + character.agility + 2);
+            combatTurnRun(array.twoDiceRoll(6, 6) + character.agility + 2);
         }
 //talk
         else if (everyBodyWas === ("talk")) {
             pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
+            $("#log-output").html(pText);
+
             $("#log-form").submit(function (e) {
                 e.preventDefault();
                 let howAttack = $("#log-form-input").val().toLowerCase();
                 $("#log-form").trigger("reset");
                 $("#log-form-input").html("");
                 $("#log-form").off();
-                if (howAttack ===("shp")) {
-                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.sharp + 2);
-                } else if (howAttack ===("pre")) {
-                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.presence + 2);
+                if (howAttack === ("shp")) {
+                    combatTurnTalkShp(array.twoDiceRoll(6, 6) + character.sharp + 2);
+                } else if (howAttack === ("pre")) {
+                    combatTurnTalkPre(array.twoDiceRoll(6, 6) + character.presence + 2);
                 } else {
                     pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+                    $("#log-output").html(pText);
+
                     setTimeout(function () {
 
                         Ambush();
@@ -953,13 +1061,20 @@ function Ambush() {
 
                 }
             });
+        }  else if (everyBodyWas === "fuckthis") {
+            sceneOneOutro();
+        } else {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+            $("#log-output").html(pText);
+
+            setTimeout(function () {
+                Ambush();
+            }, 2000); //2 seconds
         }
     });
 
 // mobs have Health points, Mental points, and Chase value
 }
-
-
 
 intro1();
 

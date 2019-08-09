@@ -1,7 +1,7 @@
 var diceRoll= function(sides){
     return Math.ceil(Math.random() * sides);
 };
-var twoDiceRoll = function(sides1,sides2){
+var twoDiceRoll = function(sides1,sides2){A
     return (Math.ceil(Math.random() * sides1)+Math.ceil(Math.random() * sides2));
 };
 var characters = [
