@@ -77,8 +77,8 @@ let pText;
 // $("#log-form").submit(function (e) {
 //     e.preventDefault();
 //     character.name = $("#log-form-input").val();
-//     $("#log-form").trigger("reset");
-//     $("#log-form-input").html("");
+//             $("#log-form").trigger("reset");
+//                 $("#log-form-input").html("");
 //     $("#log-form").off();
 //     setTimeout(function () {
 //         intro2();
@@ -105,8 +105,8 @@ function intro1() {
     $("#log-form").submit(function (e) {
         e.preventDefault();
         character.name = $("#log-form-input").val();
-        $("#log-form").trigger("reset");
-        $("#log-form-input").html("");
+                $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
         $("#log-form").off();
         setTimeout(function () {
             intro2();
@@ -122,8 +122,8 @@ function intro2() {
     $("#log-form").submit(function (e) {
         e.preventDefault();
         introAnswer = $("#log-form-input").val();
-        $("#log-form").trigger("reset");
-        $("#log-form-input").html("");
+                $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
         $("#log-form").off();
         setTimeout(function () {
             if (introAnswer === "n") {
@@ -158,8 +158,8 @@ function classPicker() {
     $("#log-form").submit(function (e) {
         e.preventDefault();
         yourChoice = $("#log-form-input").val();
-        $("#log-form").trigger("reset");
-        $("#log-form-input").html("");
+                $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
         $("#log-form").off();
 
         switch (yourChoice) {
@@ -281,43 +281,38 @@ function sceneOne() {
     baddie.damageDie = 8;
 //        End stats/////////////////////////////////////////
 
-    console.log("\n\n\nScene One: Our Journey Begins...\n\nWhat started as a quiet night enjoying\na couple pints of grog at the local pub\nends with the townsfolk of Friendly\nchasing you out the city gates with torches,\npitchforks, and other makeshift\nweaponry early the next morning.\n\n\nAfter a bath in the local river and a hearty\nbreakfast of varmint and woodland critters,\nyou continue along your lonesome journey.\n\nThrough the forests and dales,\nover the valleys and hills you trod,\neager to to overcome whatever might stand \nbetween you and the great City of Whoknowsville...\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br><br>Scene One: Our Journey Begins...<br><br>What started as a quiet night enjoying<br>a couple pints of grog at the local pub<br>ends with the townsfolk of Friendly<br>chasing you out the city gates with torches,<br>pitchforks, and other makeshift<br>weaponry early the next morning.<br><br><br>After a bath in the local river and a hearty<br>breakfast of varmint and woodland critters,<br>you continue along your lonesome journey.<br><br>Through the forests and dales,<br>over the valleys and hills you trod,<br>eager to to overcome whatever might stand <br>between you and the great City of Whoknowsville...<br></p>";
 
 
-    console.log(
-        "\n*snap!*\n\nWhat was that?\nHello?\n\nWhat will you do now?\nWill you try to sneak past whatever is there? [type: AGI]\nWill you try to spot the danger before it even strikes? [type: SHP]\nOr will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span><br>*snap!*<br><br>What was that?<br>Hello?<br><br>What will you do now?<br>Will you try to sneak past whatever is there? [type: AGI]<br>Will you try to spot the danger before it even strikes? [type: SHP]<br>Or will you bellow out a challenge and rush into combat? [type: #bravebutfoolish]<br><br></p>";
 
     // choices.choice1 = scanner.nextLine().toLowerCase();
 
     $("#log-form").submit(function (e) {
         e.preventDefault();
         choices.choice1 = elem.html($("#log-form-input").val().toLowerCase());
-        $("#log-form-input").html("");
+                    $("#log-form-input").html("");
     });
 
     switch (choices.choice1) {
         case "agi":
-            console.log(
-                "As you try to be sneaky,\nwe will roll to see what happens.");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try to be sneaky,<br>we will roll to see what happens.</p>";
 
             rolls.roll1 = array.twoDiceRoll(6) + character.agility;
-            console.log("You rolled a " + rolls.roll1 + ".\nLet's see what they means for our adventurer...\n\n");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Let's see what they means for our adventurer...<br><br></p>";
 
             agiSceneOne();
             break;
         case "shp":
-            console.log(
-                "As you try spot the danger before it has the jump\non you, we will roll to see what happens.\n");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>As you try spot the danger before it has the jump<br>on you, we will roll to see what happens.<br></p>";
 
             rolls.roll1 = array.twoDiceRoll(6) + character.sharp;
-            console.log(
-                "You rolled a " + rolls.roll1 + ".\nLets see what they means for our adventurer...\n\n");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Lets see what they means for our adventurer...<br><br></p>";
 
             shpSceneOne();
             break;
         default:
-            console.log(
-                "Shit you made a lot of noise!\nHere they come....\n\n");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Shit you made a lot of noise!<br>Here they come....<br><br></p>";
 
             shitHitsFanSceneOne();
             break;
@@ -328,22 +323,21 @@ function sceneOne() {
 //Scene 1 agi approach
 function agiSceneOne() {
     if (rolls.roll1 <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses += 1;
         shitHitsFanSceneOne();
     } else if (rolls.roll1 > 6 && rolls.roll1 < 10) {
         console.log(("You rolled a mixed success!"));
         sceneOneBut();
     } else if (rolls.roll1 >= 10) {
-        console.log("You rolled a success with little consequence!");
-        console.log(
-            "You managed to sneak around their ambush!\nYou can sneak away? [type: Run]\nOr, you can try and get the jump on them? [type: Fight]\n\n");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to sneak around their ambush!<br>You can sneak away? [type: Run]<br>Or, you can try and get the jump on them? [type: Fight]<br><br></p>"
 // TODO: add input puller and make it choices.choice2
         // Scanner scanner = new Scanner(System.in);
         $("#log-form").submit(function (e) {
             e.preventDefault();
             choices.choice2 = elem.html($("#log-form-input").val().toLowerCase());
-            $("#log-form-input").html("");
+                        $("#log-form-input").html("");
         });
 
         choices.choice2 = scanner.nextLine();
@@ -358,16 +352,15 @@ function agiSceneOne() {
 //Scene 1 shp approach
 function shpSceneOne() {
     if (rolls.roll1 <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses += 1;
         shitHitsFanSceneOne();
     } else if (rolls.roll1 > 6 && rolls.roll1 < 10) {
-        console.log("You rolled a mixed success!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         sceneOneBut();
     } else if (rolls.roll1 >= 10) {
-        console.log("You rolled a success with little consequence!");
-        console.log(
-            "You managed to spot them before they spotted you.\nWill you try and sneak away? [type: Run]\nOr get the jump on them? [type: Fight]\n\n");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>";
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to spot them before they spotted you.<br>Will you try and sneak away? [type: Run]<br>Or get the jump on them? [type: Fight]<br><br></p>"
 
 // TODO: add input puller and make it choices.choice2
 
@@ -376,7 +369,7 @@ function shpSceneOne() {
         $("#log-form").submit(function (e) {
             e.preventDefault();
             choices.choice2 = elem.html($("#log-form-input").val().toLowerCase());
-            $("#log-form-input").html("");
+                        $("#log-form-input").html("");
         });
 
         if (choices.choice2 === "fight") {
@@ -390,12 +383,10 @@ function shpSceneOne() {
 //Scene 1 results
 function sceneOneBut() {
     let dam = array.diceRoll(baddie.damageDie);
-    console.log(
-        "Fuuuuuuck....\nThat hurt. \nLike, super bad.\n\nTheir trap was tripped, hitting you for " + dam + " damage\nand they are coming right for you!\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Fuuuuuuck....<br>That hurt. <br>Like, super bad.<br><br>Their trap was tripped, hitting you for " + dam + " damage<br>and they are coming right for you!<br><br></p>"
 
     character.hp -= dam;
-    console.log(
-        "Will you stand tall and fight? \nOr run like a coward?\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Will you stand tall and fight? <br>Or run like a coward?<br><br></p>"
 
     // TODO: add input puller and make it choices.choice2
     // Scanner scanner = new Scanner(System.in);
@@ -409,20 +400,17 @@ function sceneOneBut() {
 
 function shitHitsFanSceneOne() {
     let dam = array.diceRoll(baddie.damageDie);
-    console.log(
-        "Fuuuuuuck....\nThat hurt. \nLike, super bad.\n\nTheir trap was tripped, hitting you for " + dam + " damage\nand they are coming right for you!\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Fuuuuuuck....<br>That hurt. <br>Like, super bad.<br><br>Their trap was tripped, hitting you for " + dam + " damage<br>and they are coming right for you!<br><br></p>"
 
     character.hp -= dam;
-    console.log(
-        "Oh no, here they come! \nYou have no choice but to fight!\n\n");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Oh no, here they come! <br>You have no choice but to fight!<br><br></p>"
     fight();
 }
 
 
 function sceneOneOutro() {
     town();
-    console.log(
-        "\nAs you walk into the sunset, \nthe screen fades to black... \n\nThanks for trying our demo!");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span><br>As you walk into the sunset, <br>the screen fades to black... <br><br>Thanks for trying our demo!</p>"
 
     System.exit(0);
 }
@@ -438,8 +426,7 @@ function sceneOneOutro() {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 function youDied() {
-    console.log(
-        "Though your journey has come to an end,\nlet's see how far you got! \nYou rolled " + character.misses + " misses and \ngot through " + character.scenes + " scenes. \nBetter luck next time!");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Though your journey has come to an end,<br>let's see how far you got! <br>You rolled " + character.misses + " misses and <br>got through " + character.scenes + " scenes. <br>Better luck next time!</p>"
     window.stop();
 }
 
@@ -449,13 +436,13 @@ function youDied() {
 //    public static void nextScene() {
 //        if (userClass.scenes ==== 0){
 //            userClass.scenes += 1;
-//            console.log("You continue on through the woods and to the next encounter!");
+//            pText = "<p class='output-p'><span class='output-arrow'>-></span>You continue on through the woods and to the next encounter!</p>"
 //            sceneTwo();
 //        } else if (userClass.scenes ==== 1){
-//            console.log("You continue on through the woods and to the next encounter!");
+//            pText = "<p class='output-p'><span class='output-arrow'>-></span>You continue on through the woods and to the next encounter!</p>"
 //            sceneThree();
 //        } else if (userClass.scenes ==== 2){
-//            console.log("You continue on through the woods and to the next encounter!");
+//            pText = "<p class='output-p'><span class='output-arrow'>-></span>You continue on through the woods and to the next encounter!</p>"
 //            sceneFour();
 //        }
 //    }
@@ -463,27 +450,26 @@ function youDied() {
 
 function combatTurnAttack(a) {
     if (a <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses = character.misses + 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        console.log("You take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
         fight();
     } else if (a > 6 && a < 10) {
-        console.log("You rolled a mixed success!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         let badDam = array.diceRoll(baddie.damageDie);
         let dam = array.diceRoll(character.damageDie);
         character.hp -= badDam;
         baddie.hp -= dam;
-        console.log(
-            "You dealt " + dam + " damage, \nbut you opened yourself up to an attack! \nYou take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage, <br>but you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
 
         fight();
     } else if (a >= 10) {
-        console.log("You rolled a success with little consequence!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
         let dam = array.diceRoll(character.damageDie);
         baddie.hp -= dam;
-        console.log("You dealt " + dam + " damage!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage!</p>"
         fight();
     }
 }
@@ -493,13 +479,12 @@ function spellDamage() {
     if (character.spell.toLowerCase() === "bolt") {
         let dam = array.twoDiceRoll(4) + character.sharp;
         baddie.hp -= dam;
-        console.log("Your magical attack hit the foe for " + dam + " damage!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
     } else {
         let dam = array.twoDiceRoll(6) + character.sharp;
-        console.log("Your magical attack hit the foe for " + dam + " damage!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
         let damself = array.diceRoll(4);
-        console.log(
-            "You hit your target, \nbut that blast was brutal. \nYou take " + damself + " damage from the blast.");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You hit your target, <br>but that blast was brutal. <br>You take " + damself + " damage from the blast.</p>"
 
         character.hp -= damself;
     }
@@ -507,21 +492,21 @@ function spellDamage() {
 
 function combatTurnSpell(a) {
     if (a <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses += 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        console.log("You take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
         fight();
     } else if (a > 6 && a < 10) {
-        console.log("You rolled a mixed success!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        console.log("You take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
         spellDamage();
         fight();
     } else if (a >= 10) {
-        console.log("You rolled a success with little consequence!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
         spellDamage();
         fight();
     }
@@ -532,33 +517,32 @@ function combatTurnSpell(a) {
 function combatTurnRun(a) {
     // Scanner scanner = new Scanner(System.in);
     if ((a - baddie.chase) <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses += 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        console.log("You take " + badDam + " damage from their blow! and couldn't escape!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow! and couldn't escape!</p>"
         fight();
     } else if ((a - baddie.chase) > 6 && (a - baddie.chase) < 10) {
-        console.log("You rolled a mixed success!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        console.log(
-            "You only can do one: \nMake it away, but take a hit in the escape, [type: Run]  \nor stay in the fight, and avoid the damage? [type: Stay");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You only can do one: <br>Make it away, but take a hit in the escape, [type: Run]  <br>or stay in the fight, and avoid the damage? [type: Stay</p>"
 //TODO: input thingy here too
 //         String runChoice = scanner.nextLine().toLowerCase();
         if (runChoice.equalsIgnoreCase("run")) {
             badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam * 2);
-            console.log("You got away, but took " + badDam + " damage in the escape!");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
         } else {
             badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam - character.agility);
-            console.log("You got away, but took " + badDam + " damage in the escape!");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
             fight();
         }
     } else if ((a - baddie.chase) >= 10) {
-        console.log("You rolled a success with little consequence!");
-        console.log("You managed to escape the fight!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to escape the fight!</p>"
         sceneOneOutro();
 //            change to nextScene in future
     }
@@ -566,28 +550,26 @@ function combatTurnRun(a) {
 
 function combatTurnTalk(a) {
     if (a <= 6) {
-        console.log("You rolled a miss! Oh no!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
         character.misses = character.misses + 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        console.log("You take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
         fight();
     } else if (a > 6 && a < 10) {
-        console.log("You rolled a mixed success!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         let badDam = array.diceRoll(baddie.damageDie);
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         character.hp -= badDam;
         baddie.mp -= dam;
-        console.log(
-            "Your words are getting to them!\nYou dealt " + dam + " damage to their moral but \nyou opened yourself up to an attack! \nYou take " + badDam + " damage from their blow!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them!<br>You dealt " + dam + " damage to their moral but <br>you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
 
         fight();
     } else if (a >= 10) {
-        console.log("You rolled a success with little consequence!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         baddie.mp -= dam;
-        console.log(
-            "Your words are getting to them! \nYou dealt " + dam + " damage to their moral!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them! <br>You dealt " + dam + " damage to their moral!</p>"
         fight();
     }
 }
@@ -598,31 +580,30 @@ function fight() {
     // Scanner scanner = new Scanner(System.in);
     //Dead
     if (character.hp <= 0) {
-        console.log("\n\nShit, you died!");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br>Shit, you died!</p>"
         youDied();
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
-        console.log("\nYou defeated the baddie! Congrats!\nYou got " + array.diceRoll(baddie.damageDie) + " gold from them\n");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span><br>You defeated the baddie! Congrats!<br>You got " + array.diceRoll(baddie.damageDie) + " gold from them<br></p>"
         sceneOneOutro();
     }
 //battle
-    console.log(
-        "You're in a fight for your life! What do you do? \n[type: Run | Attack | Talk]");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
 //TODO: here too
     // String everyBodyWas = scanner.nextLine().toLowerCase();
 //melee
     if (everyBodyWas.equalsIgnoreCase("attack")) {
         if (character.sharp === 2) {
-            console.log("Would you like to attack or cast a spell? [type: Y/N]");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
             //TODO: here too
             // let spellChoice = scanner.nextLine().toLowerCase();
             if (spellChoice.toLowerCase() === "y") {
-                console.log("What spell would you like to cast? Bolt or Blast?");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
                 character.spell = scanner.nextLine().toLowerCase();
-                console.log("Let's see if your spell casted successfully");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
                 combatTurnSpell(array.twoDiceRoll(6) + character.sharp);
             }
         } else {
-            console.log("How do you fight? \nWith dexterity and fast moves? [type: AGI} \nOr do you fight with power and prowess? [type: STR]");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
             //TODO: here too
             // let howAttack = scanner.nextLine().toLowerCase();
             if (howAttack.equalsIgnoreCase("agi")) {
@@ -639,8 +620,7 @@ function fight() {
     }
 //talk
     else if (everyBodyWas.equalsIgnoreCase("talk")) {
-        console.log(
-            "How do you talk them down? \nWith quick thinking? [type: SHP] \nOr with your charm and persuasion? [type: PRE]");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
 //TODO: here too
 //         String howAttack = scanner.nextLine().toLowerCase();
         if (howAttack.equalsIgnoreCase("shp")) {
@@ -648,7 +628,7 @@ function fight() {
         } else if (howAttack.equalsIgnoreCase("pre")) {
             combatTurnTalk(twoDice(6) + character.presence);
         } else {
-            console.log("I didn't understand what you meant, please try again.");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
             fight();
         }
     }
@@ -660,25 +640,23 @@ function fight() {
 function Ambush() {
     // Scanner scanner = new Scanner(System.in);
 //battle
-    console.log(
-        "You're in a fight for your life! What do you do? \n[type: Run | Attack | Talk]");
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
 //TODO: here too
 //     String everyBodyWas = scanner.nextLine().toLowerCase();
 //melee
     if (everyBodyWas.equalsIgnoreCase("attack")) {
         if (character.sharp === 2) {
-            console.log("Would you like to attack or cast a spell? [y/n]");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [y/n]</p>"
             //TODO: here too
             // String spellChoice = scanner.nextLine().toLowerCase();
             if (spellChoice.equalsIgnoreCase("y")) {
-                console.log("What spell would you like to cast? Bolt or Blast?");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
                 character.spell = scanner.nextLine().toLowerCase();
-                console.log("Let's see if your spell casted successfully");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
                 combatTurnSpell(twoDice(6) + character.sharp + 2);
             }
         } else {
-            console.log(
-                "How do you fight? \nWith dexterity and fast moves? [type: AGI] \nOr with power and prowess? [type: STR]");
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI] <br>Or with power and prowess? [type: STR]</p>"
 //TODO: here too
 //             String howAttack = scanner.nextLine().toLowerCase();
             if (howAttack.equalsIgnoreCase("agi")) {
@@ -695,8 +673,7 @@ function Ambush() {
     }
 //talk
     else if (everyBodyWas.equalsIgnoreCase("talk")) {
-        console.log(
-            "How do you talk them down? \nWith quick thinking? [type: SHP]\nOr with your charm and persuasion? [type: PRE]");
+        pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP]<br>Or with your charm and persuasion? [type: PRE]</p>"
 //TODO: here too
 //         String howAttack = scanner.nextLine().toLowerCase();
         if (howAttack.equalsIgnoreCase("shp")) {
