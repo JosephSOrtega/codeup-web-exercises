@@ -69,6 +69,7 @@ let items = {
 };
 let introAnswer;
 let yourChoice;
+let pText;
 //
 
 //Notes:
@@ -96,8 +97,11 @@ let yourChoice;
 /////////////////////////////////////////////
 
 //    Intro Section //////////////////////////////////////////////
+
 function intro1() {
-    console.log("Hello! What is your name?");
+//Gets character Name
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Hello! What is your name?</p>";
+    $("#log-output").html(pText);
     $("#log-form").submit(function (e) {
         e.preventDefault();
         character.name = $("#log-form-input").val();
@@ -112,9 +116,9 @@ function intro1() {
 }
 
 function intro2() {
-// TODO: add input puller and make it character.name
-    console.log("Hey there, " + character.name + "!\n" +
-        "Want to go on an adventure? [y/n]");
+//Asks to start adventure.
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>Hey there, " + character.name + "! Want to go on an adventure? [y/n]</p>";
+    $("#log-output").html(pText);
     $("#log-form").submit(function (e) {
         e.preventDefault();
         introAnswer = $("#log-form-input").val();
@@ -123,26 +127,25 @@ function intro2() {
         $("#log-form").off();
         setTimeout(function () {
             if (introAnswer === "n") {
-                console.log("Okay! Have a great day!");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Okay! Have a great day!</p>";
+                $("#log-output").html(pText);
                 window.stop()
-
             } else if (introAnswer === "y") {
-                console.log("Let's get going, then!\n\n");
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's get going, then!</p>";
+                $("#log-output").html(pText);
                 setTimeout(function () {
                     // classPicker();
-                    console.log("Worked");
-                }, 3000); //4 seconds
-
-                classPicker();
-
+                }, 2000); //2 seconds
             } else {
-                console.log("I didn't understand. Please submit your answer again.");
-                intro2();
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand. Please submit your answer again.</p>";
+                $("#log-output").html(pText);
+                setTimeout(function () {
+                    intro2();
+                }, 1000); //1 seconds
             }
         }, 1000); //1 seconds
     });
 }
-
 
 
 //    Class Selection //////////////////////////////////////////////
