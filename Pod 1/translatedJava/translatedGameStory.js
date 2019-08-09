@@ -70,6 +70,7 @@ let items = {
 let introAnswer;
 let yourChoice;
 let pText;
+let runChoice;
 //
 
 //Notes:
@@ -648,30 +649,57 @@ function combatTurnRun(a) {
         $("#log-output").html(pText);
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You only can do one: <br>Make it away, but take a hit in the escape, [type: Run]  <br>or stay in the fight, and avoid the damage? [type: Stay</p>"
-        $("#log-output").html(pText);
-//TODO: input thingy here too
-//         String runChoice = scanner.nextLine().toLowerCase();
-        if (runChoice.equalsIgnoreCase("run")) {
-            badDam = array.diceRoll(baddie.damageDie);
-            character.hp -= (badDam * 2);
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
+        setTimeout(function () {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You only can do one: <br>Make it away, but take a hit in the escape, [type: Run]  <br>or stay in the fight, and avoid the damage? [type: Stay</p>"
             $("#log-output").html(pText);
-        } else {
-            badDam = array.diceRoll(baddie.damageDie);
-            character.hp -= (badDam - character.agility);
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
-            $("#log-output").html(pText);
-            fight();
-        }
+        }, 2000); //2 seconds
+
+
+        $("#log-form").submit(function (e) {
+            e.preventDefault();
+            runChoice = $("#log-form-input").val().toLowerCase();
+            $("#log-form").trigger("reset");
+            $("#log-form-input").html("");
+            $("#log-form").off();
+            if (runChoice === ("run")) {
+                badDam = array.diceRoll(baddie.damageDie);
+                character.hp -= (badDam * 2);
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
+                $("#log-output").html(pText);
+                setTimeout(function () {
+                    sceneOneOutro();
+                }, 2000); //2 seconds
+
+            } else {
+                badDam = array.diceRoll(baddie.damageDie);
+                character.hp -= (badDam - character.agility);
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
+                $("#log-output").html(pText);
+                setTimeout(function () {
+
+                    fight();
+                }, 2000); //2 seconds
+
+            }
+        });
+
     } else if ((a - baddie.chase) >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
         $("#log-output").html(pText);
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to escape the fight!</p>"
-        $("#log-output").html(pText);
-        sceneOneOutro();
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to escape the fight!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                sceneOneOutro();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
 //            change to nextScene in future
     }
+
+
 }
 
 function combatTurnTalk(a) {
@@ -681,9 +709,16 @@ function combatTurnTalk(a) {
         character.misses = character.misses + 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
-        $("#log-output").html(pText);
-        fight();
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if (a > 6 && a < 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
         $("#log-output").html(pText);
@@ -691,18 +726,32 @@ function combatTurnTalk(a) {
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         character.hp -= badDam;
         baddie.mp -= dam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them!<br>You dealt " + dam + " damage to their moral but <br>you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
-        $("#log-output").html(pText);
+        setTimeout(function () {
 
-        fight();
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them!<br>You dealt " + dam + " damage to their moral but <br>you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if (a >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
         $("#log-output").html(pText);
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         baddie.mp -= dam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them! <br>You dealt " + dam + " damage to their moral!</p>"
-        $("#log-output").html(pText);
-        fight();
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them! <br>You dealt " + dam + " damage to their moral!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     }
 }
 
@@ -713,109 +762,204 @@ function fight() {
     //Dead
     if (character.hp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br>Shit, you died!</p>"
-        youDied();
+        setTimeout(function () {
+            youDied();
+        }, 2000); //2 seconds
+
     } else if (baddie.hp <= 0 || baddie.mp <= 0) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span><br>You defeated the baddie! Congrats!<br>You got " + array.diceRoll(baddie.damageDie) + " gold from them<br></p>"
-        sceneOneOutro();
+        setTimeout(function () {
+            sceneOneOutro();
+        }, 2000); //2 seconds
+
     }
 //battle
     pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
-//TODO: here too
-    // String everyBodyWas = scanner.nextLine().toLowerCase();
-//melee
-    if (everyBodyWas.equalsIgnoreCase("attack")) {
-        if (character.sharp === 2) {
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
-            //TODO: here too
-            // let spellChoice = scanner.nextLine().toLowerCase();
-            if (spellChoice.toLowerCase() === "y") {
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
-                character.spell = scanner.nextLine().toLowerCase();
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
-                combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp);
-            }
-        } else {
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
-            //TODO: here too
-            // let howAttack = scanner.nextLine().toLowerCase();
-            if (howAttack.equalsIgnoreCase("agi")) {
-                combatTurnAttack(twoDice(6) + character.strength);
-            } else if (howAttack.equalsIgnoreCase("str")) {
-                combatTurnAttack(twoDice(6) + character.agility);
-            }
-        }
 
-    }
-//run
-    else if (everyBodyWas.equalsIgnoreCase("run")) {
-        combatTurnRun(twoDice(6) + character.agility);
-    }
-//talk
-    else if (everyBodyWas.equalsIgnoreCase("talk")) {
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        let everyBodyWas = $("#log-form-input").val().toLowerCase();
+        $("#log-form").trigger("reset");
+        $("#log-form-input").html("");
+        $("#log-form").off();
+
 //TODO: here too
-//         String howAttack = scanner.nextLine().toLowerCase();
-        if (howAttack.equalsIgnoreCase("shp")) {
-            combatTurnTalk(twoDice(6) + character.sharp);
-        } else if (howAttack.equalsIgnoreCase("pre")) {
-            combatTurnTalk(twoDice(6) + character.presence);
-        } else {
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
-            fight();
+        // String everyBodyWas = scanner.nextLine().toLowerCase();
+//melee
+        if (everyBodyWas === ("attack")) {
+            if (character.sharp === 2) {
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
+                $("#log-form").submit(function (e) {
+                    e.preventDefault();
+                    let spellChoice = $("#log-form-input").val().toLowerCase();
+                    $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
+                    $("#log-form").off();
+
+                    if (spellChoice === "y") {
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
+                        $("#log-form").submit(function (e) {
+                            e.preventDefault();
+                            character.spell = $("#log-form-input").val().toLowerCase();
+                            $("#log-form").trigger("reset");
+                            $("#log-form-input").html("");
+                            $("#log-form").off();
+                            pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
+                            setTimeout(function () {
+                                combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp);
+                            }, 2000); //2 seconds
+
+                        });
+                    }
+                });
+            } else {
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
+                $("#log-form").submit(function (e) {
+                    e.preventDefault();
+                    let howAttack = $("#log-form-input").val().toLowerCase();
+                    $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
+                    $("#log-form").off();
+                    if (howAttack === ("agi")) {
+                        combatTurnAttack(array.twoDiceRoll(6,6) + character.strength);
+                    } else if (howAttack === ("str")) {
+                        combatTurnAttack(array.twoDiceRoll(6,6) + character.agility);
+                    }
+                });
+            }
+
         }
-    }
+//run
+        else if (everyBodyWas === ("run")) {
+            combatTurnRun(array.twoDiceRoll(6,6) + character.agility);
+        }
+//talk
+        else if (everyBodyWas === ("talk")) {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
+            $("#log-form").submit(function (e) {
+                e.preventDefault();
+                let howAttack = $("#log-form-input").val().toLowerCase();
+                $("#log-form").trigger("reset");
+                $("#log-form-input").html("");
+                $("#log-form").off();
+                if (howAttack.equalsIgnoreCase("shp")) {
+                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.sharp);
+                } else if (howAttack.equalsIgnoreCase("pre")) {
+                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.presence);
+                } else {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+                    setTimeout(function () {
+                        fight();
+                    }, 2000); //2 seconds
+                }
+            });
+        }
+    });
+
 // mobs have Health points, Mental points, and Chase value
 }
 
 
 //////////////Ambushing gives you a +2 to your first roll
 function Ambush() {
-    // Scanner scanner = new Scanner(System.in);
-//battle
-    pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
-//TODO: here too
-//     String everyBodyWas = scanner.nextLine().toLowerCase();
-//melee
-    if (everyBodyWas.equalsIgnoreCase("attack")) {
-        if (character.sharp === 2) {
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [y/n]</p>"
-            //TODO: here too
-            // String spellChoice = scanner.nextLine().toLowerCase();
-            if (spellChoice.equalsIgnoreCase("y")) {
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
-                character.spell = scanner.nextLine().toLowerCase();
-                pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
-                combatTurnSpell(twoDice(6) + character.sharp + 2);
-            }
-        } else {
-            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI] <br>Or with power and prowess? [type: STR]</p>"
-//TODO: here too
-//             String howAttack = scanner.nextLine().toLowerCase();
-            if (howAttack.equalsIgnoreCase("agi")) {
-                combatTurnAttack(twoDice(6) + character.strength + 2);
-            } else if (howAttack.equalsIgnoreCase("str")) {
-                combatTurnAttack(twoDice(6) + character.agility + 2);
-            }
-        }
+    if (character.hp <= 0) {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span><br><br>Shit, you died!</p>"
+        setTimeout(function () {
+            youDied();
+        }, 2000); //2 seconds
+
+    } else if (baddie.hp <= 0 || baddie.mp <= 0) {
+        pText = "<p class='output-p'><span class='output-arrow'>-></span><br>You defeated the baddie! Congrats!<br>You got " + array.diceRoll(baddie.damageDie) + " gold from them<br></p>"
+        setTimeout(function () {
+            sceneOneOutro();
+        }, 2000); //2 seconds
 
     }
-//run
-    else if (everyBodyWas.equalsIgnoreCase("run")) {
-        combatTurnRun(twoDice(6) + character.agility + 2);
-    }
-//talk
-    else if (everyBodyWas.equalsIgnoreCase("talk")) {
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP]<br>Or with your charm and persuasion? [type: PRE]</p>"
-//TODO: here too
-//         String howAttack = scanner.nextLine().toLowerCase();
-        if (howAttack.equalsIgnoreCase("shp")) {
-            combatTurnTalk(twoDice(6) + character.sharp + 2);
-        } else if (howAttack.equalsIgnoreCase("pre")) {
-            combatTurnTalk(twoDice(6) + character.presence + 2);
+//battle
+    pText = "<p class='output-p'><span class='output-arrow'>-></span>You're in a fight for your life! What do you do? <br>[type: Run | Attack | Talk]</p>"
+
+    $("#log-form").submit(function (e) {
+        e.preventDefault();
+        let everyBodyWas = $("#log-form-input").val().toLowerCase();
+        $("#log-form").trigger("reset");
+        $("#log-form-input").html("");
+        $("#log-form").off();
+        if (everyBodyWas === ("attack")) {
+            if (character.sharp === 2) {
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>Would you like to attack or cast a spell? [type: Y/N]</p>"
+                $("#log-form").submit(function (e) {
+                    e.preventDefault();
+                    let spellChoice = $("#log-form-input").val().toLowerCase();
+                    $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
+                    $("#log-form").off();
+
+                    if (spellChoice === "y") {
+                        pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
+                        $("#log-form").submit(function (e) {
+                            e.preventDefault();
+                            character.spell = $("#log-form-input").val().toLowerCase();
+                            $("#log-form").trigger("reset");
+                            $("#log-form-input").html("");
+                            $("#log-form").off();
+                            pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
+                            setTimeout(function () {
+                                combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp + 2);
+                            }, 2000); //2 seconds
+
+                        });
+                    }
+                });
+            } else {
+                pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
+                $("#log-form").submit(function (e) {
+                    e.preventDefault();
+                    let howAttack = $("#log-form-input").val().toLowerCase();
+                    $("#log-form").trigger("reset");
+                    $("#log-form-input").html("");
+                    $("#log-form").off();
+                    if (howAttack === ("agi")) {
+                        combatTurnAttack(array.twoDiceRoll(6,6) + character.strength + 2);
+                    } else if (howAttack === ("str")) {
+                        combatTurnAttack(array.twoDiceRoll(6,6) + character.agility + 2);
+                    }
+                });
+            }
+
         }
-    }
+//run
+        else if (everyBodyWas === ("run")) {
+            combatTurnRun(array.twoDiceRoll(6,6) + character.agility + 2);
+        }
+//talk
+        else if (everyBodyWas === ("talk")) {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you talk them down? <br>With quick thinking? [type: SHP] <br>Or with your charm and persuasion? [type: PRE]</p>"
+            $("#log-form").submit(function (e) {
+                e.preventDefault();
+                let howAttack = $("#log-form-input").val().toLowerCase();
+                $("#log-form").trigger("reset");
+                $("#log-form-input").html("");
+                $("#log-form").off();
+                if (howAttack ===("shp")) {
+                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.sharp + 2);
+                } else if (howAttack ===("pre")) {
+                    combatTurnTalk(array.twoDiceRoll(6, 6) + character.presence + 2);
+                } else {
+                    pText = "<p class='output-p'><span class='output-arrow'>-></span>I didn't understand what you meant, please try again.</p>"
+                    setTimeout(function () {
+
+                        Ambush();
+                    }, 2000); //2 seconds
+
+                }
+            });
+        }
+    });
+
 // mobs have Health points, Mental points, and Chase value
 }
+
+
 
 intro1();
 
