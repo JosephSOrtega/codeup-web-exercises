@@ -303,7 +303,7 @@ function sceneOne() {
                         $("#log-output").html(pText);
 
                         setTimeout(function () {
-                            rolls.roll1 = array.twoDiceRoll(6,6) + character.agility;
+                            rolls.roll1 = array.twoDiceRoll(6, 6) + character.agility;
                             pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Let's see what they means for our adventurer...<br><br></p>";
                             $("#log-output").html(pText);
                             agiSceneOne();
@@ -315,7 +315,7 @@ function sceneOne() {
                         $("#log-output").html(pText);
 
                         setTimeout(function () {
-                            rolls.roll1 = (array.twoDiceRoll(6,6) + character.sharp);
+                            rolls.roll1 = (array.twoDiceRoll(6, 6) + character.sharp);
                             pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a " + rolls.roll1 + ".<br>Lets see what they means for our adventurer...<br><br></p>";
                             $("#log-output").html(pText);
                             shpSceneOne();
@@ -492,29 +492,62 @@ function youDied() {
 //    }
 ////////////////////////////////////////////////////////
 
+
+setTimeout(function () {
+    fight();
+}, 2000); //2 seconds
+
 function combatTurnAttack(a) {
     if (a <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
+
         character.misses = character.misses + 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
-        fight();
+        setTimeout(function () {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+                fight();
+            }, 2000); //2 seconds
+
+        }, 2000); //2 seconds
+
     } else if (a > 6 && a < 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
+        $("#log-output").html(pText);
+
         let badDam = array.diceRoll(baddie.damageDie);
         let dam = array.diceRoll(character.damageDie);
         character.hp -= badDam;
         baddie.hp -= dam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage, <br>but you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
+        setTimeout(function () {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage, <br>but you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
 
-        fight();
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if (a >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        $("#log-output").html(pText);
+
         let dam = array.diceRoll(character.damageDie);
         baddie.hp -= dam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage!</p>"
-        fight();
+        setTimeout(function () {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You dealt " + dam + " damage!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
+
     }
 }
 
@@ -524,11 +557,19 @@ function spellDamage() {
         let dam = array.twoDiceRoll(4) + character.sharp;
         baddie.hp -= dam;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
+        $("#log-output").html(pText);
+
     } else {
-        let dam = array.twoDiceRoll(6,6) + character.sharp;
+        let dam = array.twoDiceRoll(6, 6) + character.sharp;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your magical attack hit the foe for " + dam + " damage!</p>"
-        let damself = array.diceRoll(4);
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You hit your target, <br>but that blast was brutal. <br>You take " + damself + " damage from the blast.</p>"
+        $("#log-output").html(pText);
+
+        setTimeout(function () {
+            let damself = array.diceRoll(4);
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You hit your target, <br>but that blast was brutal. <br>You take " + damself + " damage from the blast.</p>"
+            $("#log-output").html(pText);
+        }, 2000); //2 seconds
+
 
         character.hp -= damself;
     }
@@ -537,22 +578,48 @@ function spellDamage() {
 function combatTurnSpell(a) {
     if (a <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
+
         character.misses += 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
-        fight();
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if (a > 6 && a < 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
+        $("#log-output").html(pText);
+
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
-        spellDamage();
-        fight();
+        setTimeout(function () {
+
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                spellDamage();
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if (a >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
-        spellDamage();
-        fight();
+        $("#log-output").html(pText);
+        setTimeout(function () {
+            spellDamage();
+            setTimeout(function () {
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     }
 }
 
@@ -562,31 +629,46 @@ function combatTurnRun(a) {
     // Scanner scanner = new Scanner(System.in);
     if ((a - baddie.chase) <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
+
         character.misses += 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
-        pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow! and couldn't escape!</p>"
-        fight();
+        setTimeout(function () {
+            pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow! and couldn't escape!</p>"
+            $("#log-output").html(pText);
+            setTimeout(function () {
+
+                fight();
+            }, 2000); //2 seconds
+        }, 2000); //2 seconds
+
     } else if ((a - baddie.chase) > 6 && (a - baddie.chase) < 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
+        $("#log-output").html(pText);
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= (badDam);
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You only can do one: <br>Make it away, but take a hit in the escape, [type: Run]  <br>or stay in the fight, and avoid the damage? [type: Stay</p>"
+        $("#log-output").html(pText);
 //TODO: input thingy here too
 //         String runChoice = scanner.nextLine().toLowerCase();
         if (runChoice.equalsIgnoreCase("run")) {
             badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam * 2);
             pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
+            $("#log-output").html(pText);
         } else {
             badDam = array.diceRoll(baddie.damageDie);
             character.hp -= (badDam - character.agility);
             pText = "<p class='output-p'><span class='output-arrow'>-></span>You got away, but took " + badDam + " damage in the escape!</p>"
+            $("#log-output").html(pText);
             fight();
         }
     } else if ((a - baddie.chase) >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        $("#log-output").html(pText);
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You managed to escape the fight!</p>"
+        $("#log-output").html(pText);
         sceneOneOutro();
 //            change to nextScene in future
     }
@@ -595,25 +677,31 @@ function combatTurnRun(a) {
 function combatTurnTalk(a) {
     if (a <= 6) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a miss! Oh no!</p>"
+        $("#log-output").html(pText);
         character.misses = character.misses + 1;
         let badDam = array.diceRoll(baddie.damageDie);
         character.hp -= badDam;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You take " + badDam + " damage from their blow!</p>"
+        $("#log-output").html(pText);
         fight();
     } else if (a > 6 && a < 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a mixed success!</p>"
+        $("#log-output").html(pText);
         let badDam = array.diceRoll(baddie.damageDie);
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         character.hp -= badDam;
         baddie.mp -= dam;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them!<br>You dealt " + dam + " damage to their moral but <br>you opened yourself up to an attack! <br>You take " + badDam + " damage from their blow!</p>"
+        $("#log-output").html(pText);
 
         fight();
     } else if (a >= 10) {
         pText = "<p class='output-p'><span class='output-arrow'>-></span>You rolled a success with little consequence!</p>"
+        $("#log-output").html(pText);
         let dam = array.diceRoll(character.damageDie) + character.sharp;
         baddie.mp -= dam;
         pText = "<p class='output-p'><span class='output-arrow'>-></span>Your words are getting to them! <br>You dealt " + dam + " damage to their moral!</p>"
+        $("#log-output").html(pText);
         fight();
     }
 }
@@ -644,7 +732,7 @@ function fight() {
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>What spell would you like to cast? Bolt or Blast?</p>"
                 character.spell = scanner.nextLine().toLowerCase();
                 pText = "<p class='output-p'><span class='output-arrow'>-></span>Let's see if your spell casted successfully</p>"
-                combatTurnSpell(array.twoDiceRoll(6,6) + character.sharp);
+                combatTurnSpell(array.twoDiceRoll(6, 6) + character.sharp);
             }
         } else {
             pText = "<p class='output-p'><span class='output-arrow'>-></span>How do you fight? <br>With dexterity and fast moves? [type: AGI} <br>Or do you fight with power and prowess? [type: STR]</p>"
