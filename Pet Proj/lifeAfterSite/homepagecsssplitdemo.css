@@ -3,9 +3,20 @@
 .container {
     padding-top: 2rem;
 }
+.brand-logo {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    /*https://www.w3schools.com/css/css3_shadows.asp*/
+}
 
 a.brand-logo {
     margin-left: 2rem;
+}
+.collapsible, .collapsible-header {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn {
+    background-color: darkorange;
 }
 
 #nav-links-bar {
@@ -14,6 +25,8 @@ a.brand-logo {
 
 .card {
     width: 95%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .sidenav {
@@ -28,7 +41,17 @@ p a {
 .nav-wrapper, .page-footer {
     background-color: darkorange;
 }
+.nav-wrapper {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*.page-footer {*/
+/*    position: fixed;*/
+/*    z-index: 1000;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
 
+/*}*/
 /*#mainCollapse {*/
 /*    position: fixed;*/
 /*    width: 30%;*/
