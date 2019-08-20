@@ -19,6 +19,15 @@ a.brand-logo {
 .sidenav {
     text-align: center;
 }
+div a, .material-icons {
+    color: black
+}
+p a {
+    color: darkorange;
+}
+.nav-wrapper, .page-footer {
+    background-color: darkorange;
+}
 
 /*#mainCollapse {*/
 /*    position: fixed;*/
