@@ -52,7 +52,7 @@ p a {
 .footer-copyright {
     background-color: #3b2f23!important;
 }
-.fas {
+.fas, .fab, .far {
     color: #4A3D2C;
 }
 #menu {
