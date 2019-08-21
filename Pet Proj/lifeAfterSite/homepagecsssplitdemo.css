@@ -44,14 +44,9 @@ p a {
 .nav-wrapper {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-/*.page-footer {*/
-/*    position: fixed;*/
-/*    z-index: 1000;*/
-/*    left: 0;*/
-/*    bottom: 0;*/
-/*    width: 100%;*/
-
-/*}*/
+.page-footer, .footer-copyright {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 /*#mainCollapse {*/
 /*    position: fixed;*/
 /*    width: 30%;*/
@@ -114,8 +109,8 @@ p a {
     }
 
     #mainCollapse {
-        position: relative;
-        /*width: 30%;*/
+        position: fixed;
+        width: 30%;
     }
 
     img.activator {
