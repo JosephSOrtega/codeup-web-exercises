@@ -11,6 +11,13 @@ body {
     text-shadow: 2px 2px 4px #000000;
     /*https://www.w3schools.com/css/css3_shadows.asp*/
 }
+.nav-wrapper, .sidenav {
+    color: #4A3D2C;
+}
+.fa-creative-commons{
+    color: whitesmoke!important;
+    font-size: 2rem;
+}
 
 a.brand-logo {
     margin-left: 2rem;
