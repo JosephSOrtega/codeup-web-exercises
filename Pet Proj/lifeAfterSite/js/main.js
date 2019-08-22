@@ -2,6 +2,17 @@
 
 
 (function () {
+//////////////////////Side Navbar
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+    });
+    $(document).ready(function () {
+        $('.tap-target').tapTarget();
+    });
+    $(document).ready(function () {
+        $('.collapsible').collapsible();
+    });
+///////////////////////Fade in/Out Navbar
     let opac;
 
 
