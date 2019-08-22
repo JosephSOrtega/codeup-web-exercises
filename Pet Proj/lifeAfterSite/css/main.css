@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto|Source+Serif+Pro&display=swap');
 
 body {
-    background-color: whitesmoke;
+    background-color: whitesmoke!important;
 }
 .container {
     padding-top: 2rem;
@@ -74,6 +74,10 @@ p a {
 .page-footer, .footer-copyright {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+span a {
+    color: sandybrown;
+}
+
 /*#mainCollapse {*/
 /*    position: fixed;*/
 /*    width: 30%;*/
